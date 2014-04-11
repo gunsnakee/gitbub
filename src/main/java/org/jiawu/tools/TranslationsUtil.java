@@ -185,10 +185,19 @@ public class TranslationsUtil {
         formparams.add(new BasicNameValuePair("tl", targetLanguage));
         formparams.add(new BasicNameValuePair("q", srcText));
 
-		return executeHttpPostMethod(GOOGLE_TRANSLATE_HTTP_URL, formparams);
-		
-		
-	}
+		String result =  executeHttpPostMethod(GOOGLE_TRANSLATE_HTTP_URL, formparams);
+
+        if(StringUtils.isNotBlank(result)){
+            JsonParser p = new JsonParser();
+            JsonElement element = p.parse(result);
+            JsonArray array = 	element.getAsJsonArray();
+            System.out.println(array.get(0).getAsJsonArray().get(0).getAsJsonArray().get(0).getAsString());
+            result =  array.get(0).getAsJsonArray().get(0).getAsJsonArray().get(0).getAsJsonPrimitive().getAsString();
+        }
+
+        return result;
+
+    }
 
 
     /**
@@ -231,16 +240,12 @@ public class TranslationsUtil {
             LOG.error("fecth translate app id error : " + e.getMessage(),e);
         }
 
-
-
-
         List<NameValuePair> formparams = new ArrayList<NameValuePair>();
         formparams.add(new BasicNameValuePair("appId",appId));
         formparams.add(new BasicNameValuePair("to",targetLanguage));
         formparams.add(new BasicNameValuePair("text",srcText));
         formparams.add(new BasicNameValuePair("contentType","text/html"));
         formparams.add(new BasicNameValuePair("maxTranslations","1"));
-
 
         String s = executeHttpPostMethod(BING_TRANSLATE_HTTP_URL, formparams);
         System.out.println(s);
@@ -329,13 +334,6 @@ public class TranslationsUtil {
 
         System.out.println(result);
 
-        //if(StringUtils.isNotBlank(result)){
-        //    JsonParser p = new JsonParser();
-        //    JsonElement element = p.parse(result);
-        //    JsonArray array = 	element.getAsJsonArray();
-        //    System.out.println(array.get(0).getAsJsonArray().get(0).getAsJsonArray().get(0).getAsString());
-        //    result =  array.get(0).getAsJsonArray().get(0).getAsJsonArray().get(0).getAsJsonPrimitive().getAsString();
-        //}
 
 
 		
