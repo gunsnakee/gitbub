@@ -20,7 +20,7 @@ public class OCR {
         StringBuffer strB = new StringBuffer();
 
         List<String> cmd = new ArrayList<String>();
-        cmd.add(tessPath + "\\tesseract");
+        cmd.add(tessPath + "");
         cmd.add("");
         cmd.add(outputFile.getName());
         cmd.add(LANG_OPTION);
