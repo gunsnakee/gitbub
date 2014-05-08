@@ -44,9 +44,12 @@
             <artifactId>jai_imageio</artifactId>
             <version>1.1-alpha</version>
         </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.20</version>
+        </dependency>
 
 
     </dependencies>
-
-
 </project>
