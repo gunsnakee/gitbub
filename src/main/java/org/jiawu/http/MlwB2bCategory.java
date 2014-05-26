@@ -137,6 +137,7 @@ public class MlwB2bCategory {
                 } finally {
                     response1.close();
                 }
+
             }
 
             System.out.println("pidThree="+pidThree);
