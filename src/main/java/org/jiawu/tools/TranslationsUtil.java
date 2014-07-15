@@ -8,8 +8,9 @@ import com.google.gson.reflect.TypeToken;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.http.*;
-import org.apache.http.client.HttpClient;
+import org.apache.http.Consts;
+import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -380,7 +381,7 @@ public class TranslationsUtil {
 	public static void main(String[] args) throws IOException {
 		String tr = "PE管";
 		//System.out.println("1."+tr);
-		String trResult =TranslationsUtil.translateByBingAPI(tr, "en");
+		String trResult =TranslationsUtil.translateGOOGLE(tr, "en");
 		System.out.println(trResult);
 	}
 	

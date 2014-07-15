@@ -1,0 +1,1154 @@
+{
+    'addr.confirm.delete.address': {
+        'en': 'Delete the address?',
+        'th': 'ลบที่อยู่ ',
+        'vn': 'Xóa địa chỉ ',
+        'zh': '删除地址？'
+    },
+    'addr.consignee.name.not.empty': {
+        'en': 'Name of consignee  cannot be empty',
+        'th': 'ชื่อของผู้รับตราส่งต้องไม่ว่างเปล่า',
+        'vn': 'Tên của người nhận hàng không thể để trống',
+        'zh': '收货人的名称不能为空'
+    },
+    'addr.input.new.address': {
+        'en': 'Add a new address',
+        'th': 'เพิ่มที่อยู่ใหม่',
+        'vn': 'Thêm địa chỉ mới',
+        'zh': '添加新地址'
+    },
+    'addr.phone.must.input': {
+        'en': 'Cell phones and phone please fill in at least one',
+        'th': 'เบอร์โทรศัพท์และเบอร์โทรกรุณาอย่างน้อยใส่ไปหนึ่งเบอร์',
+        'vn': 'máy di động và điện thoại, vui lòng điền vào ít nhất một',
+        'zh': '手机和电话请填写至少一个'
+    },
+    'addr.phone.must.number': {
+        'en': 'Mobile phones must be a number',
+        'th': 'โทรศัพท์มือถือจะต้องมีตัวเลข',
+        'vn': 'Máy diđộng này  phải là dạng số',
+        'zh': '移动电话必须为数字'
+    },
+    'addr.postal.code.not.empty': {
+        'en': 'Postal code can not be empty',
+        'th': 'รหัสไปรษณีย์ไม่สามารถจะว่างเปล่า',
+        'vn': 'Zip code không thể để trống',
+        'zh': '邮政编码不能为空'
+    },
+    'addr.postal.code.number': {
+        'en': 'Postal code must be numeric',
+        'th': 'รหัสไปรษณีย์จะต้องมีตัวเลข',
+        'vn': 'Mã bưu chính phải có dạng số',
+        'zh': '邮政编码必须是数字'
+    },
+    'addr.select': {
+        'en': 'Please select',
+        'th': 'กรุณาเลือก',
+        'vn': 'Vui lòng chọn',
+        'zh': '请选择'
+    },
+    'addr.select.address': {
+        'en': 'Please select a shipping address',
+        'th': 'กรุณาเลือกที่อยู่จัดส่ง',
+        'vn': 'Hãy chọn địa chỉ  giao hàng',
+        'zh': '请选择送货地址'
+    },
+    'addr.select.country': {
+        'en': 'Please Select a Country',
+        'th': 'กรุณาเลือกประเทศ',
+        'vn': 'Hãy chọn một nhà nước',
+        'zh': '请选择一个国家'
+    },
+    'addr.select.region': {
+        'en': 'Please select a area/city',
+        'th': 'กรุณาเลือกภูมิภาค / เมืองกรุณาเลือกภูมิภาค / เมือง',
+        'vn': 'Vui lòng chọn một vùng / thành phố',
+        'zh': '请选择一个地区/城市'
+    },
+    'addr.street.address.not.empty': {
+        'en': 'Street address cannot be empty',
+        'th': 'ที่อยู่ถนนไม่สามารถจะว่างเปล่า',
+        'vn': 'Địa chỉ đường phố không thể để trống',
+        'zh': '街道地址不能为空'
+    },
+    'addr.telephone.must.number': {
+        'en': 'The phone must be numbers',
+        'th': 'หมายเลขโทรศัพท์ต้องเป็นตัวเลข',
+        'vn': 'Số điện thoại phải là số',
+        'zh': '手机号码必须是数字'
+    },
+    'buyer.order.list.cancel.pay': {
+        'en': 'Buyer have payed the order',
+        'th': 'ผู้ซื้อทำการจ่ายสิ้นค้าเรียบร้อยแล้ว',
+        'vn': 'Người mua đã trả tiền',
+        'zh': '买家已经付了订单'
+    },
+    'buyer.order.list.notify.done': {
+        'en': 'Have reminded buyer to pay',
+        'th': 'ต้องเตือนผู้ซื้อทำการจ่าย',
+        'vn': 'nhắc nhở người mua phải trả tiền',
+        'zh': '必须提醒买方支付'
+    },
+    'buyer.order.list.notify.send': {
+        'en': 'Supplier have shipped',
+        'th': 'ซัพพลายเออร์ได้จัดส่งสินค้าแล้ว',
+        'vn': 'Nhà cung cấp đã xuất hàng',
+        'zh': '供应商已发货'
+    },
+    'buyer.order.list.notify.timeout': {
+        'en': 'Suppliers extended is not shipped, the order exception',
+        'th': 'ซัพพลายเออร์ที่ไม่หน่วงเวลาการส่งคำสั่งที่ผิดปกติ',
+        'vn': 'Các nhà cung cấp không chậm trễ giao hàng, đơn đặt hàng bất thường',
+        'zh': '供应商延时不发货，订单异常'
+    },
+    'cart.add.to.cart': {
+        'en': 'Add to cart',
+        'th': 'เพิ่มไปใส่ยังตะกร้า',
+        'vn': 'Thêm vào giỏ hàng',
+        'zh': '添加到购物车'
+    },
+    'cart.delete.confirm.info': {
+        'en': 'Confirm to delete these products?',
+        'th': 'ยืนยันว่าคุณต้องการลบผลิตภัณฑ์เหล่านี้หรือไม่',
+        'vn': 'bạn xác nhận muốn xóa các sản phẩm này không?',
+        'zh': '确认要删除这些产品呢？'
+    },
+    'cart.delete.success': {
+        'en': 'Deleted success',
+        'th': 'ลบเรียบร้อยแล้ว',
+        'vn': 'Xóa thành công',
+        'zh': '删除成功'
+    },
+    'cart.delete': {
+        'en': 'Delete',
+        'th': 'ลบ',
+        'vn': 'Xóa',
+        'zh': '删除'
+    },
+    'cart.not.login': {
+        'en': 'User is not logged in, please login',
+        'th': 'ผู้ใช้ยังไม่ได้เข้าสู่ระบบ  กรุณาเข้าสู่ระบบก่อน',
+        'vn': 'Người dùng chưa đăng nhập, vui lòng đăng nhập',
+        'zh': '用户没有登录，请登录'
+    },
+    'company.add.product.to.current.window': {
+        'en': 'Add product to current.window',
+        'th': 'เพิ่มสินค้าเข้า current.window ได้',
+        'vn': 'Thêm sản phẩm vào current.window ',
+        'zh': '可将产品加入current.window'
+    },
+    'company.add.product.to.window': {
+        'en': 'Add product to window',
+        'th': 'เพิ่มสินค้าเข้า windowได้',
+        'vn': 'Thêm sản phẩm vào cửa sổ',
+        'zh': '可将产品加入窗口'
+    },
+    'company.address.not.empty': {
+        'en': 'Business address must be not empty',
+        'th': 'ที่อยู่ของลูกค้าไม่สามารถจะว่างเปล่า',
+        'vn': 'Địa chỉ thương gia không thể để trống',
+        'zh': '商家地址必须是不为空'
+    },
+    'company.category.delete': {
+        'en': 'Delete',
+        'th': 'ลบ',
+        'vn': 'Xóa',
+        'zh': '删除'
+    },
+    'company.certificate.must.upload': {
+        'en': 'Business certificate must be uploaded',
+        'th': 'ใบรับรองจะต้องได้รับการอัปโหลด',
+        'vn': 'Giấy chứng nhận xí nghiệp phải được tải lên',
+        'zh': '企业证书必须上传'
+    },
+    'company.click.upload': {
+        'en': 'Upload',
+        'th': 'อัปโหลด',
+        'vn': 'Tải lên',
+        'zh': '上载'
+    },
+    'company.cn.address.input.error': {
+        'en': 'Business address(Chinese) input error,please check it',
+        'th': 'ที่อยู่ลูกค้า(ภาษาจีน)ผิดพลาด  กรุณาโปรดตรวจสอบ',
+        'vn': 'Địa chỉthương gia (Trung Quốc)gõ sai, xin vui lòng kiểm tra lại',
+        'zh': '商家地址（中国）输入错误，请检查'
+    },
+    'company.cn.name.input.error': {
+        'en': 'Company name(Chinese) input error,please check it',
+        'th': 'ชื่อบริษัท(ภาษาจีน)ผิดพลาด  กรุณาโปรดตรวจสอบ',
+        'vn': 'Tên công ty (Trung Quốc)gõ sai, xin vui lòng kiểm tra lại',
+        'zh': '公司名称（中国）输入错误，请检查'
+    },
+    'company.country.not.empty': {
+        'en': 'Please select company country',
+        'th': 'กรุณาเลือกประเทศที่บริษัทอยู่',
+        'vn': 'Vui lòng chọn nhà nước của công ty ',
+        'zh': '请选择公司国'
+    },
+    'company.desc.cn.input.error': {
+        'en': 'Company description(Chinese) input error,please check it',
+        'th': 'การแนะนำบริษัท (ภาษาจีน) ผิดพลาด  กรุณาโปรดตรวจใหม่',
+        'vn': 'Giới thiệu công ty (Trung Quốc)gõ sai, xin vui lòng kiểm tra',
+        'zh': '公司介绍（中国）输入错误，请检查'
+    },
+    'company.desc.en.input.error': {
+        'en': 'Company description(English) input error,please check it',
+        'th': 'การแนะนำบริษัท (ภาษาอังกฤษ) ผิดพลาด  กรุณาโปรดตรวจใหม่',
+        'vn': 'Giới thiệu (tiếng Anh)gõ sai, xin vui lòng kiểm tra lại',
+        'zh': '公司介绍（英文）输入错误，请检查'
+    },
+    'company.desc.en.length.input': {
+        'en': 'Company description(English) length must be 50~4000 chars',
+        'th': 'การแนะนำบริษัท (ภาษาอังกฤษ) จะต้องมีตัวอักษร 50-4000ตัว ',
+        'vn': 'Giới thiệu (tiếng Anh) chiều dài phải 50-4000 ký tự',
+        'zh': '公司介绍（英文）长度必须为50〜4000个字符'
+    },
+    'company.desc.en.must.input': {
+        'en': 'Company ddress(English) must be not empty',
+        'th': 'instroduce บริษัท (ภาษาอังกฤษ) ไม่สามารถจะว่างเปล่า',
+        'vn': 'Giới thiệu của công ty (tiếng Anh) không thể để trống',
+        'zh': '公司地址（英语）必须不为空'
+    },
+    'company.desc.length.input': {
+        'en': 'Company description(Chinese) length must be 50~4000 chars',
+        'th': 'การแนะนำบริษัท (ภาษาจีน) จะต้องมีตัวอักษร 50~4000ตัว ',
+        'vn': 'Giới thiệu của công ty (Trung Quốc) chiều dài phải 50-4000 ký tự',
+        'zh': '公司介绍（中国）长度必须为50〜4000个字符'
+    },
+    'company.desc.must.input': {
+        'en': 'Company address(Chinese) must be not empty',
+        'th': 'instroduce บริษัท (ภาษาจีน) ไม่สามารถจะว่างเปล่า',
+        'vn': 'Giới thiệu của Công ty không thể để trống',
+        'zh': '公司地址（中国）必须不为空'
+    },
+    'company.en.address.input.error': {
+        'en': 'Business address(English) input error,please check it',
+        'th': 'ที่อยู่บริษัท(ภาษาอังกฤษ)ผิดพลาด  กรุณาโปรดตรวจสอบ',
+        'vn': 'Địa chỉ (tiếng Anh)gõ sai, xin vui lòng kiểm tra lại',
+        'zh': '公司地址（英文）输入错误，请检查'
+    },
+    'company.en.name.input.error': {
+        'en': 'Company name(English) input error,please check it',
+        'th': 'ชื่อบริษัท(ภาษาอังกฤษ)ผิดพลาด  กรุณาโปรดตรวจสอบ',
+        'vn': 'Tên công ty (tiếng Anh) gõ sai, xin vui lòng kiểm tra lại',
+        'zh': '公司名称（英文）输入错误，请检查'
+    },
+    'company.founded.time.not.empty': {
+        'en': 'Set up a year cannot be empty',
+        'th': 'ชื่อบริษัทที่ตั้งมาหนึ่งปีแล้วไม่สามารถจะว่างเปล่า',
+        'vn': 'Thành lập một năm không thể để trống',
+        'zh': '成立年份不能为空'
+    },
+    'company.legal.representive.not.empty': {
+        'en': 'Legal representatives cannot be empty',
+        'th': 'ตัวแทนทางกฎหมายไม่สามารถจะว่างเปล่า',
+        'vn': 'Đại diện hợp pháp không thể để trống',
+        'zh': '法人代表不能为空'
+    },
+    'company.logo.must.upload': {
+        'en': 'Company logo not upload',
+        'th': 'โลโก้ของ บริษัท ไม่สามารถอัปโหลด',
+        'vn': 'Logo của công ty không thể tải lên',
+        'zh': '公司logo必须上​​传'
+    },
+    'company.main.product.not.empty': {
+        'en': 'Please select main products',
+        'th': 'กรุณาเลือกสินค้าที่ผลิตภัณฑ์หลัก',
+        'vn': 'Vui lòng chọn các sản phẩm chính',
+        'zh': '请选择主要产品'
+    },
+    'company.name.not.empty': {
+        'en': 'Company name must be not empty',
+        'th': 'ชื่อ บริษัทไม่สามารถจะว่างเปล่า',
+        'vn': 'Tên công ty không phải là trống rỗng',
+        'zh': '公司名称必须是不为空'
+    },
+    'company.office.space.digits': {
+        'en': 'Office space must be a number',
+        'th': 'จำนวนที่ทำงานต้องเป็นจำนวนเต็ม',
+        'vn': 'Không gian văn phòng phải làdạng số',
+        'zh': '办公面积必须是数字'
+    },
+    'company.phone.input.error': {
+        'en': 'telephone number must be digits',
+        'th': 'เบอร์โทรศัพท์จะต้องเป็นตัวเลข',
+        'vn': 'Số điện thoại phải là dạng số',
+        'zh': '电话号码必须是数字'
+    },
+    'company.phone.not.empty': {
+        'en': 'telephone number must be not empty',
+        'th': 'เบอร์โทรศัพท์ไม่สามารถจะว่างเปล่า',
+        'vn': 'Số điện thoại không thể để trống',
+        'zh': '电话号码必须是不为空'
+    },
+    'company.quality.must.number': {
+        'en': 'Quality number must be integer',
+        'th': 'เลขมวลต้องเป็นจำนวนเต็ม',
+        'vn': 'Số chất lượng phải là số nguyên',
+        'zh': '质检人数必须是整数'
+    },
+    'company.rd.must.number': {
+        'en': 'R&D number must be integer',
+        'th': 'R & D จะต้องเป็นจำนวนเต็ม',
+        'vn': 'R & D phải là một số nguyên',
+        'zh': 'R&D人数 必须是整数'
+    },
+    'company.scroll.must.upload': {
+        'en': 'Home page scroll image not upload',
+        'th': 'หน้าแรกเลื่อนไม่สามารถอัปโหลดภาพได้',
+        'vn': 'Hình ảnh trang chủ cuộn không thể tải lên',
+        'zh': '首页滚动图片不能上传'
+    },
+    'company.staff.must.number': {
+        'en': 'Number of Employees must be an integer',
+        'th': 'จำนวนพนักงานจะต้องเป็นจำนวนเต็ม',
+        'vn': 'Số nhân viên phải là số nguyên',
+        'zh': '员工人数必须是整数'
+    },
+    'company.type.not.empty': {
+        'en': 'Please select company type',
+        'th': 'กรุณาเลือกประเภท บริษัท',
+        'vn': 'Hãy chọn loại hình công ty',
+        'zh': '请选择公司类型'
+    },
+    'company.upload': {
+        'en': 'upload',
+        'th': 'อัปโหลด',
+        'vn': 'Tải lên',
+        'zh': '上载'
+    },
+    'company.vi.address.input.error': {
+        'en': 'Business address(Viet nam) input error,please check it',
+        'th': 'ที่อยู่ลูกค้า(ภาษาเวียดนาม)ผิดพลาด  กรุณาโปรดตรวจสอบ',
+        'vn': 'Địa chỉ thương gia (Việt Nam)gõ sai, xin vui lòng kiểm tra lại',
+        'zh': '商家地址（越南）输入错误，请检查'
+    },
+    'company.vi.name.input.error': {
+        'en': 'Company name(Viet nam) input error,please check it',
+        'th': 'ชื่อบริษัท(ภาษาเวียดนาม)ผิดพลาด  กรุณาโปรดตรวจสอบ',
+        'vn': 'Tên công ty (Việt Nam)gõ sai, xin vui lòng kiểm tra lại',
+        'zh': '公司名称（越南）输入错误，请检查'
+    },
+    'feedback.content.not.empty': {
+        'en': 'Problem description cannot be empty',
+        'th': 'รายละเอียดปัญหาไม่สามารถว่างเปล่าได้',
+        'vn': 'Mô tả của vấn đề không thể để trống',
+        'zh': '问题描述不能为空'
+    },
+    'feedback.title.not.empty': {
+        'en': 'Issue title cannot be empty',
+        'th': 'หัวข้อปัญหาไม่สามารถว่างเปล่า',
+        'vn': 'Tiêu đề của vấn đề không thể đề trống',
+        'zh': '问题标题不能为空'
+    },
+    'feedback.type.not.empty': {
+        'en': 'Please select the type of problem',
+        'th': 'กรุณาเลือกประเภทปัญหา',
+        'vn': 'Vui lòng chọn loại vấn đề',
+        'zh': '请选择问题类型'
+    },
+    'header.search.product': {
+        'en': 'Product',
+        'th': 'สินค้า',
+        'vn': 'Sản phẩm',
+        'zh': '产品'
+    },
+    'header.search.supplier': {
+        'en': 'Supplier',
+        'th': 'ผู้จัดจำหน่าย',
+        'vn': 'Nhà cung cấp',
+        'zh': '供应商'
+    },
+    'login.contact.phone.invalid': {
+        'en': 'Phone must be numeric',
+        'th': 'เบอร์โทรศัพท์จะต้องเป็นตัวเลข',
+        'vn': 'Số máy di động nhất thiết phải là số mã',
+        'zh': '手机必须是数字'
+    },
+    'login.contact.phone.not.empty': {
+        'en': 'contact phone must not empty',
+        'th': ' เบอร์โทรศัพท์ไม่สามารถเว้นว่าง',
+        'vn': 'Điện thoại không thể để trống',
+        'zh': '联系电话不能为空'
+    },
+    'login.email.format.error': {
+        'en': 'please input valid email',
+        'th': 'กรุณาใส่อีเมลที่ถูกต้อง',
+        'vn': 'Xin vui lòng nhập địa chỉ email hợp lệ',
+        'zh': '请输入有效的电子邮件'
+    },
+    'login.email.input.error': {
+        'en': 'Email in error, please re-enter',
+        'th': 'อีเมลที่ผิดพลาด  กรุณาโปรดป้อนอีกครั้ง',
+        'vn': 'E-mail lỗi, xin vui lòng nhập lại',
+        'zh': '电子邮件中的错误，请重新输入'
+    },
+    'login.email.not.empty': {
+        'en': 'Email address must not empty',
+        'th': ' เบอร์อีเมลไม่สามารถเว้นว่าง',
+        'vn': 'Địa chỉ E-mail không thể để trống',
+        'zh': '电子邮件地址不能为空'
+    },
+    'login.email.regex.tip': {
+        'en': 'please input valid email for validate',
+        'th': 'กรุณากรอกอีเมลที่ถูกต้องสำหรับการตรวจสอบ',
+        'vn': 'Vui lòng nhập một địa chỉ e-mail hợp lệ để xác minh',
+        'zh': '请输入有效的电子邮件进行验证'
+    },
+    'login.email.registed': {
+        'en': 'The email address already exists',
+        'th': 'อีเมลนี้มีอยู่แล้ว',
+        'vn': 'Địa chỉ e-mail này đã tồn tại',
+        'zh': '该电子邮件地址已经存在'
+    },
+    'login.info.sign': {
+        'en': 'Sign In',
+        'th': 'เข้าสู่ระบบ',
+        'vn': 'Đăng nhập',
+        'zh': '登录'
+    },
+    'login.nationality.not.empty': {
+        'en': 'Please select a location',
+        'th': 'กรุณาเลือกสถานที่',
+        'vn': 'Hãy chọn vị trí',
+        'zh': '请选择地点'
+    },
+    'login.nickname.not.empty': {
+        'en': 'Please input nickname',
+        'th': 'กรุณาใส่ชื่อเล่น',
+        'vn': 'Xin vui lòng nhập một biệt danh',
+        'zh': '请输入昵称'
+    },
+    'login.nickname.regex.tip': {
+        'en': 'Nicknames cannot be modified, must be a combination of English letters or numbers',
+        'th': 'ชื่อเล่นไม่สามารถแก้ไขได้จะต้องมีการรวมกันของตัวอักษรหรือตัวเลข',
+        'vn': '',
+        'zh': '昵称不能修改，必须是英文字母或数字的组合'
+    },
+    'login.nickname.registed': {
+        'en': 'The nickname you entered has been used, please change it.',
+        'th': 'ชื่อเล่นของคุณที่ใส่มีอยู่แล้ว   กรุณใส่อีกตัวแทน.',
+        'vn': 'Biệt danh bạn gõ đã được sử dụng, vui lòng thay đổi.',
+        'zh': '您输入的昵称已被使用，请更换。'
+    },
+    'login.password.combine.range': {
+        'en': 'Passwords must 6-30 characters and include at least 1 letter and 1 number. Please try again.',
+        'th': 'รหัสผ่านจะต้องมี 6-30 ตัวอักษรรวมถึงตัวอักษรอย่างน้อยหนึ่งและเป็นหนึ่งในจำนวน โปรดลองอีกครั้ง',
+        'vn': 'Mật khẩu phải có 6-30 ký tự, bao gồm ít nhất một chữ và một số. Vui lòng thử lại.',
+        'zh': '密码必须6-30个字符，包括至少1个字母和1个数字。请再试一次。'
+    },
+    'login.password.input': {
+        'en': 'please input password',
+        'th': 'กรุณาใส่รหัสผ่าน',
+        'vn': 'Vui lòng nhập mật khẩu',
+        'zh': '请输入密码'
+    },
+    'login.password.not.empty': {
+        'en': 'Password must not empty',
+        'th': 'รหัสผ่านไม่สามารถเว้นว่าง',
+        'vn': 'Mật khẩu không thể để trống',
+        'zh': '密码不能为空'
+    },
+    'login.password.regex': {
+        'en': 'Passwords must 6-30 characters and include at least 1 letter and 1 number. Please try again.',
+        'th': 'รหัสผ่านจะต้องมี 6-30 ตัวอักษรรวมถึง อย่างน้อยหนึ่งเป็นตัวอักษรและหนึ่งเป็นตัวหมายเลข  กรุณาโปรดลองอีกครั้ง',
+        'vn': 'Mật khẩu phải có 6-30 ký tự, bao gồm ít nhất một chữ và một số. Vui lòng thử lại.',
+        'zh': '密码必须6-30个字符，包括至少1个字母和1个数字。请再试一次。'
+    },
+    'login.send.email.failure': {
+        'en': 'The email send fails, Please resend',
+        'th': 'ล้มเหลวในการส่ง e-mail กรุณาส่งใหม่',
+        'vn': 'Không thể gửi e-mail, xin vui lòng gửi lại',
+        'zh': '邮件发送失败，请重新发送'
+    },
+    'login.send.email.success': {
+        'en': 'Eail send success',
+        'th': 'Eail ส่งเรียบร้อยแล้ว',
+        'vn': 'Email gửi thành công',
+        'zh': 'Eail发送成功'
+    },
+    'login.twice.password.not.equal': {
+        'en': 'Enter the password twice is inconsistent, please re-enter',
+        'th': 'รหัสที่ป้อนไปสองครั้งและไม่ตรงกัน  กรุณาโปรดป้อนอีกครั้ง',
+        'vn': 'Nhập hai mật khẩu không phù hợp, xin vui lòng nhập lại',
+        'zh': '输入两次密码不一致，请重新输入'
+    },
+    'login.username.activate.error': {
+        'en': 'The user is not active, please check your email for activation',
+        'th': 'ผู้ใช้ยังไม่ได้เปิดใช้งาน   กรุณาโปรดตรวจสอบอีเมลของคุณเพื่อเปิดใช้งาน',
+        'vn': 'Người sử dụng không được kích hoạt, vui lòng kiểm tra email của bạn để kích hoạt',
+        'zh': '该用户未激活，请检查您的电子邮件激活'
+    },
+    'login.username.password.error': {
+        'en': 'User name or password error,please input again',
+        'th': 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง  กรุณากรอกอีกครั้ง',
+        'vn': 'Tên người dùng hoặc mật khẩu không đúng, xin vui lòng nhập lại',
+        'zh': '用户名或密码错误，请重新输入'
+    },
+    'login.validate.code.error': {
+        'en': 'Captcha error, please re-enter',
+        'th': 'รหัสข้อผิดพลาดในการตรวจ กรุณาโปรดป้อนอีกครั้ง',
+        'vn': ' Mã xác thực lỗi, vui lòng gõ lại',
+        'zh': '验证码错误，请重新输入'
+    },
+    'login.validate.code.not.empty': {
+        'en': 'Please input validate code',
+        'th': 'กรุณาใส่รหัสตรวจสอบ',
+        'vn': 'Vui lòng gõ mã xác thực chính xác',
+        'zh': '请输入验证码'
+    },
+    'login.validatecode.error': {
+        'en': 'Captcha failed',
+        'th': 'รหัสการตรวจสอบล้มเหลว',
+        'vn': 'Mã xác nhận không',
+        'zh': '验证码失败'
+    },
+    'member.account.confirm.not.empty': {
+        'en': 'Please confirm Paypal account',
+        'th': 'กรุณายืนยันบัญชีเพย์พาล',
+        'vn': 'Vui lòng xác nhận tài khoản PayPal',
+        'zh': '请确认Palpal账户'
+    },
+    'member.account.invalid': {
+        'en': 'Please enter the correct Paypal Account',
+        'th': 'กรุณากรอกบัญชีที่ถูกต้อง',
+        'vn': 'Xin vui lòng gõ tài khoản PayPal chính xác',
+        'zh': '请输入正确的Palpal账户'
+    },
+    'member.account.not.empty': {
+        'en': 'please input Paypal account',
+        'th': 'กรุณากรอกบัญชีเพย์พาล',
+        'vn': 'Xin vui lòng gõ tài khoản PayPal',
+        'zh': '请输入Paypal账户'
+    },
+    'member.account.twice.not.equal': {
+        'en': 'Two times to enter the account did not match, please re-enter',
+        'th': 'บัญชีที่กรอกใส่สองครั้งไม่ตรงกัน กรุณากรอกอีกครั้ง',
+        'vn': 'Hai lần gõ tài khoản không phù hợp, xin vui lòng gõ lại',
+        'zh': '两次输入帐号不匹配，请重新输入'
+    },
+    'member.business.email.not.empty': {
+        'en': 'Email must be not empty',
+        'th': 'เบอร์ E-mail ไม่สามารถจะว่างเปล่า',
+        'vn': 'Email không được để trống',
+        'zh': '电子邮件必须不为空'
+    },
+    'member.business.email.not.valid': {
+        'en': 'Invalid email address',
+        'th': 'ที่อยู่อีเมลไม่ถูกต้อง',
+        'vn': 'Địa chỉ email không hợp lệ',
+        'zh': '无效的电子邮件地址'
+    },
+    'member.business.phone.must.number': {
+        'en': 'Phone number must be number',
+        'th': 'เบอร์โทรศัพท์จะต้องเป็นตัวเลข',
+        'vn': 'Số điện thoại phải là dạng số',
+        'zh': '电话号码必须是数字'
+    },
+    'member.choose.identity': {
+        'en': 'Please select member identity',
+        'th': 'กรุณาเลือกสมาชิก',
+        'vn': 'Vui lòng chọn thành viên',
+        'zh': '请选择成员身份'
+    },
+    'member.fax.must.number': {
+        'en': 'Fax must be a number',
+        'th': 'เบอร์โทรสารจะต้องเป็นตัวเลข',
+        'vn': 'Fax phải là một số',
+        'zh': '传真必须是一个数字'
+    },
+    'member.name.not.empty': {
+        'en': 'Name must be not empty',
+        'th': 'ชื่อไม่สามารถจะว่างเปล่า',
+        'vn': 'Tên không được để trống',
+        'zh': '名称必须是不为空'
+    },
+    'member.old.password.input': {
+        'en': 'You must enter the old password',
+        'th': 'คุณต้องป้อนรหัสเดิม',
+        'vn': 'Bạn phải nhập mật khẩu cũ',
+        'zh': '您必须输入旧密码'
+    },
+    'member.phone.not.empty': {
+        'en': 'Phone number must not be empty',
+        'th': 'เบอร์โทรไม่สามารถจะว่างเปล่า',
+        'vn': 'Số máy di động không thể để trống',
+        'zh': '手机号码不能为空'
+    },
+    'member.postal.code.must.number': {
+        'en': 'Postal code must be number',
+        'th': 'รหัสไปรษณีย์จะต้องเป็นตัวเลข',
+        'vn': 'Mã bưu chính phải là dạng số',
+        'zh': '邮政编码必须是数字'
+    },
+    'member.telephone.must.number': {
+        'en': 'Telephone must be number',
+        'th': 'เบอร์โทรศัพท์จะต้องเป็นตัวเลข',
+        'vn': 'Điện thoại phải là dạng số',
+        'zh': '电话必须是数字'
+    },
+    'message.ajax.error': {
+        'en': 'The server is busy, please try again later!',
+        'th': 'เซิร์ฟเวอร์ไม่ว่าง   กรุณาโปรดลองอีกครั้งในภายหลัง!',
+        'vn': 'Máy chủ đang bận, vui lòng thử lại sau!',
+        'zh': '服务器正忙，请稍后再试！'
+    },
+    'message.context.not.empty': {
+        'en': '<p> Content can  not be empty </p>',
+        'th': '<p> เนื้อหาไม่สามารถว่างเปล่า </p>',
+        'vn': '<p> Nội dung không thể để trống </p>',
+        'zh': '<p>内容不能为空</p>'
+    },
+    'message.delete.system.message': {
+        'en': 'Confirm to delete the system message?',
+        'th': 'ยืนยันว่าคุณต้องการลบข้อความระบบหรือไม่?',
+        'vn': 'Bạn xác nhận muốn xóa thông tin hệ thống không?',
+        'zh': '确认要删除系统消息？'
+    },
+    'message.delete.system.message.from.trash': {
+        'en': 'Confirm to delete the system message from trash?',
+        'th': 'ยืนยันว่าคุณต้องการลบข้อความระบบจากบอกสํรีไซเคิลรือไม่ ?',
+        'vn': 'Bạn xác nhận phải xóa thông tin hệ thông từ  Recycle Bin không?',
+        'zh': '确认从回收站删除系统消息？'
+    },
+    'message.sender.not.same': {
+        'en': '<p>Can not send a message to yourself</p>',
+        'th': '<p> ไม่สามารถส่งข้อความให้ตัวเอง </p>',
+        'vn': '<p> Không thể gửi tin nhắn cho mình </p>',
+        'zh': '<p>无法传送讯息给自己</p>'
+    },
+    'message.tiltle.not.empty': {
+        'en': '<p>Title can not empty</p>',
+        'th': '<p> ชื่อหัวข้อไม่สามารถว่างเปล่า </p>',
+        'vn': '<p> Tiêu đề không thể để trống </p>',
+        'zh': '<p>标题不能为空</p>'
+    },
+    'message.translate.language.cn': {
+        'en': 'Chinese',
+        'th': 'ของประเทศจีน',
+        'vn': 'Của Trung Quốc',
+        'zh': '中国的'
+    },
+    'message.translate.language.en': {
+        'en': 'English',
+        'th': 'ภาษาอังกฤษ',
+        'vn': 'Anh',
+        'zh': '英语'
+    },
+    'message.translate.language.select': {
+        'en': 'Language',
+        'th': 'ภาษา',
+        'vn': 'Ngôn ngư',
+        'zh': '语言'
+    },
+    'message.translate.language.th': {
+        'en': 'Thailand',
+        'th': 'ประเทศไทย',
+        'vn': 'Thái Lan',
+        'zh': '泰国'
+    },
+    'message.translate.language.vi': {
+        'en': 'Vietnam',
+        'th': 'เวียดนาม',
+        'vn': 'Việt Nam',
+        'zh': '越南'
+    },
+    'order.confirm.NoAuthorization': {
+        'en': 'You do not have permission to operate the order!',
+        'th': 'คุณไม่ได้รับสิทธิ์สำหรับการดำเนินงานของคำสั่งที่',
+        'vn': 'Bạn không có quyền cho hoạt động của thứ tự',
+        'zh': '你没有操作该订单的权限！'
+    },
+    'order.id': {
+        'en': 'Order Id',
+        'th': 'รหัสคำสั่งซื้อ',
+        'vn': 'đơn hàng ID',
+        'zh': '订单ID'
+    },
+    'order.opera.freeShip': {
+        'en': 'Free shipping',
+        'th': 'ฟรีค่าการจัดส่งสินค้า',
+        'vn': 'Vận chuyển miễn phí',
+        'zh': '免费送货'
+    },
+    'pic.upload': {
+        'en': 'Upload',
+        'th': 'อัปโหลด',
+        'vn': 'Tải lên',
+        'zh': '上载'
+    },
+    'plugin.dialog.cancel': {
+        'en': 'Cancel',
+        'th': 'ยกเลิก',
+        'vn': 'Hủy bỏ',
+        'zh': '取消'
+    },
+    'plugin.dialog.submit': {
+        'en': 'Confirm',
+        'th': 'ยืนยัน',
+        'vn': 'Xác nhận',
+        'zh': '确认'
+    },
+    'plugin.dialog.title': {
+        'en': 'Notice',
+        'th': 'แจ้งให้ทราบ',
+        'vn': 'Thông báo',
+        'zh': '通知'
+    },
+    'plugin.pager.first': {
+        'en': 'Home',
+        'th': 'บ้าน',
+        'vn': 'quê hương ',
+        'zh': '首页'
+    },
+    'plugin.pager.last': {
+        'en': 'Last',
+        'th': 'สุดท้าย',
+        'vn': 'cuối cùng',
+        'zh': '尾页'
+    },
+    'plugin.pager.next': {
+        'en': 'Next',
+        'th': 'ต่อไป',
+        'vn': 'Tiếp theo',
+        'zh': '下一个'
+    },
+    'plugin.pager.prev': {
+        'en': 'Prev',
+        'th': 'ก่อนหน้า',
+        'vn': 'Trang trước',
+        'zh': '上一页'
+    },
+    'product.add.price.error1': {
+        'en': 'Enter right Price',
+        'th': 'กรุณาใส่ราคาที่ถูกต้อง',
+        'vn': 'Vui lòng nhập đúng giá',
+        'zh': '请输入正确的价格'
+    },
+    'product.add.price.error2': {
+        'en': 'Enter right Price',
+        'th': 'กรุณาใส่ราคาที่ถูกต้อง',
+        'vn': 'Vui lòng nhập đúng giá',
+        'zh': '请输入正确的价格'
+    },
+    'product.description': {
+        'en': 'Product brief',
+        'th': 'การแนะนำสินค้า',
+        'vn': 'Giới thiệu',
+        'zh': '产品简介'
+    },
+    'product.id': {
+        'en': 'Product Id',
+        'th': 'รหัสสินค้า',
+        'vn': 'ID sản phẩm',
+        'zh': '产品编号'
+    },
+    'product.info.email.error1': {
+        'en': 'The sender cannot be empty!',
+        'th': 'ชื่อผู้ส่งไม่อนญาตว่างเปล่าได้!',
+        'vn': 'Người gửi không thể để trống!',
+        'zh': '发件人不能为空！'
+    },
+    'product.info.email.error2': {
+        'en': 'The recipient cannot be empty!',
+        'th': 'ชื่อผู้รับไม่อนุญาตว่างเปล่าได้!',
+        'vn': 'Người nhận không thể để trống!',
+        'zh': '收件人不能为空！'
+    },
+    'product.info.email.error3': {
+        'en': 'Subject cannot be empty!',
+        'th': 'หัวข้อไม่อนุญาตว่างเปล่า!',
+        'vn': 'Chủ đề không thể để trống!',
+        'zh': '主题不能为空！'
+    },
+    'product.info.email.error4': {
+        'en': 'Mail contents cannot be empty!',
+        'th': 'เนื้อหาอีเมร์ไม่อนุญาตว่างเปล่า!',
+        'vn': 'Nội dung Mail không thể để trống!',
+        'zh': '邮件内容不能为空！'
+    },
+    'product.info.fav': {
+        'en': 'Add to favorites success!',
+        'th': 'เพิ่มไปรายการโปรดสำเร็จ!',
+        'vn': 'Thêm vào mục yêu thích thành công!',
+        'zh': '添加到收藏成功！'
+    },
+    'product.info.fav.exist': {
+        'en': 'The item has already in your favorites.',
+        'th': 'รายการนี้มีอยู่ในรายการโปรดของคุณแล้ว.',
+        'vn': 'Dự án này đã có trong mục yêu thích của bạn.',
+        'zh': '该商品已经在您的收藏夹。'
+    },
+    'product.info.fav.ownproduct': {
+        'en': 'This item is your belongings, can’t add it to your Favorites!',
+        'th': 'ผลิตภัณฑ์นี้เป็นผลิตภัณฑ์ของร้านค้าของคุณคุณจะไม่สามารถเพิ่มในรายการโปรดของคุณ',
+        'vn': 'Sản phẩm này là một sản phẩm của cửa hàng của bạn, bạn không thể thêm nó vào mục yêu thích của bạn!',
+        'zh': '此商品是您的店的商品，不能将它添加到您的收藏夹！'
+    },
+    'product.info.noLogin': {
+        'en': 'User does not login, please login before adding items to the favorites.',
+        'th': 'คุณยังไม่ได้เข้าสู่ระบบ กรุณาเข้าสู่ระบบก่อนที่จะเพิ่มรายการไปยังรายการโปรด',
+        'vn': 'Người dùng chưa đăng nhập, vui lòng đăng nhập trước khi bạn thêm dự án vào  mục yêu thích .',
+        'zh': '用户没有登陆，请先将项目添加到您的收藏夹之前登录。'
+    },
+    'product.info.orderCreate.error1': {
+        'en': 'User does not login, please login',
+        'th': 'คุณยังไม่ได้เข้าสู่ระบบ กรุณาเข้าสู่ระบบก่อน',
+        'vn': 'Người dùng chưa đăng nhập, vui lòng đăng nhập ',
+        'zh': '用户没有登录，请登录'
+    },
+    'product.info.orderCreate.error2': {
+        'en': 'You can not order your store  products',
+        'th': 'คุณไม่สามารถซื้อร้านขายผลิตภัณฑ์ของคุณ',
+        'vn': 'Bạn không thể mua cửa hàng sản phẩm của bạn',
+        'zh': '您不能购买您的店的商品'
+    },
+    'product.info.orderCreate.error3': {
+        'en': 'Order failure: lack of inventory or has been pulled from the shelves',
+        'th': 'ที่จะล้มเหลวขาดของสินค้าคงคลังหรือได้รับการดึงออกมาจากชั้นวาง',
+        'vn': 'Thất bại: thiếu tồn kho hoặc đã bị xuống kệ',
+        'zh': '为了失败：库存不足或已被拉到从货架上'
+    },
+    'product.langage': {
+        'en': 'Langage',
+        'th': 'langage',
+        'vn': 'Langage',
+        'zh': 'Langage'
+    },
+    'product.list.cart.error1': {
+        'en': 'Product quantity is not enough',
+        'th': 'คุณภาพสินค้าที่มีไม่เพียงพอใช้',
+        'vn': 'Chất lượng sản phẩm là không đủ',
+        'zh': '产品质量是不够的'
+    },
+    'product.list.cart.error2': {
+        'en': 'The product attributes are not complete, cannot be added to the shopping cart',
+        'th': 'คุณสมบัติของผลิตภัณฑ์นี้ไม่สมบูรณ์ ไม่สามารถเพิ่มไปยังตะกร้า',
+        'vn': 'Thuộc tính sản phẩm không hoàn chỉnh, không thể thêm vào giỏ hàng',
+        'zh': '该产品的属性是不完整的，不能被添加到购物车'
+    },
+    'product.list.cart.error3': {
+        'en': 'You can add your own products released to cart',
+        'th': 'คุณสามารถเพิ่มผลิตภัณฑ์ของตัวเองปล่อยให้รถเข็น',
+        'vn': 'Bạn có thể thêm các sản phẩm của riêng bạn phát hành vào giỏ hàng',
+        'zh': '您不能添加自己发布的产品到购物车'
+    },
+    'product.list.cart.error4': {
+        'en': 'Failed add to cart, the products are low in stock or have been removed from shelves.',
+        'th': 'ไม่สามารถสั่งซื้อผลิตภัณฑ์ที่อยู่ในระดับต่ำในสต็อกหรือปิดการเก็บรักษาได้ถูกลบไปแล้ว',
+        'vn': 'Không thể thêm vào giỏ hàng, sản phẩm là thấp trong kho hoặc ra khỏi kệ đã bị xóa',
+        'zh': '无法添加到购物车，该产品是低库存或下架已被删除。'
+    },
+    'product.list.cart.error5': {
+        'en': 'Your cart is full, can not add more items.',
+        'th': 'ตะกร้าช้อปปิ้งของคุณเต็มคุณจะไม่สามารถเพิ่มรายการอื่น',
+        'vn': 'Giỏ hàng của bạn là đầy đủ, bạn không thể thêm các mục',
+        'zh': '你的购物车是满的，不能添加更多商品。'
+    },
+    'product.long.description': {
+        'en': 'Product description',
+        'th': 'รายละเอียดสินค้า',
+        'vn': 'Mô tả sản phẩm',
+        'zh': '产品说明'
+    },
+    'product.manufacturer': {
+        'en': 'Manufacturer',
+        'th': 'ผู้ผลิต',
+        'vn': 'Nhà sản xuất',
+        'zh': '生产厂家'
+    },
+    'product.name': {
+        'en': 'Product name',
+        'th': 'ชื่อสินค้า',
+        'vn': 'Tên sản phẩm',
+        'zh': '产品名称'
+    },
+    'product.origin': {
+        'en': 'Origin',
+        'th': 'ที่มา',
+        'vn': 'Nguồn gốc',
+        'zh': '起源'
+    },
+    'res.del': {
+        'en': 'Delete',
+        'th': 'ลบ',
+        'vn': 'Xóa',
+        'zh': '删除'
+    },
+    'seller.modify.input.error': {
+        'en': 'Please enter the correct number format, such as: 14.23!',
+        'th': 'กรุณากรอกตัวอักษรรูปแบบตัวเลขที่ถูกต้องเช่น: 14.23!',
+        'vn': 'Vui lòng gõ định dạng số mã chính xác, chẳng hạn như: 14,23!',
+        'zh': '请输入正确的数字格式，如：14.23！'
+    },
+    'seller.modify.priceDis': {
+        'en': 'Discount amount must be greater than 0 and less than product price!',
+        'th': 'ค่าส่วนลดจะต้องมากกว่า 0 และน้อยกว่าราคาสินค้า!',
+        'vn': 'Số tiền chế khấu phải lớn hơn 0 và nhỏ hơn giá thành sản phẩm!',
+        'zh': '折扣金额必须大于0且小于产品价格！'
+    },
+    'seller.modify.shippingDis': {
+        'en': 'Shipping discounts must be greater than 0 and less than the total shipping!',
+        'th': 'เปอร์เซ็นต์ส่วนลดจะต้องมากกว่า 0 และน้อยกว่าค่าการจัดส่งสินค้ารวม',
+        'vn': 'Số tiền giảm giá phải lớn hơn 0 và nhỏ hơn tổng cước phí vận chuyển!',
+        'zh': '优惠的折扣必须大于0和小于总运费！'
+    },
+    'supplier.add.product.category.error': {
+        'en': '<p>Product category cannot be empty</p>',
+        'th': '<p> หมวดหมู่สินค้าไม่สามารถเว้นว่าง </p>',
+        'vn': '<p> Loại hình sản phẩm không thể để trống </p>',
+        'zh': '<p>产品类别不能为空</p>'
+    },
+    'supplier.add.product.description.error': {
+        'en': '<p> Product brief cannot be empty </p>',
+        'th': '<p>การแนะนำสินค้าไม่สามารถเว้นว่าง </p>',
+        'vn': '<p> Giới thiệu sản phẩm không thể để trống </p>',
+        'zh': '<p>产品简介不能为空</p>'
+    },
+    'supplier.add.product.description.tolong': {
+        'en': '<p>Product brief is too long</p>',
+        'th': '<p> บทนำยาวเกินไป </p>',
+        'vn': '<p> Giới thiệu sản phẩm quá dài </p>',
+        'zh': '<p>产品简介太长</p>'
+    },
+    'supplier.add.product.expdt.error': {
+        'en': '<p>Product effective time cannot be empty</p>',
+        'th': '<p>เวลาที่สินค้าหมดอายุไม่สามารถเว้นว่าง </p>',
+        'vn': '<p> Thời gian hữu hạn của Sản phẩm không thể để trống </p>',
+        'zh': '<p>产品有效时间不能为空</p>'
+    },
+    'supplier.add.product.languge.error': {
+        'en': 'The Language already exists',
+        'th': 'ภาษาที่มีอยู่แล้ว',
+        'vn': 'Ngôn ngữ này đã tồn tại',
+        'zh': '该语言已经存在'
+    },
+    'supplier.add.product.locale.en': {
+        'en': '<p>English information is missing!',
+        'th': '<p>ข้อมูล ภาษาอังกฤษหายไป!',
+        'vn': '<p>Thông tin  Anh bị mất!',
+        'zh': '<p>英语信息丢失！'
+    },
+    'supplier.add.product.locale.zh': {
+        'en': '<p>Chinese information is missing! ',
+        'th': '<p>ข้อมูล ภาษาจีน  หายไป!',
+        'vn': '<p> Thông tin Trung Quốc bị mất!',
+        'zh': '<p>中国信息丢失！'
+    },
+    'supplier.add.product.longDescription.error': {
+        'en': '<p>Product description cannot be empty </p>',
+        'th': '<p>รายละเอียดสินค้าไม่สามารถเว้นว่าง </p>',
+        'vn': '<p> Mô tả sản phẩm không thể để trống </p>',
+        'zh': '<p>产品说明不能为空</p>'
+    },
+    'supplier.add.product.manufacturer.error': {
+        'en': '<p>The manufacturer cannot be empty',
+        'th': '<p> ผู้ผลิตไม่สามารถจะเว้นว่าง ',
+        'vn': '<p> Các nhà sản xuất không thể để trống',
+        'zh': '<p>该制造商不能为空'
+    },
+    'supplier.add.product.name.error': {
+        'en': '<p> product name cannot be empty </p>',
+        'th': '<p>ชื่อ  สินค้าไม่สามารถเป็นเว้นว่าง </p>',
+        'vn': '<p>Tên sản phẩm không thể để trống  </p>',
+        'zh': '<p>产品名称不能为空</p>'
+    },
+    'supplier.add.product.noShip.error': {
+        'en': '<p>Non - free shipping product shipping costs cannot be empty</p>',
+        'th': '<p> Non - จัดส่งฟรีค่าใช้จ่ายในการขนส่งผลิตภัณฑ์ที่ไม่สามารถจะว่างเปล่า </p>',
+        'vn': '<p> Nếu không phải-vận chuyển miễn phí , cước phí vận chuyển không thể để trống</p>',
+        'zh': '<p>非 - 免费送货，产品运输成本不能为空</p>'
+    },
+    'supplier.add.product.notempty': {
+        'en': 'Can not empty',
+        'th': 'ไม่สามารถว่างเปล่า',
+        'vn': 'Không thể để trống',
+        'zh': '不能为空'
+    },
+    'supplier.add.product.number': {
+        'en': 'Only be Number',
+        'th': 'กรอกได้แต่ตัวมายเลข',
+        'vn': 'Chỉ có thể là dạng số',
+        'zh': '只能是数字'
+    },
+    'supplier.add.product.origin.error': {
+        'en': '<p>Product origin cannot be empty </p>',
+        'th': '<p>  ที่กำเนิดสินค้าไม่สามารถเว้นว่าง </p>',
+        'vn': '<p> Xuất xứ sản phẩm không thể để trống </p>',
+        'zh': '<p>产品原产地不能为空</p>'
+    },
+    'supplier.add.product.photo.error': {
+        'en': 'Exceeded the number of upload, please delete!',
+        'th': 'อัพโหลดที่เกินจำนวน  กรุณาลบไป!',
+        'vn': 'Tải lên vượt quá số, xóa!',
+        'zh': '超出上传的数量，请删除！'
+    },
+    'supplier.add.product.picture.error': {
+        'en': 'Upload a picture at least',
+        'th': 'อัปโหลดรูปภาพอย่างน้อย',
+        'vn': 'Tải lên hình ảnh ít nhất',
+        'zh': '上传图片至少'
+    },
+    'supplier.add.product.prodView': {
+        'en': 'Product preview',
+        'th': 'แสดงตัวอย่างสินค้า',
+        'vn': 'Xem trước sản phẩm',
+        'zh': '产品预览'
+    },
+    'supplier.add.product.select.languge.error': {
+        'en': 'Select the added language',
+        'th': 'เลือกภาษาที่เพิ่ม',
+        'vn': 'Chọn ngôn ngữ bổ sung',
+        'zh': '选择添加的语言'
+    },
+    'supplier.add.product.skuContainerShape.error': {
+        'en': '<p> Shape cannot be empty',
+        'th': '<p>รูปร่างไม่สามารถเว้นว่าง ',
+        'vn': '<p> Hình dạng không thể để trống',
+        'zh': '<p>形状不能为空'
+    },
+    'supplier.add.product.skuContainerSize.error': {
+        'en': '<p> Size cannot be empty </p>',
+        'th': '<p> ขนาดไม่สามารถเว้นว่าง </p>',
+        'vn': '<p> Kích thước không thể để trống </p>',
+        'zh': '<p>大小不能为空</p>'
+    },
+    'supplier.add.product.skuDimensionDepth.error': {
+        'en': '<p> Depth cannot be empty </p>',
+        'th': '<p> ความลึก ไม่สามารถเว้นว่าง </p>',
+        'vn': '<p> Sâu không thể để trống </p>',
+        'zh': '<p>深度不能为空</p>'
+    },
+    'supplier.add.product.skuDimensionGirth.error': {
+        'en': '<p> Girth cannot be empty </p>',
+        'th': '<p> ปริมณฑลไม่สามารถเว้นว่าง </p>',
+        'vn': '<p> Perimeter không thể để trống </p>',
+        'zh': '<p>周长不能为空</p>'
+    },
+    'supplier.add.product.skuDimensionHeight.error': {
+        'en': '<p> Height cannot be empty </p>',
+        'th': '<p> ความสูงไม่สามารถเว้นว่าง </p>',
+        'vn': '<p> Chiều cao không thể để trống </p>',
+        'zh': '<p>身高不能为空</p>'
+    },
+    'supplier.add.product.skuDimensionWidth.error': {
+        'en': '<p>Width cannot be empty </p>',
+        'th': '<p> ความกว้างไม่สามารถเว้นว่าง</p>',
+        'vn': '<p> Chiều rộng không thểđể trống </p>',
+        'zh': '<p>宽度不能为空</p>'
+    },
+    'supplier.add.product.skuWeightWeight.error': {
+        'en': '<p> Weight cannot be empty </p>',
+        'th': '<p> น้ำหนักไม่สามารถเว้นว่าง </p>',
+        'vn': '<p> Trọng lượng không thể để trống </p>',
+        'zh': '<p>重量不能为空</p>'
+    },
+    'supplier.add.product.store.error': {
+        'en': '<p>Store information cannot be empty </p>',
+        'th': 'ข้อมูล <p> ร้านไม่สามารถเว้นว่าง </p>',
+        'vn': '<p> Thông tin cửa hàng  không thể để trống </p>',
+        'zh': '<p>店铺信息不能为空</p>'
+    },
+    'supplier.add.product.trans.waiting': {
+        'en': 'translation...',
+        'th': 'แปล ...',
+        'vn': 'Dịch ...',
+        'zh': '翻译...'
+    },
+    'supplier.modify.price.end.error': {
+        'en': 'Purchase quantity can not be empty',
+        'th': 'ปริมาณการสั่งซื้อต้องไม่ว่างเปล่า',
+        'vn': 'Số lượng mua không thể để trống ',
+        'zh': '采购数量不能为空'
+    },
+    'supplier.modify.price.price.error': {
+        'en': 'Seller price can not be empty!',
+        'th': 'ราคาของผู้ขายไม่สามารถว่างเปล่า!',
+        'vn': 'Giá bán của không thể để trống!',
+        'zh': '卖方的价格不能为空！'
+    },
+    'supplier.modify.price.spot': {
+        'en': 'In stock',
+        'th': 'สต็อก',
+        'vn': 'có hàng',
+        'zh': '有货'
+    },
+    'supplier.modify.price.status': {
+        'en': 'Status:',
+        'th': 'สถานะ:',
+        'vn': 'Tình trạng:',
+        'zh': '状态：'
+    },
+    'supplier.modify.price.stock': {
+        'en': 'Stock out',
+        'th': 'ออกจากสต็อก',
+        'vn': 'thiếu hàng',
+        'zh': '缺货'
+    },
+    'supplier.order.list.modify.closed': {
+        'en': 'Order has been closed',
+        'th': 'คำสั่งซื้อนี้ยกเลิกแล้ว',
+        'vn': 'Đơn đặt hàng đã chấm dứt',
+        'zh': '订单已关闭'
+    },
+    'supplier.order.list.modify.payed': {
+        'en': 'Order has been payed',
+        'th': 'คำสั่งซื้อที่ได้รับการจ่ายเงิน',
+        'vn': 'Đơn đặt hàng đã được thanh toán',
+        'zh': '订单已经支付'
+    },
+    'supplier.order.list.notify.cancel': {
+        'en': 'Buyer have canceled the order',
+        'th': 'ผู้ซื้อได้ยกเลิกคำสั่งซื้อแล้ว',
+        'vn': 'Người mua đã hủy bỏ đơn đặt hàng',
+        'zh': '买家已经取消了订单'
+    },
+    'supplier.order.list.notify.done': {
+        'en': 'Have reminded buyer to pay',
+        'th': 'ต้องเตือนผู้ซื้อทำการจ่ายสินค้า',
+        'vn': 'nhắc nhở người mua phải trả tiền',
+        'zh': '必须提醒买方支付'
+    },
+    'supplier.order.list.notify.pay': {
+        'en': 'Buyer have payed the order',
+        'th': 'ผู้ซื้อทำการจ่ายสิ้นค้าเรียบร้อยแล้ว',
+        'vn': 'Người mua đã trả tiền',
+        'zh': '买家已经付了订单'
+    },
+    'supplier.product.edit.quantity.error': {
+        'en': 'Please enter the correct number of intervals(max 10000)!',
+        'th': 'กรุณากรอกตัวเลขให้ถูกต้อง (สูงสุด 10,000) เว้นระยะ!',
+        'vn': 'Vui lòng gõ số lượng khoảng cách chính xác (tối đa 10.000) !',
+        'zh': '请输入间隔的正确数量（最大10000）！'
+    },
+    'supplier.product.edit.rangemax.error': {
+        'en': 'You can define up to 5 price range!',
+        'th': 'คุณสามารถตั้งราคาเป็นห้าช่วง!',
+        'vn': 'Bạn có thể xác định đến giá năm phạm vi !',
+        'zh': '您可以定义多达5个价格区间！'
+    },
+    'supplier.product.edit.rangemin.error': {
+        'en': 'You need to define at least one price range!',
+        'th': 'คุณต้องตั้งราคาเป็นหนึ่งช่วงอย่างน้อย!',
+        'vn': 'Bạn cần phải xác định ít nhất một giá phạm vi !',
+        'zh': '您需要定义至少一个价格范围内！'
+    },
+    'order.create.exception.tip':{
+        'en': 'Submit Order exception!',
+        'th': 'ส่งข้อยกเว้นการสั่งซื้อ!',
+        'vn': 'Trình ngoại lệ Đặt hàng!',
+        'zh': '提交订单异常!'
+    },
+    'delete.confirm':{
+        'en':'You sure want to delete?',
+        'th':'คุณแน่ใจหรือว่าต้องการที่จะลบ',
+        'vn':'Bạn có chắc chắn muốn xóa?',
+        'zh':'确定要删除？'
+    },
+    'submit.confirm':{
+        'en':'You sure want to submit?',
+        'th':'แน่ใจว่า คุณต้องการส่งหรือไม่',
+        'vn':'Chắc chắn bạn muốn gửi?',
+        'zh':'确定要提交？'
+    }
+}
