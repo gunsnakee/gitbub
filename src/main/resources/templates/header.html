@@ -1,72 +1,9 @@
-<div class="header pt20">
-    <div class="hdInner w1000 mlra clearfix">
-        <div class="logo fl">
-            <a href="http://www.melibay.com"><img src="http://www.melibay.com/img/public/logo.png?v=1000" alt="" width="230" height="50"></a>
-        </div>
-        <div class="searchBox fl clearfix">
-            <div class="pos-r fl">
-                <ul class="indOptionsUl pos-a" id="searchTypeSelect">
-                    <li><a class="on" href="#"><i></i><span><input type="hidden" name="textTypeHi" value="1">商品</span></a></li>
-                    <li class="none"><a href="#"><span><input type="hidden" name="textTypeHi" value="2">商家</span></a></li>
-                </ul>
-            </div>
-            <div class="searchInpBox fl">
-                <div class="schBox oh">
-                    <input type="text" value="" id="searchInfo">
-                </div>
-            </div>
-            <div class="searchButton fl">
-                <a href="#" id="site_search">搜索</a>
-            </div>
-            <div class="clear"></div>
-            <div class="schHot">
-                <span class="c999">热门搜索：</span>
-
-
-
-
-                <a href="/product/search?textType=1&amp;productDes=1233" _keyword="1233">1233</a>
-
-                <a href="/product/search?textType=1&amp;productDes=%E6%B1%82%E8%B4%AD" _keyword="求购">求购</a>
-
-                <form method="get" action="/product/search" id="prodSearch">
-                    <input type="hidden" name="textType" value="1">
-                    <input type="hidden" name="productDes" id="productDes" value="">
-                    <input type="hidden" name="catagoryId" id="catagoryId1" value="">
-                </form>
-                <form method="get" action="/store/search" id="storeSearch">
-                    <input type="hidden" name="textType" value="2">
-                    <input type="hidden" name="storeDes" id="storeDes" value="">
-                    <input type="hidden" name="storeSortType" id="storeSortType" value="">
-                    <input type="hidden" name="storeCoun" id="storeCoun" value="">
-                </form>
-            </div>
-        </div>
-        <!--searchBox end-->
-        <div class="cart-info fr h40">
-            <div class="btn-wrap h40 lh40">
-                <i class="ico-car  fl"></i>
-                <span class="s-quantity fl">购物车<b class="fc-red buyCount1" id="cartItemCount">0</b>件</span>
-                <i class="ico-arrow fl"></i>
-            </div>
-            <div class="cart-list">
-                <!--空购物车-->
-                <p class="empty hide" style="display: block;">购物车中还没有商品，赶紧选购吧！ </p>
-                <!--有商品的购物车-->
-                <div class="caritem hide" style="display: none;">
-                    <div class="twP">
-                    </div>
-                    <div class="sum">
-                        <p>
-                            <span>共<b class="fc-red buyCount"></b>件商品</span>
-                            <span class="s-c">总计：<b class="fn-rmb fc-red finalPayPrice">$</b></span>
-                        </p>
-                    </div>
-                    <a href="javascript:;" class="anC2 fr cart-btn"><span>去购物车结算</span></a>
-                </div>
-            </div>
-        </div>
-        <!--cart-info end-->
-    </div>
-    <!--hdInner end-->
+<wj:demo resultVar="ss"/>
+<div th:each="s : ${ss}">
+    <wj:demo resultVar="bb"/>
+    <p th:text="${s}"></p>
+    <a th:each="a:${bb}" th:text="${a}"></a>
 </div>
+<p>1111</p>
+<p th:text="222">1111</p>
+

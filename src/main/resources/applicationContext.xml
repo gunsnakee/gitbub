@@ -19,8 +19,8 @@
         http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
 
-    <bean id="blNotifyTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
-        <property name="prefix" value="notifyTemplates/"/>
+    <bean id="jyTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
+        <property name="prefix" value="templates/"/>
         <property name="suffix" value=".html" />
         <property name="templateMode" value="HTML5" />
         <property name="cacheable" value="false"/>
@@ -28,25 +28,19 @@
     </bean>
 
     <!-- system notify template engine  -->
-    <bean id="blNotifyTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+    <bean id="jyTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
         <property name="templateResolvers">
             <set>
-                <ref bean="blNotifyTemplateResolver" />
+                <ref bean="jyTemplateResolver" />
             </set>
         </property>
         <property name="dialects">
             <set>
                 <bean class="org.thymeleaf.spring3.dialect.SpringStandardDialect" />
-                <ref bean="blDialect" />
+                <bean class="org.jiawu.thymeleaf.dialect.WjDialect"/>
             </set>
         </property>
     </bean>
-
-    <bean id="characterEncodingFilter" class="org.springframework.web.filter.CharacterEncodingFilter">
-        <property name="encoding" value="UTF-8" />
-        <property name="forceEncoding" value="true" />
-    </bean>
-
 
 
 </beans>
