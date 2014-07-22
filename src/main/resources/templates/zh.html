@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body th:fragment="body">
+111
+222
+<wj:demo resultVar="childs" elementid="0" />
+<div th:remove="tag" th:each="child : ${childs}">
+    <div th:include="${child.templateName} (elementId=${child.id})"></div>
+</div>
+</body>
+</html>

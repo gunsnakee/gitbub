@@ -1,0 +1,5 @@
+<wj:demo resultVar="childs" elementid="0" th:attr="elementid=${elementId}"/>
+<div th:remove="tag" th:each="child : ${childs}">
+    <!--<wj:demo resultVar="childs" elementid="0" th:attr="elementid=${child.id}"/>-->
+    <div th:include="${child.templateName}"></div>
+</div>

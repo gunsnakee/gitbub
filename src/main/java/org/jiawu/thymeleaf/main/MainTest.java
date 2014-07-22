@@ -6,7 +6,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring3.SpringTemplateEngine;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -28,14 +27,19 @@ public class MainTest {
 
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("date", new Date());
+        map.put("test", "<wj:demo resultVar=\"ss\"/>\n" +
+                "<div th:each=\"s : ${ss}\">\n" +
+                "    <wj:demo resultVar=\"bb\"/>\n" +
+                "    <p th:text=\"${s}\"></p>\n" +
+                "    <a th:each=\"a:${bb}\" th:text=\"${a}\"></a>\n" +
+                "</div>");
 
         thymeleafContext.setVariables(map);
 
 
         SpringTemplateEngine engine = (SpringTemplateEngine) ac.getBean("jyTemplateEngine");
 
-        templateContent =  engine.process("header", thymeleafContext);
+        templateContent =  engine.process("zh", thymeleafContext);
 
         System.out.println(templateContent);
 

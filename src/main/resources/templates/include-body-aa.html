@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+</head>
+<body>
+<div th:fragment="copy">
+    <wj:demo resultVar="ss"/>
+    <div th:each="s : ${ss}">
+        <wj:demo resultVar="bb"/>
+        <p th:text="${s}"></p>
+        <a th:each="a:${bb}" th:text="${a}"></a>
+    </div>
+</div>
+</body>
+</html>

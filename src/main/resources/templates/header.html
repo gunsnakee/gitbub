@@ -1,9 +1,2 @@
-<wj:demo resultVar="ss"/>
-<div th:each="s : ${ss}">
-    <wj:demo resultVar="bb"/>
-    <p th:text="${s}"></p>
-    <a th:each="a:${bb}" th:text="${a}"></a>
-</div>
-<p>1111</p>
-<p th:text="222">1111</p>
+<div th:include="include-body :: copy "></div>
 
