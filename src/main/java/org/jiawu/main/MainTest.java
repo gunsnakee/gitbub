@@ -5,9 +5,14 @@ package org.jiawu.main;
  */
 public class MainTest {
 
-    public static void main(String[] args){
-        for(int i=1;i<=100;i++){
-            System.out.println("mlb"+(1000+i)+"@meiliwan.com mlb2014mlb"+(1000+i)+" abcd1234");
+    public static void main(String[] args) throws Exception{
+        double[] dd = {1.0,3.9,1.6,9.8};
+        double max = dd[0];
+        for(double d:dd){
+            if(d>max){
+                max=d;
+            }
         }
+        System.out.println("max is "+max);
     }
 }

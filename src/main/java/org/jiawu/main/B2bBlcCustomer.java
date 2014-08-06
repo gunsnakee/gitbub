@@ -11,15 +11,15 @@ import java.util.Date;
  */
 public class B2bBlcCustomer {
     public static void main(String[] args) throws ConfigurationException {
-        XMLConfiguration config = new XMLConfiguration("/data/mygit/oschina/src/main/resources/BLC_CUSTOMER.xml");
+        XMLConfiguration config = new XMLConfiguration("/data/mygit/gitbub/src/main/resources/BLC_CUSTOMER.xml");
 
-        XMLConfiguration xmlRole = new XMLConfiguration("/data/mygit/oschina/src/main/resources/BLC_CUSTOMER_ROLE.xml");
-        int initRoleId = 3790;
+        XMLConfiguration xmlRole = new XMLConfiguration("/data/mygit/gitbub/src/main/resources/BLC_CUSTOMER_ROLE.xml");
+        int initRoleId = 3500;
 
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        int initId = 296823;
-        int initEmailNo = 1001;
-        for(int i=0;i<10;i++){
+        int initId = 296933;
+        int initEmailNo = 1200;
+        for(int i=0;i<300;i++){
 
 
             config.setProperty("RECORD("+i+").CUSTOMER_ID",initId+i);
