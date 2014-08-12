@@ -8,9 +8,6 @@
     <artifactId>github</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>web</module>
-    </modules>
     <dependencies>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -85,6 +82,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>3.1.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.4</version>
         </dependency>
     </dependencies>
 </project>
