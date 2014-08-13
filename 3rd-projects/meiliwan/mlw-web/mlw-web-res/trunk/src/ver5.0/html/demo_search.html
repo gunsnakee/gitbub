@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>搜索页前端调试</title>
+        <link href="../css/com.css?v=5.0" rel="stylesheet">
+        <link href="../css/productList.css" rel="stylesheet">
+        <link href="../css/proSearch.css" rel="stylesheet">
+        <style>
+            body {
+                background-color: beige;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="test_head">
+        </div>
+        <!--商品列表-->
+        <div class="pro-list">
+            <!--头部-->
+            <div class="pro-head h40" style="background-color: #ccc;"></div>
+            <!--头部 end-->
+            <!--内容-->
+            <div class="pro-content mlra mt10">
+                <!--面包屑-->
+                <div class="breadcrumb">
+                    <span>全部结果 ></span><span class="red pl5">关键字</span>
+                </div>
+                <!--内容左侧-->
+                <div class="c-leftP fl"></div>
+                <!--内容左侧 end-->
+                <!--内容右侧-->
+                <div class="c-rightP fr">
+                    <!--右侧筛选-->
+                    <div class="filterP">
+                        <div class="filter-hd">
+                            <div class="forum fl pr5 mr10">
+                                <b class="red">饼干</b>-搜索到<b class="red pl5 pr5">201</b>件相关商品
+                            </div>
+                        </div>
+                        <div class="filter-cellWrap">
+                            <b class="pr10 middle">已选条件:</b>
+                            <a href="#" class="filter-cell"><b class="cell-text">拿铁</b><b class="cell-ico"></b></a>
+                            <a href="#" class="filter-cell"><b class="cell-text">拿铁</b><b class="cell-ico"></b></a>
+                            <a href="#" class="filter-cell"><b class="cell-text">拿铁</b><b class="cell-ico"></b></a>
+                            <a href="#" class="filter-cell"><b class="cell-text">拿铁</b><b class="cell-ico"></b></a>
+                            <a href="#" class="filter-cell"><b class="cell-text">拿铁</b><b class="cell-ico"></b></a>
+                            <a href="#" class="pl10 red middle">重置筛选条件</a>
+                        </div>
+                        <div class="filter-bd">
+                            <div class="filter-property">
+                                <span class="p-tit fl"><b>品牌：</b></span>
+                                <div class="p-con fl">
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                </div>
+                                <div class="hold"><a href="#" class="btn btn-more"></a></div>
+                            </div>
+                            <div class="filter-property">
+                                <span class="p-tit fl"><b>价格：</b></span>
+                                <div class="p-con fl">
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                </div>
+                                <div class="hold"><a href="#" class="btn btn-more"></a></div>
+                            </div>
+                            <div class="filter-property">
+                                <span class="p-tit fl"><b>类别：</b></span>
+                                <div class="p-con fl">
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                </div>
+                                <div class="hold"><a href="#" class="btn btn-more"></a></div>
+                            </div>
+                            <div class="filter-property">
+                                <span class="p-tit fl"><b>口味：</b></span>
+                                <div class="p-con fl">
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                </div>
+                                <div class="hold"><a href="#" class="btn btn-more"></a></div>
+                                <!--<div class="hold"><a href="#" class="btn btn-fold-short"></a></div>-->
+                            </div>
+                            <div class="filter-property no-bg">
+                                <span class="p-tit fl"><b>包装：</b></span>
+                                <div class="p-con fl">
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                    <a href="#" class="property-cell">美国队长</a>
+                                </div>
+                                <div class="hold"><a href="#" class="btn btn-more"></a></div>
+                            </div>
+                        </div>
+                        <div class="filter-moreOptions">
+                            <a href="#" class="btn btn-moreOptions"></a>
+                        </div>
+                        <div class="filter-lenovo">
+                            <b>或许你还想找:</b><a href="#" class="blue">iphone4s</a>|<a href="#" class="blue">iphone4s</a>|<a href="#" class="blue">iphone4s</a>
+                        </div>
+                    </div>
+                    <!--右侧筛选 end-->
+                    <!--右侧排序-->
+                    <div class="sortP">
+                        <div class="sp-1 fl">
+                            <a href="#" class="prev"><span class="fl">默认排序</span></a>
+                            <a href="#" class="middle up"><span class="fl">销量</span><b class="fl"></b></a>
+                            <a href="#" class="last down"><span class="fl">价格</span><b class="fl"></b></a>
+                        </div>
+                        <div class="price-range fl">
+                            <div class="inner">
+                                <div class="input-bar">
+                                    <span class="tit fl">价格</span>
+                                    <input type="text" class="inputC">
+                                    <span class="dash">-</span>
+                                    <input type="text" class="inputC">
+                                </div>
+                                <a href="#" class="btn btn-sure"></a>
+                            </div>
+                        </div>
+                        <div class="page-sort fr">
+                            <span class="num fl mr20">共3652个商品</span>
+                            <span class="num fl mr20"><b class="red">1</b>/200</span>
+                            <div class="btnP fl">
+                                <a href="#" class="btn btn-prev mr10 fl"></a>
+                                <a href="#" class="btn btn-next fl"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--右侧排序 end-->
+                    <!--右侧内容列表-->
+                    <div class="con-list">
+                        <div class="twP clearfix">
+                            <ul class="twC">
+                                <li class="t-pic"><a href="#"><img src="../images/img_temp_200x200.jpg" alt=""></a></li>
+                                <li class="t-title">
+                                    <h4><a href="#">进口食品<span class="red">东南亚美食</span>越南特产波罗蜜干健康美味零食 250克</a></h4>
+                                </li>
+                                <li class="t-price">
+                                    美丽价：<b class="rmb red fs14">¥299.00</b>
+                                </li>
+                                <li class="t-eva mb20"><span class="blue fl">评论：<b class="eva-num">48888</b></span><div class="stars fr"><span style="width: 80%;"></span></div></li>
+                                <li class="btnTopic"><a href="#" class="topic-btn topic-rubber"></a></li>
+                                <li><a href="javascript:void(0);" class="btn btn-not fl">加入购物车</a><a href="#" class="btn btn-addToFav fr">加入收藏</a></li>
+                            </ul>
+                            <ul class="twC">
+                                <li class="t-pic"><a href="#"><img src="../images/img_temp_200x200.jpg" alt=""></a></li>
+                                <li class="t-title">
+                                    <h4><a href="#">进口食品<span class="red">东南亚美食</span>越南特产波罗蜜干健康美味零食 250克</a></h4>
+                                </li>
+                                <li class="t-price">
+                                    美丽价：<b class="rmb red fs14">¥299.00</b>
+                                </li>
+                                <li class="t-eva mb20"><span class="blue fl">评论：<b class="eva-num">48888</b></span><div class="stars fr"><span style="width: 80%;"></span></div></li>
+                                <li class="btnTopic"><a href="#" class="topic-btn topic-snack"></a></li>
+                                <li><a href="#" class="btn btn-addToCart fl">加入购物车</a><a href="#" class="btn btn-addToFav fr">加入收藏</a></li>
+                            </ul>
+                            <ul class="twC">
+                                <li class="t-pic"><a href="#"><img src="../images/img_temp_200x200.jpg" alt=""></a></li>
+                                <li class="t-title">
+                                    <h4><a href="#">进口食品<span class="red">东南亚美食</span>越南特产波罗蜜干健康美味零食 250克</a></h4>
+                                </li>
+                                <li class="t-price">
+                                    美丽价：<b class="rmb red fs14">¥299.00</b>
+                                </li>
+                                <li class="t-eva mb20"><span class="blue fl">评论：<b class="eva-num">48888</b></span><div class="stars fr"><span style="width: 80%;"></span></div></li>
+                                <li class="btnTopic"><a href="#" class="topic-btn topic-coffee"></a></li>
+                                <li><a href="#" class="btn btn-addToCart fl">加入购物车</a><a href="#" class="btn btn-addToFav fr">加入收藏</a></li>
+                            </ul>
+                            <ul class="twC">
+                                <li class="t-pic"><a href="#"><img src="../images/img_temp_200x200.jpg" alt=""></a></li>
+                                <li class="t-title">
+                                    <h4><a href="#">进口食品<span class="red">东南亚美食</span>越南特产波罗蜜干健康美味零食 250克</a></h4>
+                                </li>
+                                <li class="t-price">
+                                    美丽价：<b class="rmb red fs14">¥299.00</b>
+                                </li>
+                                <li class="t-eva mb20"><span class="blue fl">评论：<b class="eva-num">48888</b></span><div class="stars fr"><span style="width: 80%;"></span></div></li>
+                                <li class="btnTopic"><a href="#" class="topic-btn topic-durian"></a></li>
+                                <li><a href="#" class="btn btn-addToCart fl">加入购物车</a><a href="#" class="btn btn-addToFav fr">加入收藏</a></li>
+                            </ul>
+                            <ul class="twC">
+                                <li class="t-pic"><a href="#"><img src="../images/img_temp_200x200.jpg" alt=""></a></li>
+                                <li class="t-title">
+                                    <h4><a href="#">进口食品<span class="red">东南亚美食</span>越南特产波罗蜜干健康美味零食 250克</a></h4>
+                                </li>
+                                <li class="t-price">
+                                    美丽价：<b class="rmb red fs14">¥299.00</b>
+                                </li>
+                                <li class="t-eva mb20"><span class="blue fl">评论：<b class="eva-num">48888</b></span><div class="stars fr"><span style="width: 80%;"></span></div></li>
+                                <li class="btnTopic"><a href="#" class="topic-btn topic-seafood"></a></li>
+                                <li><a href="#" class="btn btn-addToCart fl">加入购物车</a><a href="#" class="btn btn-addToFav fr">加入收藏</a></li>
+                            </ul>
+                            <ul class="twC">
+                                <li class="t-pic"><a href="#"><img src="../images/img_temp_200x200.jpg" alt=""></a></li>
+                                <li class="t-title">
+                                    <h4><a href="#">进口食品<span class="red">东南亚美食</span>越南特产波罗蜜干健康美味零食 250克</a></h4>
+                                </li>
+                                <li class="t-price">
+                                    美丽价：<b class="rmb red fs14">¥299.00</b>
+                                </li>
+                                <li class="t-eva mb20"><span class="blue fl">评论：<b class="eva-num">48888</b></span><div class="stars fr"><span style="width: 80%;"></span></div></li>
+                                <li class="btnTopic"><a href="#" class="topic-btn topic-rubber"></a></li>
+                                <li><a href="#" class="btn btn-addToCart fl">加入购物车</a><a href="#" class="btn btn-addToFav fr">加入收藏</a></li>
+                            </ul>
+                            <ul class="twC">
+                                <li class="t-pic"><a href="#"><img src="../images/img_temp_200x200.jpg" alt=""></a></li>
+                                <li class="t-title">
+                                    <h4><a href="#">进口食品<span class="red">东南亚美食</span>越南特产波罗蜜干健康美味零食 250克</a></h4>
+                                </li>
+                                <li class="t-price">
+                                    美丽价：<b class="rmb red fs14">¥299.00</b>
+                                </li>
+                                <li class="t-eva mb20"><span class="blue fl">评论：<b class="eva-num">48888</b></span><div class="stars fr"><span style="width: 80%;"></span></div></li>
+                                <li class="btnTopic"><a href="#" class="topic-btn topic-grains"></a></li>
+                                <li><a href="#" class="btn btn-addToCart fl">加入购物车</a><a href="#" class="btn btn-addToFav fr">加入收藏</a></li>
+                            </ul>
+                            <ul class="twC">
+                                <li class="t-pic"><a href="#"><img src="../images/img_temp_200x200.jpg" alt=""></a></li>
+                                <li class="t-title">
+                                    <h4><a href="#">进口食品<span class="red">东南亚美食</span>越南特产波罗蜜干健康美味零食 250克</a></h4>
+                                </li>
+                                <li class="t-price">
+                                    美丽价：<b class="rmb red fs14">¥299.00</b>
+                                </li>
+                                <li class="t-eva mb20"><span class="blue fl">评论：<b class="eva-num">48888</b></span><div class="stars fr"><span style="width: 80%;"></span></div></li>
+                                <li class="btnTopic"><a href="#" class="topic-btn topic-jadeite"></a></li>
+                                <li><a href="#" class="btn btn-addToCart fl">加入购物车</a><a href="#" class="btn btn-addToFav fr">加入收藏</a></li>
+                            </ul>
+                            <ul class="twC">
+                                <li class="t-pic"><a href="#"><img src="../images/img_temp_200x200.jpg" alt=""></a></li>
+                                <li class="t-title">
+                                    <h4><a href="#">进口食品<span class="red">东南亚美食</span>越南特产波罗蜜干健康美味零食 250克</a></h4>
+                                </li>
+                                <li class="t-price">
+                                    美丽价：<b class="rmb red fs14">¥299.00</b>
+                                </li>
+                                <li class="t-eva mb20"><span class="blue fl">评论：<b class="eva-num">48888</b></span><div class="stars fr"><span style="width: 80%;"></span></div></li>
+                                <li class="btnTopic"><a href="#" class="topic-btn topic-aroma"></a></li>
+                                <li><a href="#" class="btn btn-addToCart fl">加入购物车</a><a href="#" class="btn btn-addToFav fr">加入收藏</a></li>
+                            </ul>
+                            <ul class="twC">
+                                <li class="t-pic"><a href="#"><img src="../images/img_temp_200x200.jpg" alt=""></a></li>
+                                <li class="t-title">
+                                    <h4><a href="#">进口食品<span class="red">东南亚美食</span>越南特产波罗蜜干健康美味零食 250克</a></h4>
+                                </li>
+                                <li class="t-price">
+                                    美丽价：<b class="rmb red fs14">¥299.00</b>
+                                </li>
+                                <li class="t-eva mb20"><span class="blue fl">评论：<b class="eva-num">48888</b></span><div class="stars fr"><span style="width: 80%;"></span></div></li>
+                                <li class="btnTopic"><a href="#" class="topic-btn topic-crafts"></a></li>
+                                <li><a href="#" class="btn btn-addToCart fl">加入购物车</a><a href="#" class="btn btn-addToFav fr">加入收藏</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--右侧内容列表 end-->
+                    <!--页码-->
+                    <div class="page">
+                        <div class="inner pr10">
+                            <a href="#" class="prev first">上一页</a><a href="#" class="on">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><span class="slh">...</span><a href="#">2000</a><a href="#" class="next">下一页</a><i>到第</i><input type="text" class="jump-to"><i>页</i><input type="submit" value="确定" class="jump">
+                        </div>
+                    </div>
+                    <!--页码 end-->
+                </div>
+                <!--内容右侧 end-->
+            </div>
+            <!--内容 end-->
+        </div>
+        <!--商品列表 end-->
+        <div class="test_foot">
+        </div>
+        <script src="../js/jquery-1.8.3.min.js">
+        </script>
+        <script>
+            $(function(){
+                $(".test_head").load("ftl_header.html", function(){
+                    // console.log("引入头部相关的JS")
+                });
+                $(".test_foot").load("ftl_footer.html", function(){
+                    // console.log("引入底部相关的JS")
+                });
+                $(".c-leftP").load("ftl_search_leftP.html",function(){
+                    // console.log("引入左侧边栏")
+                });
+                $('div.p-con').each(function(i){
+                    var _len= 0,$cells=$(this).find('a');
+                    for(var i= 0,_l=$cells.length;i<_l;i++){
+                        _len+=$cells.eq(i).outerWidth(true);
+                        if(_len>710){
+                            $(this).next().show();
+                            break;
+                        }
+                    }
+                });
+                $('div.hold a').click(function(){
+                    var $self=$(this),$target=$self.parent().prev();
+                    $self.hasClass('btn-more')?(
+                            $self.removeClass('btn-more').addClass('btn-fold-short'),$target.addClass('open')):
+                            ($self.removeClass('btn-fold-short').addClass('btn-more'),$target.removeClass('open'));
+                    return false;
+                });
+                $('div.price-range').hover(function(){
+                    $(this).addClass('hover');
+                },function(){
+                    $(this).removeClass('hover');
+                })
+            });
+        </script>
+    </body>
+</html>

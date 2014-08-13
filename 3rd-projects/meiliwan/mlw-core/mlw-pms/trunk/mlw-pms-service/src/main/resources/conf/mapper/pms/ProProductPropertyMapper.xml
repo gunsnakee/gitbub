@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.pms.dao.ProProductPropertyDao">
+    <resultMap id="BaseResultMap" type="com.meiliwan.emall.pms.bean.ProProductProperty">
+        <id column="spu_id" property="spuId" jdbcType="INTEGER"/>
+        <id column="pro_prop_id" property="proPropId" jdbcType="INTEGER"/>
+        <result column="value_id" property="valueId" jdbcType="VARCHAR"/>
+        <result column="value" property="value" jdbcType="VARCHAR"/>
+        <result column="is_sku" property="isSku" jdbcType="TINYINT"/>
+        <result column="is_image" property="isImage" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    spu_id, pro_prop_id, value_id, value, is_sku, is_image, create_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="com.meiliwan.emall.pms.bean.ProProductPropertyKey">
+        select
+        <include refid="Base_Column_List"/>
+        from pro_product_property
+        where spu_id = #{spuId,jdbcType=INTEGER}
+        and pro_prop_id = #{proPropId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.meiliwan.emall.pms.bean.ProProductPropertyKey">
+    delete from pro_product_property
+    where spu_id = #{spuId,jdbcType=INTEGER}
+      and pro_prop_id = #{proPropId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.meiliwan.emall.pms.bean.ProProductProperty">
+    insert into pro_product_property (spu_id, pro_prop_id, value_id,
+      value, is_sku, is_image,create_time)
+    values (#{spuId,jdbcType=INTEGER}, #{proPropId,jdbcType=INTEGER}, #{valueId,jdbcType=VARCHAR},
+      #{value,jdbcType=VARCHAR}, #{isSku,jdbcType=TINYINT}, #{isImage,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.meiliwan.emall.pms.bean.ProProductProperty">
+        insert into pro_product_property
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="spuId != null">
+                spu_id,
+            </if>
+            <if test="proPropId != null">
+                pro_prop_id,
+            </if>
+            <if test="valueId != null">
+                value_id,
+            </if>
+            <if test="value != null">
+                value,
+            </if>
+            <if test="isSku != null">
+                is_sku,
+            </if>
+            <if test="isImage != null">
+                is_image,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="spuId != null">
+                #{spuId,jdbcType=INTEGER},
+            </if>
+            <if test="proPropId != null">
+                #{proPropId,jdbcType=INTEGER},
+            </if>
+            <if test="valueId != null">
+                #{valueId,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="isSku != null">
+                #{isSku,jdbcType=TINYINT},
+            </if>
+            <if test="isImage != null">
+                #{isImage,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.pms.bean.ProProductProperty">
+        update pro_product_property
+        <set>
+            <if test="valueId != null">
+                value_id = #{valueId,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                value = #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="isSku != null">
+                is_sku = #{isSku,jdbcType=TINYINT},
+            </if>
+            <if test="isImage != null">
+                is_image = #{isImage,jdbcType=TINYINT},
+            </if>
+        </set>
+        where spu_id = #{spuId,jdbcType=INTEGER}
+        and pro_prop_id = #{proPropId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.pms.bean.ProProductProperty">
+    update pro_product_property
+    set value_id = #{valueId,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      is_sku = #{isSku,jdbcType=TINYINT},
+      is_image = #{isImage,jdbcType=TINYINT}
+    where spu_id = #{spuId,jdbcType=INTEGER}
+      and pro_prop_id = #{proPropId,jdbcType=INTEGER}
+  </update>
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.spuId!=null and entity.spuId &gt;0">
+                        and spu_id=#{entity.spuId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.proPropId!=null and entity.proPropId &gt;0">
+                        and pro_prop_id=#{entity.proPropId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.isSku!=null">
+                        and is_sku=#{entity.isSku,jdbcType=INTEGER}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pro_product_property
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity" resultType="java.lang.Integer">
+        select count(*) from pro_product_property
+        <include refid="selectCondition"/>
+    </select>
+
+    <!-- 批量增加SPU与商品属性关系 -->
+    <insert id="insertByBatch">
+        insert into pro_product_property(spu_id, pro_prop_id, value_id,value, is_sku, is_image,create_time)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.spuId,jdbcType=INTEGER}, #{item.proPropId,jdbcType=INTEGER}, #{item.valueId,jdbcType=VARCHAR},
+            #{item.value,jdbcType=VARCHAR}, #{item.isSku,jdbcType=TINYINT}, #{item.isImage,jdbcType=TINYINT}, #{item.createTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+
+
+    <update id="updateBySpuAndPropId" parameterType="java.util.HashMap">
+        update pro_product_property
+        <set>
+            <if test="valueId !=null">
+                value_id = #{valueId,jdbcType=VARCHAR}
+            </if>
+            <if test="value !=null">
+                value = #{value,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where
+          spu_id = #{spuId,jdbcType=INTEGER}
+          and pro_prop_id = #{propId,jdbcType=INTEGER}
+    </update>
+
+</mapper>

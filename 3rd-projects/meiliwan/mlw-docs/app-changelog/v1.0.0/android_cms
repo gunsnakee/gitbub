@@ -1,0 +1,19 @@
+菜单增加
+android 碎片
+安卓首页展示区     (id:10241,/cms,navTab)(排序:0)(菜单)(权限Key:4af5d6f24e266f97ab9d0aa3bffcdb64)
+东南亚进口调料馆店铺关键词     (id:10316,/cms,navTab)(排序:0)(菜单)(权限Key:ad7908b84f9945f06da65b7d7aad40c1)
+安卓首页闪图     (id:10317,/cms,navTab)(排序:0)(菜单)(权限Key:0f6c518da86e0750ad722ef9b76076a1)
+安卓全站热门搜索词     (id:10318,/cms,navTab)(排序:0)(菜单)(权限Key:9f5d8553c2fe724eb279112451b32530)
+零食馆店铺关键词     (id:10319,/cms,navTab)(排序:0)(菜单)(权限Key:1f7947f8736c094977e4e762f75af568)
+翡翠馆店铺关键词     (id:10320,/cms,navTab)(排序:0)(菜单)(权限Key:3a0a103629c68430a58710a9eafb1632)
+红木沉香贝壳锡器馆店铺关键词     (id:10321,/cms,navTab)(排序:0)(菜单)(权限Key:54a6975a65508dfef7ca6699e4500137)
+精油香薰馆店铺关键词     (id:10322,/cms,navTab)(排序:0)(菜单)(权限Key:1d9e6f8734ac6bbfaabbc02d07fe7dc7)
+南海产品馆店铺关键词     (id:10323,/cms,navTab)(排序:0)(菜单)(权限Key:b285e1ecdca914782659cc03abf8bc6d)
+农家大米杂粮干货馆店铺关键词     (id:10324,/cms,navTab)(排序:0)(菜单)(权限Key:0f197ba9d50b8a2059b4e14934592830)
+咖啡馆店铺关键词     (id:10325,/cms,navTab)(排序:0)(菜单)(权限Key:932024d3adafab736b73845b00c8c254)
+榴莲馆店铺关键词     (id:10326,/cms,navTab)(排序:0)(菜单)(权限Key:67abb8e6d607a8e500ddc3cf2b270c76)
+天然橡胶生活用品馆店铺关键词     (id:10327,/cms,navTab)(排序:0)(菜单)(权限Key:5991ff24a690e5e49f4aac4991f41a86)
+
+模板导入数据库
+http://cms2.meiliwan.com/dev/insertDatabase?uuid=e23b6c50-be6e-4fa6-b5c1-826f1b513356
+http://cms2.meiliwan.com/dev/insertDatabase?uuid=e23b6c50-be6e-4fa6-b5c1-826fandroid

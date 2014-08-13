@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:p="http://cxf.apache.org/policy" xmlns:ss="http://www.springframework.org/schema/security"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   	http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+   	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+   	http://cxf.apache.org/policy http://cxf.apache.org/schemas/policy.xsd
+   	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+   	http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
+   	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+   	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+   	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+   	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+	<bean class="com.meiliwan.emall.commons.util.SpringContextUtil"></bean>
+
+	<bean id="zkResource" class="com.meiliwan.emall.commons.plugin.ZookeeperResource">
+		<property name="zkNodePaths">
+			<value>mlw-mq-job/jdbc.properties</value>
+		</property>	
+	</bean>
+	<!-- 加载资源配置信息 -->
+	<bean id="propertyConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="order" value="2" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="location">
+			<ref bean="zkResource" />
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="placeholderPrefix" value="@{">
+		</property>
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+	</bean>
+
+	<bean id="asyncMsgDataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		lazy-init="true">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="@{asyncmsg.jdbc.url}"></property>
+		<property name="username" value="@{asyncmsg.jdbc.username}"></property>
+		<property name="password" value="@{asyncmsg.jdbc.password}"></property>
+		<property name="defaultAutoCommit" value="@{asyncmsg.jdbc.defaultAutoCommit}"></property>
+		<!-- 每个分区最大的连接数 -->
+		<property name="maxConnectionsPerPartition" value="@{asyncmsg.jdbc.maxConnectionsPerPartition}" />
+		<!-- 每个分区最小的连接数 -->
+		<property name="minConnectionsPerPartition" value="@{asyncmsg.jdbc.minConnectionsPerPartition}" />
+		<!-- 分区数 ，默认值2，最小1，推荐3-4，视应用而定 -->
+		<property name="partitionCount" value="@{asyncmsg.jdbc.partitionCount}" />
+		<!-- 每次去拿数据库连接的时候一次性要拿几个,默认值：2 -->
+		<property name="acquireIncrement" value="@{asyncmsg.jdbc.acquireIncrement}" />
+		<!-- 缓存prepared statements的大小，默认值：0 -->
+		<property name="statementsCacheSize" value="@{asyncmsg.jdbc.statementsCacheSize}" />
+		<!-- 每个分区释放链接助理进程的数量，默认值：3，除非你的一个数据库连接的时间内做了很多工作，不然过多的助理进程会影响你的性能 -->
+		<property name="releaseHelperThreads" value="@{asyncmsg.jdbc.releaseHelperThreads}" />
+		<property name="idleConnectionTestPeriodInMinutes"
+			value="@{asyncmsg.jdbc.idleConnectionTestPeriodInMinutes}" />
+		<property name="connectionTestStatement" value="@{asyncmsg.jdbc.connectionTestStatement}" />
+		<property name="idleMaxAgeInMinutes" value="@{asyncmsg.jdbc.idleMaxAgeInMinutes}" />
+	</bean>
+	
+
+	<bean id="asyncMsgSqlSessionFactory"
+		class="com.meiliwan.emall.core.db.shard.spring.support.SqlSessionFactoryBean">
+		<property name="mainDataSource" ref="asyncMsgDataSource" />
+		<property name="mapperLocations">
+			<array>
+				<value>classpath:conf/mapper/AsyncMsgMapper.xml</value>
+			</array>
+		</property>
+	</bean>
+
+	<bean id="asyncMsgDao" class="com.meiliwan.emall.asyncmsg.dao.impl.AsyncMsgDaoImpl">
+		<property name="sqlSessionFactory" ref="asyncMsgSqlSessionFactory" />
+	</bean>
+
+	<!-- 事务配置 -->
+	<bean name="asyncTransactionManager"
+		class="com.meiliwan.emall.core.db.shard.spring.support.MultiDataSourceTransactionManager">
+	</bean>
+	<tx:advice id="asyncTxAdvice" transaction-manager="asyncTransactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="NOT_SUPPORTED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- baseService事务管理 -->
+	<aop:config>
+		<aop:pointcut id="asyncServiceOperation"
+			expression="execution(* com.meiliwan.emall.asyncmsg.dao.impl.*.*(..)) || execution(* com.meiliwan.emall.core.db.BaseDao.*(..))" />
+		<aop:advisor advice-ref="asyncTxAdvice" pointcut-ref="asyncServiceOperation" />
+	</aop:config>
+	
+	<bean id="monitorDataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		lazy-init="true">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="@{monitor.jdbc.url}"></property>
+		<property name="username" value="@{monitor.jdbc.username}"></property>
+		<property name="password" value="@{monitor.jdbc.password}"></property>
+		<property name="defaultAutoCommit" value="@{monitor.jdbc.defaultAutoCommit}"></property>
+		<!-- 每个分区最大的连接数 -->
+		<property name="maxConnectionsPerPartition" value="@{monitor.jdbc.maxConnectionsPerPartition}" />
+		<!-- 每个分区最小的连接数 -->
+		<property name="minConnectionsPerPartition" value="@{monitor.jdbc.minConnectionsPerPartition}" />
+		<!-- 分区数 ，默认值2，最小1，推荐3-4，视应用而定 -->
+		<property name="partitionCount" value="@{monitor.jdbc.partitionCount}" />
+		<!-- 每次去拿数据库连接的时候一次性要拿几个,默认值：2 -->
+		<property name="acquireIncrement" value="@{monitor.jdbc.acquireIncrement}" />
+		<!-- 缓存prepared statements的大小，默认值：0 -->
+		<property name="statementsCacheSize" value="@{monitor.jdbc.statementsCacheSize}" />
+		<!-- 每个分区释放链接助理进程的数量，默认值：3，除非你的一个数据库连接的时间内做了很多工作，不然过多的助理进程会影响你的性能 -->
+		<property name="releaseHelperThreads" value="@{monitor.jdbc.releaseHelperThreads}" />
+		<property name="idleConnectionTestPeriodInMinutes"
+			value="@{monitor.jdbc.idleConnectionTestPeriodInMinutes}" />
+		<property name="connectionTestStatement" value="@{monitor.jdbc.connectionTestStatement}" />
+		<property name="idleMaxAgeInMinutes" value="@{monitor.jdbc.idleMaxAgeInMinutes}" />
+	</bean>
+
+	<bean id="monitorSqlSessionFactory"
+		class="com.meiliwan.emall.core.db.shard.spring.support.SqlSessionFactoryBean">
+		<property name="mainDataSource" ref="monitorDataSource" />
+		<property name="mapperLocations">
+			<array>
+				<value>classpath:conf/mapper/MonitorLogMapper.xml</value>
+			</array>
+		</property>
+	</bean>
+
+	<bean id="requestLogDao" class="com.meiliwan.emall.monitor.dao.impl.RequestLogDaoImpl">
+		<property name="sqlSessionFactory" ref="monitorSqlSessionFactory" />
+	</bean>
+
+	<bean id="monitorService" class="com.meiliwan.emall.monitor.service.MonitorInsertService">
+		<property name="requestLogDao" ref="requestLogDao" />
+	</bean>
+
+	<!-- 事务配置 -->
+	<bean name="baseTransactionManager"
+		class="com.meiliwan.emall.core.db.shard.spring.support.MultiDataSourceTransactionManager">
+	</bean>
+	<tx:advice id="baseTxAdvice" transaction-manager="baseTransactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="NOT_SUPPORTED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- baseService事务管理 -->
+	<aop:config>
+		<aop:pointcut id="baseServiceOperation"
+			expression="execution(* com.meiliwan.emall.monitor.dao.impl.*.*(..)) || execution(* com.meiliwan.emall.core.db.BaseDao.*(..))" />
+		<aop:advisor advice-ref="baseTxAdvice" pointcut-ref="baseServiceOperation" />
+	</aop:config>
+
+</beans>

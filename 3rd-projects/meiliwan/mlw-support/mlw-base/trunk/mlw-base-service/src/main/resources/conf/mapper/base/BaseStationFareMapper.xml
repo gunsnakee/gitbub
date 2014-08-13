@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.base.dao.BaseStationFareDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.base.bean.BaseStationFare" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="fixed_price" property="fixedPrice" jdbcType="DECIMAL" />
+    <result column="full_free_limit" property="fullFreeLimit" jdbcType="DECIMAL" />
+    <result column="not_full_free_price" property="notFullFreePrice" jdbcType="DECIMAL" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, fixed_price, full_free_limit, not_full_free_price,message
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_station_fare
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from base_station_fare
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.base.bean.BaseStationFare" >
+    insert into base_station_fare (id, type, fixed_price, 
+      full_free_limit, not_full_free_price,message)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{fixedPrice,jdbcType=DECIMAL}, 
+      #{fullFreeLimit,jdbcType=DECIMAL}, #{notFullFreePrice,jdbcType=DECIMAL}, #{message,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.base.bean.BaseStationFare" >
+    insert into base_station_fare
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="fixedPrice != null" >
+        fixed_price,
+      </if>
+      <if test="fullFreeLimit != null" >
+        full_free_limit,
+      </if>
+      <if test="notFullFreePrice != null" >
+        not_full_free_price,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedPrice != null" >
+        #{fixedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="fullFreeLimit != null" >
+        #{fullFreeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="notFullFreePrice != null" >
+        #{notFullFreePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.base.bean.BaseStationFare" >
+    update base_station_fare
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedPrice != null" >
+        fixed_price = #{fixedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="fullFreeLimit != null" >
+        full_free_limit = #{fullFreeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="notFullFreePrice != null" >
+        not_full_free_price = #{notFullFreePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.base.bean.BaseStationFare" >
+    update base_station_fare
+    set type = #{type,jdbcType=VARCHAR},
+      fixed_price = #{fixedPrice,jdbcType=DECIMAL},
+      full_free_limit = #{fullFreeLimit,jdbcType=DECIMAL},
+      not_full_free_price = #{notFullFreePrice,jdbcType=DECIMAL},
+      message = #{message,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

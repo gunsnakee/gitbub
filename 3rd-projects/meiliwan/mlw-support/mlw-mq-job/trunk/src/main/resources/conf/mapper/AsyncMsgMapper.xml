@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BASE_AsygncMsg" >
+
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.commons.rabbitmq.asyncmsg.AsyncMsg" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="from_model" property="fromModel" jdbcType="VARCHAR" />
+    <result column="to_model" property="toModel" jdbcType="VARCHAR" />
+    <result column="msg_group_name" property="msgGroupName" jdbcType="VARCHAR" />
+    <result column="exchange_type" property="exchangeType" jdbcType="VARCHAR" />
+    <result column="routing_key" property="routingKey" jdbcType="VARCHAR" />
+    <result column="come_time" property="comeTime" jdbcType="TIMESTAMP" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="delay_time" property="delayTime" jdbcType="INTEGER" />
+    <result column="is_send" property="isSend" jdbcType="TINYINT" />
+    <result column="msg" property="msg" jdbcType="LONGVARCHAR" />
+    <result column="msg_descp" property="msgDescp" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, from_model, to_model, msg_group_name, exchange_type, routing_key, come_time, send_time, delay_time, 
+    is_send,msg, msg_descp
+  </sql>
+ 
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.commons.rabbitmq.asyncmsg.AsyncMsg" >
+    insert into async_msg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fromModel != null" >
+        from_model,
+      </if>
+      <if test="toModel != null" >
+        to_model,
+      </if>
+      <if test="msgGroupName != null" >
+        msg_group_name,
+      </if>
+      <if test="exchangeType != null" >
+        exchange_type,
+      </if>
+      <if test="routingKey != null" >
+        routing_key,
+      </if>
+      <if test="comeTime != null" >
+        come_time,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="delayTime != null" >
+        delay_time,
+      </if>
+      <if test="isSend != null" >
+        is_send,
+      </if>
+      <if test="msg != null" >
+        msg,
+      </if>
+      <if test="msgDescp != null" >
+        msg_descp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fromModel != null" >
+        #{fromModel,jdbcType=VARCHAR},
+      </if>
+      <if test="toModel != null" >
+        #{toModel,jdbcType=VARCHAR},
+      </if>
+      <if test="msgGroupName != null" >
+        #{msgGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeType != null" >
+        #{exchangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="routingKey != null" >
+        #{routingKey,jdbcType=VARCHAR},
+      </if>
+      <if test="comeTime != null" >
+        #{comeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delayTime != null" >
+        #{delayTime,jdbcType=INTEGER},
+      </if>
+      <if test="isSend != null" >
+        #{isSend,jdbcType=TINYINT},
+      </if>
+      <if test="msg != null" >
+        #{msg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="msgDescp != null" >
+        #{msgDescp,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.commons.rabbitmq.asyncmsg.AsyncMsg" >
+    update async_msg
+    <set >
+      <if test="fromModel != null" >
+        from_model = #{fromModel,jdbcType=VARCHAR},
+      </if>
+      <if test="toModel != null" >
+        to_model = #{toModel,jdbcType=VARCHAR},
+      </if>
+      <if test="msgGroupName != null" >
+        msg_group_name = #{msgGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeType != null" >
+        exchange_type = #{exchangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="routingKey != null" >
+        routing_key = #{routingKey,jdbcType=VARCHAR},
+      </if>
+      <if test="comeTime != null" >
+        come_time = #{comeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delayTime != null" >
+        delay_time = #{delayTime,jdbcType=INTEGER},
+      </if>
+      <if test="isSend != null" >
+        is_send = #{isSend,jdbcType=TINYINT},
+      </if>
+      <if test="msg != null" >
+        msg = #{msg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="msgDescp != null" >
+        msg_descp = #{msgDescp,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectNowNeed2SendAsyncmsg" resultMap="BaseResultMap">
+  				select 
+  				<include refid="Base_Column_List" />
+  				from async_msg
+  				where send_time &lt; #{time} and is_send = -1
+  </select>
+  	  
+</mapper>

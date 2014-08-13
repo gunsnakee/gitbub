@@ -1,0 +1,29 @@
+===============================V5.1.4 BUG admin change===========================================
+#### day 2013.11.28 yiyou.luo ############
+--在系统基础配置项模块下增加 SEO管理菜单
+菜单名称          权限Str                                        链接                 目标           菜单类别         父节点名称    赋予角色（以逗号分隔）
+SEO管理  6d1b6459051af726f88a3776c7a5e205            /base/config/seoList             navTab          菜单          系统基础配置项  
+
+#### day 2013.11.28 zixin.wu ############
+菜单名称                               链接                                                       权限Str                                         目标        菜单类别            父节点名称
+
+导入变化库存                /pms/stock/index                                        e0666dde1efa3d4724831ae1776f4857                              功能                  商品列表
+导入库存                    /pms/stock/import                                       34e45efefb314f8f38bcb744736fad63                              功能                  商品列表
+查看库存导入记录            /pms/stock/list                                         ab83fcfc18ebc765ff35593c40e730c2                              功能                 商品列表
+导出商品库存                /pms/product/getStockExcel                              0b15b3a2e8e6195c34f24feee017ecad                              功能                 商品列表
+
+#### day 2013.12.11 wenle.peng ############
+//测试环境已经处理
+1.增加帮助中心模块和相应的菜单
+父节点名称 菜单名称 权限STR 目录链接url 菜单类别
+无 帮助中心管理模块 a2102d37f5128c12a7dc7fd82e7a1fc2 /cms 功能
+帮助中心管理模块         页面增加         c25d27225cff39a90e790855c3b79522 /cms 菜单
+帮助中心管理模块         页面列表 47594cccabe03bf14c16abfa67d3934b /cms 菜单
+帮助中心管理模块         菜单编辑         fbcb64abcaa88c992f5e3ce4cf709bdc /cms 菜单
+
+//测试环境已处理
+2.绑定 菜单和 角色间的关系
+
+
+
+

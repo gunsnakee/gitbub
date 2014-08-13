@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.cms.dao.CmsSiteDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.cms.bean.CmsSite" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="site_id" property="siteId" jdbcType="INTEGER" />
+    <result column="site_name" property="siteName" jdbcType="VARCHAR" />
+    <result column="domain" property="domain" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
+    <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, site_id, site_name, domain, path, create_time, create_user, modify_time, modify_user
+  </sql>
+  <sql id="Blob_Column_List" >
+    detail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_site
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_site
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.cms.bean.CmsSite" >
+    insert into cms_site (id, site_id, site_name, 
+      domain, path, create_time, 
+      create_user, modify_time, modify_user, 
+      detail)
+    values (#{id,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, #{siteName,jdbcType=VARCHAR}, 
+      #{domain,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.cms.bean.CmsSite" >
+    insert into cms_site
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="siteName != null" >
+        site_name,
+      </if>
+      <if test="domain != null" >
+        domain,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="modifyUser != null" >
+        modify_user,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="siteName != null" >
+        #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null" >
+        #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null" >
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.cms.bean.CmsSite" >
+    update cms_site
+    <set >
+      <if test="siteId != null" >
+        site_id = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="siteName != null" >
+        site_name = #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null" >
+        domain = #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null" >
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where 1=1
+      <if test="id != null">
+          and id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="siteId != null">
+          and site_id = #{siteId,jdbcType=INTEGER}
+      </if>
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.cms.bean.CmsSite" >
+    update cms_site
+    set site_id = #{siteId,jdbcType=INTEGER},
+      site_name = #{siteName,jdbcType=VARCHAR},
+      domain = #{domain,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.id!=null and entity.id &gt;0">
+                        and id=#{entity.id,jdbcType=INTEGER}
+                    </if>
+
+                    <if test="entity.siteId != null" >
+                        and site_id = #{entity.siteId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.siteName != null" >
+                        and site_name = #{entity.siteName,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.domain != null" >
+                        and  domain = #{entity.domain,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.path != null" >
+                        and path = #{entity.path,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.createTime != null" >
+                        and  create_time = #{entity.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.createUser != null" >
+                        and create_user = #{entity.createUser,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.modifyTime != null" >
+                        and  modify_time = #{entity.modifyTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.modifyUser != null" >
+                        and  modify_user = #{entity.modifyUser,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.detail != null" >
+                        and  detail = #{entity.detail,jdbcType=LONGVARCHAR}
+                    </if>
+
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from cms_site
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity" resultType="java.lang.Integer">
+        select count(*) from cms_site
+        <include refid="selectCondition" />
+    </select>
+
+    <delete id="deleteBySiteId" parameterType="java.lang.Integer" >
+    delete from cms_site
+    where site_id = #{id}
+  </delete>
+</mapper>

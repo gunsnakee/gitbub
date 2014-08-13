@@ -1,0 +1,15 @@
+######day 2013.11.26 lzl ################
+1.account定时器的配置文件：
+  在account-service下的ice_config.xml中的<springConfig>里增加<config>conf/spring/account-service-task.xml</config>
+  
+2.增加base依赖，用于发送邮件：
+  在account-service下的ice_config.xml中增加下面依赖
+  <service identity="baseService" 
+                         replicaGroup="baseIceBoxReplicaGroup" 
+                         connectMode="dev"
+                         localPort="10008"/>
+
+3.在zk上account-service下新增system.properties节点，里面是发送邮件的三个配置项
+  mail.send=true //true 表示开启发送校验结果邮件的功能，否则false
+  mail.walletcheck.serverEnvironment=Development environment //如果是测试或生产环境则需要更新为Test environment或Online environment
+  mail.walletcheck.receive.user=zhuanglong.liang@opi-corp.com,shangfeng.liu@opi-corp.com,wenle.peng@opi-corp.com,xifeng.bie@opi-corp.com,xiong.yu@opi-corp.com,liujun.zhang@opi-corp.com //邮件接收人

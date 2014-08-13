@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>礼品卡</title>
+<link rel="stylesheet" type="text/css" href="../css/com.css">
+<link rel="stylesheet" type="text/css" href="../css/ucenter.css">
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../../js/mlw.core.js"></script>
+</head>
+<body class="w990 mt30">
+<!--P1-->
+<div class="area giftCard">
+  <div class="s4 fr">
+    <div class="hd">礼品卡</div>
+    <div class="bd mt10">
+      <div class="Jtab giftCardTab">
+        <div class="Jtab-title">
+          <ul class="tab">
+            <li class="ml20"><b>礼品卡激活</b></li>
+            <li class="hover"><b>礼品卡账户</b></li>
+          </ul>
+        </div>
+        <div class="Jtab-content">
+          <div class="content-cell">
+            <p class="tip-y mt10">美丽湾礼品卡激活：按提示输入您的礼品卡密码，点击“激活”按钮。激活充值成功，您可以立即使用您的礼品卡金额。</p>
+            <div class="inn-form">
+              <div class="i-item mb20 clearfix"> <span class="i-tit fl">礼品卡密码：</span>
+                <div class="i-con fl">
+                  <input type="text" class="i-input txtcenter">
+                  <span class="i-sp">–</span>
+                  <input
+                    type="text" class="i-input txtcenter">
+                  <span class="i-sp">–</span>
+                  <input type="text" class="i-input txtcenter">
+                  <span
+                    class="i-sp">–</span>
+                  <input type="text" class="i-input txtcenter">
+                </div>
+                <div class="wp pt10"><span class="tip-r">激活失败！该礼品卡不存在，请确认卡号密码输入正确</span></div>
+              </div>
+              <div class="i-item mb10 clearfix"> <span class="i-tit fl">验证码：</span>
+                <div class="i-con fl">
+                  <input type="text" class="i-input txtcenter mr20 middle" maxlength="4">
+                  <img
+                    class="middle mr5" src="../../images/img100x100.jpg" width="80" height="30"><a href="#" class="middle blue">看不清楚，换一张</a> </div>
+                <div class="wp pt10"><span class="tip-r">验证码错误！</span></div>
+              </div>
+              <div class="i-item pb15 clearfix"> <span class="i-tit fl">&nbsp;</span>
+                <div class="i-con fl"><a href="#" class="submit-btn middle mr5"></a><a href="#" class="submit-btn middle mr5 btn-disabled"></a><span class="tip-r middle red" style="border-color: #fff;background-color: #fff;">一天只能激活20张礼品卡，请稍后再激活。</span></div>
+              </div>
+            </div>
+            <div class="messageList">
+              <p class="tit mb5"><b>礼品卡温馨提示：</b></p>
+              <div class="con">
+                <ul>
+                  <li><b>1、</b><span>礼品卡激活后，将自动充值到本账户；</span></li>
+                  <li><b>2、</b><span>礼品卡绑定账户后，只能当前账户使用，不能跨账户使用；</span></li>
+                  <li><b>3、</b><span>礼品卡有效期36个月，礼品卡激活后，不再设有效期，充值到礼品卡账户的金额可永久使用，购物后请尽快激活；</span></li>
+                  <li><b>4、</b><span>订单金额中使用礼品卡支付的部分，将不开出发票；</span></li>
+                  <li><b>5、</b><span>退货时，礼品卡支付部分退回原礼品卡内，不予兑换；</span></li>
+                  <li><b>6、</b><span>激活过程中有任何疑问，可联系在线客服QQ或 致电美丽湾客服：<b class="red">4006-887-887</b>；</span></li>
+                  <li><b>7、</b><span>密码由大、小写字母和数字组成，请注意检查：字母G/数字6，字母O/数字0，字母V/字母Y，字母B/数字8，字母I/数字1，字母S/数字5；</span></li>
+                  <li><b>8、</b><span>更多使用帮助与常见问题请参见 <a href="#" class="bold blue">礼品卡购物指南</a>；具体使用规则以 <a href="#" class="bold blue">礼品卡章程</a> 为准，最终解释权归美丽湾所有。</span> </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="content-cell current">
+            <div class="grid-account wallet">
+              <div class="ac-info mt10">
+                <p class="list"><span>账户状态：</span><span class="msg-box verified">可用</span> </p>
+                <p class="list"><span>账户余额：</span><b class="fn-rmb red">¥274.07</b><a href="javascript:void(0)" id="J_recharge" class="anC8"><span>充值</span></a></p>
+              </div>
+              <div class="grid-rechargeRecord">
+                <div class="g-filter gap-mb10">
+                  <dl class="clearfix">
+                    <dt>日期：</dt>
+                    <dd><a href="#" class="anC7 current"><span>全部</span></a><a href="#" class="anC7"><span>最近一个月</span></a><a href="#" class="anC7"><span>最近三个月</span></a> <a href="#" class="anC7"><span>三个月之前</span></a> </dd>
+                  </dl>
+                  <p class="border gap-mt10 gap-mb10"></p>
+                  <dl class="clearfix">
+                    <dt>类型：</dt>
+                    <dd><a href="#" class="anC7 current"><span>全部</span></a><a href="#" class="anC7"><span>购物</span></a><a href="#" class="anC7"><span>激活</span></a><a href="#" class="anC7"><span>退款</span></a></dd>
+                  </dl>
+                </div>
+                <table class="table-record">
+                  <thead>
+                    <tr>
+                      <th class="r1">日期</th>
+                      <th class="r2">类型</th>
+                      <th class="r3">存入(元)</th>
+                      <th class="r4">支出(元)</th>
+                      <th class="r5">详情</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="r1"><span class="gray"> 2014-01-02 17:07:36 </span></td>
+                      <td class="r2"><span> <span>退款</span> </span></td>
+                      <td class="r3"><span class="green">+ 2.00</span></td>
+                      <td class="r4"></td>
+                      <td class="r5"><p>礼品卡 LP000000167800 <span class="green">已激活</span></p></td>
+                    </tr>
+                    <tr>
+                      <td class="r1"><span class="gray"> 2014-01-02 16:19:46 </span></td>
+                      <td class="r2"><span> <span>退款</span> </span></td>
+                      <td class="r3"><span class="green">+ 1.00</span></td>
+                      <td class="r4"></td>
+                      <td class="r5">
+                          <p>美丽湾礼品卡支付订单 <a href="#" class="blue">000000167800</a></p>
+                          <p>支付流水号:w00000000185955</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="r1"><span class="gray"> 2014-01-02 16:00:10 </span></td>
+                      <td class="r2"><span> <span>购物</span> </span></td>
+                      <td class="r3"></td>
+                      <td class="r4"><span class="red">- 0.28</span></td>
+                      <td class="r5">
+                          <p>美丽湾礼品卡支付订单 <a href="#" class="blue">000000167800</a></p>
+                          <p>支付流水号:w00000000185955</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="r1"><span class="gray"> 2014-01-02 15:16:50 </span></td>
+                      <td class="r2"><span> <span>购物</span> </span></td>
+                      <td class="r3"></td>
+                      <td class="r4"><span class="red">- 0.10</span></td>
+                      <td class="r5">
+                          <p>美丽湾礼品卡支付订单 <a href="#" class="blue">000000167800</a></p>
+                          <p>支付流水号:w00000000185955</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!--page-->
+                <div class="page">
+                    <div class="inn"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $(function () {
+        var tabGiftCard=new MLW.TabSwitch();
+        tabGiftCard.Init({
+            titleItems: $('div.giftCardTab div.Jtab-title li'),
+            contentItems: $('div.giftCardTab div.Jtab-content div.content-cell')
+        });
+
+    });
+</script>
+</body>
+</html>

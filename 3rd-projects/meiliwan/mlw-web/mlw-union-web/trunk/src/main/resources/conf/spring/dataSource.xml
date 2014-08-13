@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   	http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+   	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+   	http://cxf.apache.org/policy http://cxf.apache.org/schemas/policy.xsd
+   	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+   	http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
+   	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+   	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+   	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+	<bean id="zkResource" class="com.meiliwan.emall.commons.plugin.ZookeeperResource">
+		<property name="zkNodePaths">
+			<value>bg-union-service/jdbc.properties</value>
+		</property>	
+	</bean>
+	<!-- 加载资源配置信息 -->
+	<bean id="propertyConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="order" value="2" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="location">
+			<ref bean="zkResource" />
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="placeholderPrefix" value="@{">
+		</property>
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+	</bean>
+
+    <bean id="pmsDataSource" class="com.jolbox.bonecp.BoneCPDataSource" lazy-init="true">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="@{pms.jdbc.url.1}"></property>
+        <property name="username" value="@{pms.jdbc.username.1}"></property>
+        <property name="password" value="@{pms.jdbc.password.1}"></property>
+        <property name="defaultAutoCommit" value="@{pms.jdbc.defaultAutoCommit.1}"></property>
+        <!-- 每个分区最大的连接数 -->
+        <property name="maxConnectionsPerPartition" value="@{pms.jdbc.maxConnectionsPerPartition.1}"/>
+        <!-- 每个分区最小的连接数 -->
+        <property name="minConnectionsPerPartition" value="@{pms.jdbc.minConnectionsPerPartition.1}"/>
+        <!-- 分区数 ，默认值2，最小1，推荐3-4，视应用而定-->
+        <property name="partitionCount" value="@{pms.jdbc.partitionCount.1}"/>
+        <!-- 每次去拿数据库连接的时候一次性要拿几个,默认值：2 -->
+        <property name="acquireIncrement" value="@{pms.jdbc.acquireIncrement.1}"/>
+        <!-- 缓存prepared statements的大小，默认值：0 -->
+        <property name="statementsCacheSize" value="@{pms.jdbc.statementsCacheSize.1}"/>
+        <!-- 每个分区释放链接助理进程的数量，默认值：3，除非你的一个数据库连接的时间内做了很多工作，不然过多的助理进程会影响你的性能 -->
+        <property name="releaseHelperThreads" value="@{pms.jdbc.releaseHelperThreads.1}"/>
+        <property name="idleConnectionTestPeriodInMinutes" value="@{pms.jdbc.idleConnectionTestPeriodInMinutes.1}" />
+        <property name="idleMaxAgeInMinutes" value="@{pms.jdbc.idleMaxAgeInMinutes.1}" />
+        <property name="connectionTestStatement" value="@{pms.jdbc.connectionTestStatement.1}"  />
+    </bean>
+    
+    <bean id="mmsDataSource" class="com.jolbox.bonecp.BoneCPDataSource" lazy-init="true">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="@{mms.jdbc.url.2}"></property>
+        <property name="username" value="@{mms.jdbc.username.2}"></property>
+        <property name="password" value="@{mms.jdbc.password.2}"></property>
+        <property name="defaultAutoCommit" value="@{mms.jdbc.defaultAutoCommit.2}"></property>
+        <!-- 每个分区最大的连接数 -->
+        <property name="maxConnectionsPerPartition" value="@{mms.jdbc.maxConnectionsPerPartition.2}"/>
+        <!-- 每个分区最小的连接数 -->
+        <property name="minConnectionsPerPartition" value="@{mms.jdbc.minConnectionsPerPartition.2}"/>
+        <!-- 分区数 ，默认值2，最小1，推荐3-4，视应用而定-->
+        <property name="partitionCount" value="@{mms.jdbc.partitionCount.2}"/>
+        <!-- 每次去拿数据库连接的时候一次性要拿几个,默认值：2 -->
+        <property name="acquireIncrement" value="@{mms.jdbc.acquireIncrement.2}"/>
+        <!-- 缓存prepared statements的大小，默认值：0 -->
+        <property name="statementsCacheSize" value="@{mms.jdbc.statementsCacheSize.2}"/>
+        <!-- 每个分区释放链接助理进程的数量，默认值：3，除非你的一个数据库连接的时间内做了很多工作，不然过多的助理进程会影响你的性能 -->
+        <property name="releaseHelperThreads" value="@{mms.jdbc.releaseHelperThreads.2}"/>
+        <property name="idleConnectionTestPeriodInMinutes" value="@{mms.jdbc.idleConnectionTestPeriodInMinutes.2}" />
+        <property name="idleMaxAgeInMinutes" value="@{mms.jdbc.idleMaxAgeInMinutes.2}" />
+        <property name="connectionTestStatement" value="@{mms.jdbc.connectionTestStatement.2}"  />
+    </bean>
+    
+    <bean id="omsDataSource" class="com.jolbox.bonecp.BoneCPDataSource" lazy-init="true">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="@{oms.jdbc.url.2}"></property>
+        <property name="username" value="@{oms.jdbc.username.2}"></property>
+        <property name="password" value="@{oms.jdbc.password.2}"></property>
+        <property name="defaultAutoCommit" value="@{oms.jdbc.defaultAutoCommit.2}"></property>
+        <!-- 每个分区最大的连接数 -->
+        <property name="maxConnectionsPerPartition" value="@{oms.jdbc.maxConnectionsPerPartition.2}"/>
+        <!-- 每个分区最小的连接数 -->
+        <property name="minConnectionsPerPartition" value="@{oms.jdbc.minConnectionsPerPartition.2}"/>
+        <!-- 分区数 ，默认值2，最小1，推荐3-4，视应用而定-->
+        <property name="partitionCount" value="@{oms.jdbc.partitionCount.2}"/>
+        <!-- 每次去拿数据库连接的时候一次性要拿几个,默认值：2 -->
+        <property name="acquireIncrement" value="@{oms.jdbc.acquireIncrement.2}"/>
+        <!-- 缓存prepared statements的大小，默认值：0 -->
+        <property name="statementsCacheSize" value="@{oms.jdbc.statementsCacheSize.2}"/>
+        <!-- 每个分区释放链接助理进程的数量，默认值：3，除非你的一个数据库连接的时间内做了很多工作，不然过多的助理进程会影响你的性能 -->
+        <property name="releaseHelperThreads" value="@{oms.jdbc.releaseHelperThreads.2}"/>
+        <property name="idleConnectionTestPeriodInMinutes" value="@{oms.jdbc.idleConnectionTestPeriodInMinutes.2}" />
+        <property name="idleMaxAgeInMinutes" value="@{oms.jdbc.idleMaxAgeInMinutes.2}" />
+        <property name="connectionTestStatement" value="@{oms.jdbc.connectionTestStatement.2}"  />
+    </bean>
+    
+    <bean id="unionDataSource" class="com.jolbox.bonecp.BoneCPDataSource" lazy-init="true">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="@{union.jdbc.url.1}"></property>
+		<property name="username" value="@{union.jdbc.username.1}"></property>
+		<property name="password" value="@{union.jdbc.password.1}"></property>
+		<property name="defaultAutoCommit" value="@{union.jdbc.defaultAutoCommit.1}"></property>
+		<!-- 每个分区最大的连接数 -->
+		<property name="maxConnectionsPerPartition" value="@{union.jdbc.maxConnectionsPerPartition.1}" />
+		<!-- 每个分区最小的连接数 -->
+		<property name="minConnectionsPerPartition" value="@{union.jdbc.minConnectionsPerPartition.1}" />
+		<!-- 分区数 ，默认值2，最小1，推荐3-4，视应用而定 -->
+		<property name="partitionCount" value="@{union.jdbc.partitionCount.1}" />
+		<!-- 每次去拿数据库连接的时候一次性要拿几个,默认值：2 -->
+		<property name="acquireIncrement" value="@{union.jdbc.acquireIncrement.1}" />
+		<!-- 缓存prepared statements的大小，默认值：0 -->
+		<property name="statementsCacheSize" value="@{union.jdbc.statementsCacheSize.1}" />
+		<!-- 每个分区释放链接助理进程的数量，默认值：3，除非你的一个数据库连接的时间内做了很多工作，不然过多的助理进程会影响你的性能 -->
+		<property name="releaseHelperThreads" value="@{union.jdbc.releaseHelperThreads.1}" />
+		<property name="idleConnectionTestPeriodInMinutes"
+			value="@{union.jdbc.idleConnectionTestPeriodInMinutes.1}" />
+		<property name="connectionTestStatement" value="@{union.jdbc.connectionTestStatement.1}" />
+		<property name="idleMaxAgeInMinutes" value="@{union.jdbc.idleMaxAgeInMinutes.1}" />
+	</bean>
+	
+	<!-- 事务配置 -->
+	<bean name="mqTransactionManager"
+		class="com.meiliwan.emall.core.db.shard.spring.support.MultiDataSourceTransactionManager">
+	</bean>
+	<tx:advice id="mqTxAdvice" transaction-manager="mqTransactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="NOT_SUPPORTED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- baseService事务管理 -->
+	<aop:config>
+		<aop:pointcut id="mqServiceOperation"
+			expression="execution(* com.meiliwan.emall.union.*.impl.*.*(..)) || execution(* com.meiliwan.emall.core.db.BaseDao.*(..))" />
+		<aop:advisor advice-ref="mqTxAdvice" pointcut-ref="mqServiceOperation" />
+	</aop:config>
+
+</beans>

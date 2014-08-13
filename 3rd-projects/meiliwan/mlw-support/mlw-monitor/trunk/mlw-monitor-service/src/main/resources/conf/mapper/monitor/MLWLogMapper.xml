@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.monitor.dao.MLWLogDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.monitor.bean.MLWLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="server_ip" property="serverIp" jdbcType="VARCHAR" />
+    <result column="client_ip" property="clientIp" jdbcType="VARCHAR" />
+    <result column="module" property="module" jdbcType="VARCHAR" />
+    <result column="application" property="application" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="error_uuid" property="errorUuid" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.meiliwan.emall.monitor.bean.MLWLog" extends="BaseResultMap" >
+    <result column="info" property="info" jdbcType="LONGVARCHAR" />
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, level, title,remark, server_ip, client_ip, module, application, create_time,error_uuid 
+  </sql>
+  <sql id="Blob_Column_List" >
+    info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mlw_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mlw_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.monitor.bean.MLWLog" >
+    insert into mlw_log (id, level,title, remark, 
+      server_ip, client_ip, module, 
+      application, create_time, info
+      )
+    values (#{id,jdbcType=INTEGER}, #{level,jdbcType=VARCHAR},#{title,jdbcType=VARCHAR}, #{remark,jdbcType=LONGVARCHAR}, 
+      #{serverIp,jdbcType=VARCHAR}, #{clientIp,jdbcType=VARCHAR}, #{module,jdbcType=VARCHAR}, 
+      #{application,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{info,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.monitor.bean.MLWLog" >
+    insert into mlw_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="serverIp != null" >
+        server_ip,
+      </if>
+      <if test="clientIp != null" >
+        client_ip,
+      </if>
+      <if test="module != null" >
+        module,
+      </if>
+      <if test="application != null" >
+        application,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="serverIp != null" >
+        #{serverIp,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null" >
+        #{clientIp,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null" >
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.monitor.bean.MLWLog" >
+    update mlw_log
+    <set >
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="serverIp != null" >
+        server_ip = #{serverIp,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null" >
+        client_ip = #{clientIp,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null" >
+        module = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="application != null" >
+        application = #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="info != null" >
+        info = #{info,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.meiliwan.emall.monitor.bean.MLWLog" >
+    update mlw_log
+    set level = #{level,jdbcType=VARCHAR},
+    title = #{title,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR},
+      server_ip = #{serverIp,jdbcType=VARCHAR},
+      client_ip = #{clientIp,jdbcType=VARCHAR},
+      module = #{module,jdbcType=VARCHAR},
+      application = #{application,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      info = #{info,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.monitor.bean.MLWLog" >
+    update mlw_log
+    set level = #{level,jdbcType=VARCHAR},
+    title = #{title,jdbcType=VARCHAR},
+      server_ip = #{serverIp,jdbcType=VARCHAR},
+      client_ip = #{clientIp,jdbcType=VARCHAR},
+      module = #{module,jdbcType=VARCHAR},
+      application = #{application,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.id!=null">
+                        and id=#{entity.id,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.level!=null">
+                        and level=#{entity.level,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.module!=null">
+                        and module=#{entity.module,jdbcType=VARCHAR}
+                    </if>
+                     <if test="entity.application!=null">
+                        and application=#{entity.application,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.serverIp!=null">
+                        and server_ip=  #{entity.serverIp,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.clientIp!=null">
+                        and client_ip = #{entity.clientIp,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.createTimeStart!=null">
+                        and create_time &gt;=  #{entity.createTimeStart,jdbcType=NUMERIC}
+                    </if>
+                    <if test="entity.createTimeEnd!=null">
+                        and create_time &lt;=  #{entity.createTimeEnd,jdbcType=NUMERIC}
+                    </if>
+                    <if test="entity.errorUuid!=null">
+                        and error_uuid =  #{entity.errorUuid,jdbcType=VARCHAR}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- get pages by pageInfo -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+    		<include refid="Blob_Column_List" />
+        from mlw_log
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from mlw_log
+        <include refid="selectCondition"/>
+    </select>
+    
+    <select id="getAllApplication"
+            resultType="java.lang.String">
+        SELECT application FROM mlw_monitor.mlw_log group by application
+    </select>
+    
+    
+    
+</mapper>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.pay.dao.impl.B2BPayHeadDaoImpl" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.pay.bean.PayHead" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="target_uid" property="targetUid" jdbcType="INTEGER" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.meiliwan.emall.pay.bean.PayHead" extends="BaseResultMap" >
+    <result column="extra_info" property="extraInfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, uid, target_uid, pay_type, total_amount, subject, pay_status, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    extra_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from b2b_pay_head
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from b2b_pay_head
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.pay.bean.PayHead" >
+    insert into b2b_pay_head (order_id, uid, target_uid, 
+      pay_type, total_amount, subject, 
+      pay_status, create_time, extra_info
+      )
+    values (#{orderId,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, #{targetUid,jdbcType=INTEGER}, 
+      #{payType,jdbcType=VARCHAR}, #{totalAmount,jdbcType=DECIMAL}, #{subject,jdbcType=VARCHAR}, 
+      #{payStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{extraInfo,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.pay.bean.PayHead" >
+    insert into b2b_pay_head
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="targetUid != null" >
+        target_uid,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="extraInfo != null" >
+        extra_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="targetUid != null" >
+        #{targetUid,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extraInfo != null" >
+        #{extraInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.pay.bean.PayHead" >
+    update b2b_pay_head
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="targetUid != null" >
+        target_uid = #{targetUid,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extraInfo != null" >
+        extra_info = #{extraInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.meiliwan.emall.pay.bean.PayHead" >
+    update b2b_pay_head
+    set uid = #{uid,jdbcType=INTEGER},
+      target_uid = #{targetUid,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      subject = #{subject,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      extra_info = #{extraInfo,jdbcType=LONGVARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.pay.bean.PayHead" >
+    update b2b_pay_head
+    set uid = #{uid,jdbcType=INTEGER},
+      target_uid = #{targetUid,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      subject = #{subject,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectPaySeq" resultType="java.lang.Long">
+       SELECT nextval('PaySeq');
+    </select>
+    
+    <select id="selectCmbSeq" resultType="java.lang.Long">
+       SELECT nextval('cmbseq');
+    </select>
+</mapper>

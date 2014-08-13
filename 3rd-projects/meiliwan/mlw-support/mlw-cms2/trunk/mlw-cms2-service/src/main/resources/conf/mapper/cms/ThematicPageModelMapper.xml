@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.cms2.dao.ThematicPageModelDao">
+    <resultMap id="BaseResultMap" type="com.meiliwan.emall.cms2.bean.ThematicPageModel">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="page_id" property="pageId" jdbcType="INTEGER"/>
+        <result column="model_id" property="modelId" jdbcType="INTEGER"/>
+        <result column="is_hide" property="isHide" jdbcType="INTEGER"/>
+        <result column="sequence" property="sequence" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="json_data" property="jsonData" jdbcType="LONGVARCHAR"/>
+        <result column="descp" property="descp" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List">
+      id,page_id, model_id, is_hide, sequence, type, json_data, descp
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from thematic_page_model
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from thematic_page_model
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.cms2.bean.ThematicPageModel" useGeneratedKeys="true" keyProperty="id">
+    insert into thematic_page_model (page_id, model_id, is_hide,
+      sequence, type, json_data, descp
+      )
+    values (#{pageId,jdbcType=INTEGER}, #{modelId,jdbcType=INTEGER}, #{isHide,jdbcType=INTEGER},
+      #{sequence,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{jsonData,jdbcType=LONGVARCHAR},#{descp,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.meiliwan.emall.cms2.bean.ThematicPageModel" useGeneratedKeys="true" keyProperty="id">
+        insert into thematic_page_model
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pageId != null">
+                page_id,
+            </if>
+            <if test="modelId != null">
+                model_id,
+            </if>
+            <if test="isHide != null">
+                is_hide,
+            </if>
+            <if test="sequence != null">
+                sequence,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="jsonData != null">
+                json_data,
+            </if>
+            <if test="descp != null">
+                descp,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="pageId != null">
+                #{pageId,jdbcType=INTEGER},
+            </if>
+            <if test="modelId != null">
+                #{modelId,jdbcType=INTEGER},
+            </if>
+            <if test="isHide != null">
+                #{isHide,jdbcType=INTEGER},
+            </if>
+            <if test="sequence != null">
+                #{sequence,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="jsonData != null">
+                #{jsonData,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="descp != null">
+                #{descp,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.cms2.bean.ThematicPageModel">
+        update thematic_page_model
+        <set>
+            <if test="pageId != null">
+                page_id = #{pageId,jdbcType=INTEGER},
+            </if>
+            <if test="modelId != null">
+                model_id = #{modelId,jdbcType=INTEGER},
+            </if>
+            <if test="isHide != null">
+                is_hide = #{isHide,jdbcType=INTEGER},
+            </if>
+            <if test="sequence != null">
+                sequence = #{sequence,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="jsonData != null">
+                json_data = #{jsonData,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="descp != null">
+               descp = #{descp,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.cms2.bean.ThematicPageModel">
+    update thematic_page_model
+    set page_id = #{pageId,jdbcType=INTEGER},
+      model_id = #{modelId,jdbcType=INTEGER},
+      is_hide = #{isHide,jdbcType=INTEGER},
+      sequence = #{sequence,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      json_data = #{jsonData,jdbcType=LONGVARCHAR},
+      descp = #{descp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.pageId != null">
+                        and page_id = #{entity.pageId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.modelId != null">
+                        and model_id = #{entity.modelId,jdbcType=INTEGER}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from thematic_page_model
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from thematic_page_model
+        <include refid="selectCondition"/>
+    </select>
+
+    <select id="getPMListByPageId" resultMap="BaseResultMap">
+         select
+         <include refid="Base_Column_List"/>
+         from thematic_page_model
+         where page_id = #{id,jdbcType=INTEGER} order by id asc
+    </select>
+
+    <select id="getPMListByPageIdAndState" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from thematic_page_model
+        where page_id = #{id,jdbcType=INTEGER} and is_hide = 1 order by id asc
+    </select>
+
+
+    <update id="updatePMHide">
+        update thematic_page_model
+        set is_hide = 0
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updatePageModelJsonData">
+        update thematic_page_model
+        set json_data = #{json,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

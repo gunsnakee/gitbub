@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+		<modelVersion>4.0.0</modelVersion>
+		<groupId>com.meiliwan.emall</groupId>
+		<artifactId>mlw-pom</artifactId>
+		<version>5.1.4</version>
+		<packaging>pom</packaging>
+		
+		<url>http://maven.apache.org</url>
+		
+		<distributionManagement>
+			<repository>
+				<id>releases</id>
+				<name>mop release repositry</name>
+				<url>http://reform.mop.com/m2/content/repositories/releases</url>
+			</repository>
+			<snapshotRepository>
+				<id>snapshots</id>
+				<name>mop snapshot repositorys</name>
+				<url>http://reform.mop.com/m2/content/repositories/snapshots</url>
+			</snapshotRepository>
+		</distributionManagement>
+
+    <properties>
+      <mlw.commons.db>5.0.0-SNAPSHOT</mlw.commons.db>
+      <mlw.commons.ice>5.0.0-SNAPSHOT</mlw.commons.ice>
+      <mlw.commons.util>5.0.0-SNAPSHOT</mlw.commons.util>
+      
+      <mlw.base.version>5.0.0-SNAPSHOT</mlw.base.version>
+      <mlw.gateway.version>5.0.0-SNAPSHOT</mlw.gateway.version>
+      <mlw.oms.version>5.0.0-SNAPSHOT</mlw.oms.version>
+      <mlw.passport.version>5.0.0-SNAPSHOT</mlw.passport.version>
+      <mlw.pms.version>5.0.0-SNAPSHOT</mlw.pms.version>
+      <mlw.sp.version>5.0.0-SNAPSHOT</mlw.sp.version>
+      <mlw.stock.version>5.0.0-SNAPSHOT</mlw.stock.version>
+      <mlw.wallet.version>5.0.0-SNAPSHOT</mlw.wallet.version>
+      <mlw.admin.version>5.0.0-SNAPSHOT</mlw.admin.version>
+      <mlw.antispam.version>5.0.0-SNAPSHOT</mlw.antispam.version>
+      <mlw.cms.version>5.0.0-SNAPSHOT</mlw.cms.version>
+      <mlw.monitor.version>5.0.0-SNAPSHOT</mlw.monitor.version>
+      <mlw.mq.job>5.0.0-SNAPSHOT</mlw.mq.job>
+      
+      <mlw.www.web>5.0.0-SNAPSHOT</mlw.www.web>
+      <mlw.wallet.web>5.0.0-SNAPSHOT</mlw.wallet.web>
+      <mlw.passport.web>5.0.0-SNAPSHOT</mlw.passport.web>
+      <mlw.admin.web>5.0.0-SNAPSHOT</mlw.admin.web>
+      <mlw.gateway.web>5.0.0-SNAPSHOT</mlw.gateway.web>
+      <mlw.cms.web>5.0.0-SNAPSHOT</mlw.cms.web>
+      <mlw.imagecode.web>5.0.0-SNAPSHOT</mlw.imagecode.web>
+      <mlw.monitor.web>5.0.0-SNAPSHOT</mlw.monitor.web>
+      <mlw.web.res>5.0.0-SNAPSHOT</mlw.web.res>
+      
+    </properties>
+</project>

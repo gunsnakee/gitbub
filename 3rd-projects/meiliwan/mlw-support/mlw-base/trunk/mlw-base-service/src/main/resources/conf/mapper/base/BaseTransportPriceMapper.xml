@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.base.dao.BaseTransportPriceDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.base.bean.BaseTransportPrice" >
+    <id column="area_code" property="areaCode" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="fixed_price" property="fixedPrice" jdbcType="DECIMAL" />
+    <result column="full_free_limit" property="fullFreeLimit" jdbcType="DECIMAL" />
+    <result column="not_full_free_price" property="notFullFreePrice" jdbcType="DECIMAL" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="predict_time_min" property="predictTimeMin" jdbcType="INTEGER" />
+    <result column="predict_time_max" property="predictTimeMax" jdbcType="INTEGER" />
+    <result column="unified" property="unified" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="TransportPriceDTO" type="com.meiliwan.emall.base.dto.TransportPriceDTO" extends="BaseResultMap">
+    <id column="area_name" property="areaName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="TransportPriceTip" type="com.meiliwan.emall.base.dto.TransportPriceTip" extends="BaseResultMap">
+    <id column="privince" property="privince" jdbcType="VARCHAR" />
+    <id column="city" property="city" jdbcType="VARCHAR" />
+    <id column="country" property="country" jdbcType="VARCHAR" />
+    <id column="privince_code" property="privinceCode" jdbcType="VARCHAR" />
+    <id column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <id column="country_code" property="countryCode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List" >
+    area_code, type, fixed_price, full_free_limit, not_full_free_price, state, predict_time_min, 
+    predict_time_max, unified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_transport_price
+    where area_code = #{areaCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_transport_price
+    where area_code = #{areaCode,jdbcType=VARCHAR}
+  </delete>
+  
+  <delete id="deleteByAreaCodes" >
+    delete from base_transport_price
+     where  area_code in
+        <foreach item="areaCodes" collection="array" 
+            open="(" separator="," close=")" >
+            #{areaCodes}
+        </foreach>
+  </delete>
+  
+  <insert id="insert" parameterType="com.meiliwan.emall.base.bean.BaseTransportPrice" >
+    insert into base_transport_price (area_code, type, fixed_price, 
+      full_free_limit, not_full_free_price, state, 
+      predict_time_min, predict_time_max, unified
+      )
+    values (#{areaCode,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{fixedPrice,jdbcType=DECIMAL}, 
+      #{fullFreeLimit,jdbcType=DECIMAL}, #{notFullFreePrice,jdbcType=DECIMAL}, #{state,jdbcType=TINYINT}, 
+      #{predictTimeMin,jdbcType=INTEGER}, #{predictTimeMax,jdbcType=INTEGER}, #{unified,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.base.bean.BaseTransportPrice" >
+    insert into base_transport_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaCode != null" >
+        area_code,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="fixedPrice != null" >
+        fixed_price,
+      </if>
+      <if test="fullFreeLimit != null" >
+        full_free_limit,
+      </if>
+      <if test="notFullFreePrice != null" >
+        not_full_free_price,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="predictTimeMin != null" >
+        predict_time_min,
+      </if>
+      <if test="predictTimeMax != null" >
+        predict_time_max,
+      </if>
+      <if test="unified != null" >
+        unified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedPrice != null" >
+        #{fixedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="fullFreeLimit != null" >
+        #{fullFreeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="notFullFreePrice != null" >
+        #{notFullFreePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="predictTimeMin != null" >
+        #{predictTimeMin,jdbcType=INTEGER},
+      </if>
+      <if test="predictTimeMax != null" >
+        #{predictTimeMax,jdbcType=INTEGER},
+      </if>
+      <if test="unified != null" >
+        #{unified,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.base.bean.BaseTransportPrice" >
+    update base_transport_price
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedPrice != null" >
+        fixed_price = #{fixedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="fullFreeLimit != null" >
+        full_free_limit = #{fullFreeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="notFullFreePrice != null" >
+        not_full_free_price = #{notFullFreePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="predictTimeMin != null" >
+        predict_time_min = #{predictTimeMin,jdbcType=INTEGER},
+      </if>
+      <if test="predictTimeMax != null" >
+        predict_time_max = #{predictTimeMax,jdbcType=INTEGER},
+      </if>
+      <if test="unified != null" >
+        unified = #{unified,jdbcType=TINYINT},
+      </if>
+    </set>
+    where area_code = #{areaCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.base.bean.BaseTransportPrice" >
+    update base_transport_price
+    set type = #{type,jdbcType=VARCHAR},
+      fixed_price = #{fixedPrice,jdbcType=DECIMAL},
+      full_free_limit = #{fullFreeLimit,jdbcType=DECIMAL},
+      not_full_free_price = #{notFullFreePrice,jdbcType=DECIMAL},
+      state = #{state,jdbcType=TINYINT},
+      predict_time_min = #{predictTimeMin,jdbcType=INTEGER},
+      predict_time_max = #{predictTimeMax,jdbcType=INTEGER},
+      unified = #{unified,jdbcType=TINYINT}
+    where area_code = #{areaCode,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 联动 right join base_area_management-->
+  <select id="getListAreaFirstByParentCode" resultMap="TransportPriceDTO" parameterType="java.lang.String">
+  select b.area_code,b.area_name, a.area_code, a.type, a.fixed_price, a.full_free_limit, 
+	a.not_full_free_price, a.state, a.predict_time_min, 
+    a.predict_time_max, a.unified 
+		from base_transport_price a right join base_area_management  b 
+		on a.area_code = b.area_code  
+		where b.parent_code=  #{parentCode,jdbcType=VARCHAR}
+  </select>		
+  
+  <!-- 联动 left join base_area_management-->
+  <select id="getListPriceFirstByParentCode" resultMap="TransportPriceDTO" parameterType="java.lang.String">
+  select b.area_code,b.area_name, a.area_code, a.type, a.fixed_price, a.full_free_limit, 
+	a.not_full_free_price, a.state, a.predict_time_min, 
+    a.predict_time_max, a.unified 
+		from base_transport_price a left join base_area_management  b 
+		on a.area_code = b.area_code  
+		where b.parent_code=  #{parentCode,jdbcType=VARCHAR}
+  </select>		
+  
+  
+  <!-- 购物车结算页的tip显示 -->
+   <select id="getTransportPriceByAreaCode" resultMap="TransportPriceTip" parameterType="java.lang.String">
+		select a.area_code, a.type, a.fixed_price, a.full_free_limit, 
+		a.not_full_free_price, a.state, a.predict_time_min, 
+	    a.predict_time_max, a.unified ,b.area_grade,b.parent_code   
+		from base_transport_price a left join base_area_management  b 
+		on a.area_code = b.area_code 
+		where a.area_code=  #{areaCode,jdbcType=VARCHAR}
+  </select>	
+  	
+	<!-- 后台分页使用 -->
+  <select id="getListProvinceCityCountry" resultMap="TransportPriceTip" >
+  select a.area_name province,b.area_name city,c.area_name country,
+      a.area_code province_code,b.area_code city_code,c.area_code country_code,
+  	  d.area_code, d.type, d.fixed_price, d.full_free_limit, 
+  	  d.not_full_free_price, d.state, d.predict_time_min, 
+      d.predict_time_max, d.unified 
+     from 
+    base_area_management a,base_area_management b,
+    base_area_management c,base_transport_price d
+    where a.parent_code='1000'
+    and a.area_code=b.parent_code
+    and b.area_code=c.parent_code
+    and c.area_code=d.area_code
+    </select>
+    
+     <select id="getListProvinceCityCountryTotal"
+          resultType="java.lang.Integer">
+      select count(*) from 
+		base_area_management a,base_area_management b,
+		base_area_management c,base_transport_price d
+		where a.parent_code='1000'
+		and a.area_code=b.parent_code
+		and b.area_code=c.parent_code
+		and c.area_code=d.area_code
+  </select>
+  
+</mapper>

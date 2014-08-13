@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.mms.dao.UserCollectDao" >
+    <resultMap id="BaseResultMap" type="com.meiliwan.emall.mms.bean.UserCollect" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="uid" property="uid" jdbcType="INTEGER" />
+        <result column="pro_id" property="proId" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+        <result column="pro_name" property="proName" jdbcType="VARCHAR" />
+        <result column="is_del" property="isDel" jdbcType="TINYINT" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, uid, pro_id, create_time, nick_name, pro_name, is_del
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from user_collect
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_collect
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.meiliwan.emall.mms.bean.UserCollect" >
+    insert into user_collect (id, uid, pro_id,
+      create_time, nick_name, pro_name,
+      is_del)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{proId,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP}, #{nickName,jdbcType=VARCHAR}, #{proName,jdbcType=VARCHAR},
+      #{isDel,jdbcType=TINYINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.meiliwan.emall.mms.bean.UserCollect"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into user_collect
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="uid != null" >
+                uid,
+            </if>
+            <if test="proId != null" >
+                pro_id,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="nickName != null" >
+                nick_name,
+            </if>
+            <if test="proName != null" >
+                pro_name,
+            </if>
+            <if test="isDel != null" >
+                is_del,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="uid != null" >
+                #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="proId != null" >
+                #{proId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nickName != null" >
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="proName != null" >
+                #{proName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDel != null" >
+                #{isDel,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.mms.bean.UserCollect" >
+        update user_collect
+        <set >
+            <if test="uid != null" >
+                uid = #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="proId != null" >
+                pro_id = #{proId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nickName != null" >
+                nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="proName != null" >
+                pro_name = #{proName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDel != null" >
+                is_del = #{isDel,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.mms.bean.UserCollect" >
+    update user_collect
+    set uid = #{uid,jdbcType=INTEGER},
+      pro_id = #{proId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      pro_name = #{proName,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!-- 通过商品id 更改商品名称-->
+    <update id="updateProNameByProId" parameterType="com.meiliwan.emall.mms.bean.UserCollect" >
+    update user_collect
+    set
+      pro_name = #{proName,jdbcType=VARCHAR}
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </update>
+
+  <sql id="selectCondition">
+      <where>
+          <trim suffixOverrides="and">
+              <if test="entity != null">
+                  <if test="entity.id!=null and entity.id &gt;0">
+                      and id=#{entity.id,jdbcType=INTEGER}
+                  </if>
+                  <if test="entity.proId!=null">
+                      and pro_id=#{entity.proId,jdbcType=INTEGER}
+                  </if>
+                  <if test="entity.proName!=null">
+                      and pro_name=#{entity.proName,jdbcType=VARCHAR}
+                  </if>
+                  <if test="entity.nickName!=null">
+                      and nick_name like #{entity.nickName,jdbcType=VARCHAR}
+                  </if>
+                  <if test="entity.uid!=null">
+                      and uid=#{entity.uid,jdbcType=INTEGER}
+                  </if>
+                  <if test="entity.isDel!=null">
+                      and is_del=#{entity.isDel,jdbcType=TINYINT}
+                  </if>
+              </if>
+          </trim>
+          <trim suffixOverrides="and">
+              <if test="whereSql!=null">
+                  and ${whereSql}
+              </if>
+          </trim>
+      </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+  <select id="getListByEntityAndPageInfo"
+          resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from user_collect
+      <include refid="selectCondition" />
+      <if test="orderBy!=null">
+          ${orderBy}
+      </if>
+      <if test="pageInfo!=null">
+          limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+      </if>
+  </select>
+
+    <!-- 查询总数 -->
+  <select id="getTotalByEntity"
+          resultType="java.lang.Integer">
+      select count(*) from user_collect
+      <include refid="selectCondition" />
+  </select>
+</mapper>

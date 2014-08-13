@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.monitor.dao.PlayerRequestDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.monitor.bean.PlayerRequest" >
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="BasePlayerResultMap" type="com.meiliwan.emall.monitor.bean.PlayerRequestVO" >
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="player_request_id" property="playerRequestId" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="PlayerMap" type="com.meiliwan.emall.monitor.bean.Player" >
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <insert id="insert" parameterType="com.meiliwan.emall.monitor.bean.PlayerRequest" >
+    insert into player_request (pid)
+    values (#{pid,jdbcType=INTEGER})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.monitor.bean.PlayerRequest" >
+    insert into player_request
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from player_request
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.pid!=null">
+                        and pid=#{entity.pid,jdbcType=INTEGER}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- get pages by pageInfo -->
+    <select id="getListByEntityAndPageInfo" resultMap="BasePlayerResultMap">
+        select `player`.`pid`,
+		`player`.`name`,
+		`player`.`mobile`,
+		`player`.`email`,
+		`player`.`state`,
+		player_request.pid player_request_id 
+		
+		from  player left join player_request on player.pid=player_request.pid
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from player
+        <include refid="selectCondition"/>
+    </select>
+    
+    <select id="getAllPlayer" resultMap="PlayerMap">
+        select `player`.`pid`,
+		`player`.`name`,
+		`player`.`mobile`,
+		`player`.`email`,
+		`player`.`state`
+		from  player right join player_request on player.pid=player_request.pid
+    </select>
+    
+</mapper>

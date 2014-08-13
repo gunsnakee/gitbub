@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.sp2.dao.SpTicketImportDetailDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.sp2.bean.SpTicketImportDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="batch_id" property="batchId" jdbcType="INTEGER" />
+    <result column="ticket_id" property="ticketId" jdbcType="VARCHAR" />
+    <result column="buyer_phone" property="buyerPhone" jdbcType="VARCHAR" />
+    <result column="buyer_email" property="buyerEmail" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, file_name, batch_id, ticket_id, buyer_phone, buyer_email, user_name, state, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sp_ticket_import_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sp_ticket_import_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.sp2.bean.SpTicketImportDetail" >
+    insert into sp_ticket_import_detail (id, file_name, batch_id, 
+      ticket_id, buyer_phone, buyer_email, 
+      user_name, state, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{batchId,jdbcType=INTEGER}, 
+      #{ticketId,jdbcType=VARCHAR}, #{buyerPhone,jdbcType=VARCHAR}, #{buyerEmail,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.sp2.bean.SpTicketImportDetail" >
+    insert into sp_ticket_import_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+      <if test="batchId != null" >
+        batch_id,
+      </if>
+      <if test="ticketId != null" >
+        ticket_id,
+      </if>
+      <if test="buyerPhone != null" >
+        buyer_phone,
+      </if>
+      <if test="buyerEmail != null" >
+        buyer_email,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null" >
+        #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="ticketId != null" >
+        #{ticketId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPhone != null" >
+        #{buyerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerEmail != null" >
+        #{buyerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.sp2.bean.SpTicketImportDetail" >
+    update sp_ticket_import_detail
+    <set >
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null" >
+        batch_id = #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="ticketId != null" >
+        ticket_id = #{ticketId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPhone != null" >
+        buyer_phone = #{buyerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerEmail != null" >
+        buyer_email = #{buyerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.sp2.bean.SpTicketImportDetail" >
+    update sp_ticket_import_detail
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      batch_id = #{batchId,jdbcType=INTEGER},
+      ticket_id = #{ticketId,jdbcType=VARCHAR},
+      buyer_phone = #{buyerPhone,jdbcType=VARCHAR},
+      buyer_email = #{buyerEmail,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.ticketId!=null">
+                        and ticket_id=#{entity.ticketId,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.batchId!=null">
+                        and batch_id=#{entity.batchId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.fileName!=null">
+                        and file_name=#{entity.fileName,jdbcType=VARCHAR}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_ticket_import_detail
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from sp_ticket_import_detail
+        <include refid="selectCondition"/>
+    </select>
+
+    <!-- 批量增加券导入记录 -->
+    <insert id="insertTicketImportDtByBatch">
+        insert into sp_ticket_import_detail(file_name, batch_id, ticket_id, buyer_phone, buyer_email, user_name, state, create_time)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.fileName,jdbcType=VARCHAR}, #{item.batchId,jdbcType=INTEGER},#{item.ticketId,jdbcType=VARCHAR},
+            #{item.buyerPhone,jdbcType=VARCHAR},#{item.buyerEmail,jdbcType=VARCHAR}, #{item.userName,jdbcType=VARCHAR},
+            #{item.state},#{item.createTime})
+        </foreach>
+    </insert>
+
+</mapper>

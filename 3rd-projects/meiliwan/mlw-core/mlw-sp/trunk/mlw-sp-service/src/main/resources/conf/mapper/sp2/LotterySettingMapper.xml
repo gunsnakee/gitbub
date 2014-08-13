@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.sp2.dao.LotterySettingDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.sp2.bean.LotterySetting" >
+        <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="lottery_name" jdbcType="VARCHAR" property="lotteryName" />
+    <result column="lottery_product" jdbcType="VARCHAR" property="lotteryProduct" />
+    <result column="total" jdbcType="INTEGER" property="total" />
+    <result column="possibility" jdbcType="INTEGER" property="possibility" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+     id, lottery_name, lottery_product, total, possibility, type, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lottery_setting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lottery_setting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.sp2.bean.LotterySetting" >
+   insert into lottery_setting (id, lottery_name, lottery_product, 
+      total, possibility, type, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{lotteryName,jdbcType=VARCHAR}, #{lotteryProduct,jdbcType=VARCHAR}, 
+      #{total,jdbcType=INTEGER}, #{possibility,jdbcType=INTEGER}, #{type,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.sp2.bean.LotterySetting" >
+    insert into lottery_setting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="lotteryName != null">
+        lottery_name,
+      </if>
+      <if test="lotteryProduct != null">
+        lottery_product,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="possibility != null">
+        possibility,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryName != null">
+        #{lotteryName,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryProduct != null">
+        #{lotteryProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="possibility != null">
+        #{possibility,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.sp2.bean.LotterySetting" >
+   update lottery_setting
+    <set>
+      <if test="lotteryName != null">
+        lottery_name = #{lotteryName,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryProduct != null">
+        lottery_product = #{lotteryProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="possibility != null">
+        possibility = #{possibility,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.sp2.bean.LotterySetting" >
+   update lottery_setting
+    set lottery_name = #{lotteryName,jdbcType=VARCHAR},
+      lottery_product = #{lotteryProduct,jdbcType=VARCHAR},
+      total = #{total,jdbcType=INTEGER},
+      possibility = #{possibility,jdbcType=INTEGER},
+      type = #{type,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap" parameterType="com.meiliwan.emall.sp2.bean.LotterySetting">
+        select
+        <include refid="Base_Column_List" />
+        from lottery_setting
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from lottery_setting
+        <include refid="selectCondition" />
+    </select>
+    
+    
+</mapper>

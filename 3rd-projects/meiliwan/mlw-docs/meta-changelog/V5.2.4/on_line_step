@@ -1,0 +1,99 @@
+V5.2.4
+
+序：
+CMS2的上线步骤分为以下两个步骤进行：
+    1.系统上线。
+    2.数据迁移。
+  一系统上线需要做下面的事情：
+     1.Cms2Service ice 服务部署，配置文件参考测试环境（10.249.15.164）zookerper 上配置，路径为 /mlwconf/cms2-service。注意更改数据库的地址。
+     2.Cms2-web 服务部署,配置文件参考测试环境（10.249.15.164）zookerper 上配置，路径为 /mlwconf/cms2-web
+     3.数据库直接从测试环境拷贝到线上，测试环境的主库的地址是 10.249.15.162:3306,数据库名称为 mlw_cms
+     4.nginx 配置
+         rewrite ^/$ /user/login/port;
+
+  二系统上线后检查没问题，与运营部门协商数据迁移时间。
+
+  三菜单以及其他的东西我这边来处理，需要帮助的时候会找尚峰 
+
+
+
+###############
+一、更新数据库
+###############
+---------------- passport ldq -------------------------------------------------
+use mlw_user;
+alter table user_foreign  add column union_type varchar(20)  after state;
+alter table user_foreign  add column union_login_time timestamp default  CURRENT_TIMESTAMP after union_type;
+
+
+
+
+###############
+二、更新zookeeper
+###############
+
+
+
+###############
+三、编译发布程序代码
+###############
+
+根据开发过程中涉及的模块发布：
+	/data/compileAnddeploy/prod_release 下发布service
+		 ./release.sh mlw-oms
+		 ./release.sh	mlw-stock
+		 ./release.sh mlw-pms
+		 ./release.sh mlw-wallet
+		 ./release.sh mlw-passport
+		 ./release.sh mlw-gateway
+		 ./release.sh mlw-admin
+		 
+  	
+ /data/compileAnddeploy/prod_release 下发布web
+		 ./release_web.sh mlw-gateway-web
+     ./release_web.sh mlw-www-web
+		 ./release_web.sh mlw-wallet-web
+		 ./release_web.sh mlw-admin-web
+     ./release_web.sh mlw-passport-web
+		 
+  	
+  /data/compileAnddeploy/prod_release 下发布静态资源
+     ./release_res.sh mlw-web-res
+
+
+
+###############
+四、修改nginx配置
+###############
+无
+
+
+###############
+五、使用线上后台管理员账户到后台添加菜单和功能项
+###############
+
+
+
+###############
+六、ice服务的回滚：
+###############
+
+
+
+###############
+七、web服务的回滚：
+###############
+
+      
+      
+###############
+八、CMS/静态资源版本号：5.2.1
+###############
+   
+
+###############
+九、缓存状态重置：
+###############
+
+
+

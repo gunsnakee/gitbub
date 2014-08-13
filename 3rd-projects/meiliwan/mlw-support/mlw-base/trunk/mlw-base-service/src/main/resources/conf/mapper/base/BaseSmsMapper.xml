@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.base.dao.BaseSmsDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.base.bean.BaseSms" >
+    <id column="id" property="smsId" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="is_admin_del" property="isAdminDel" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, admin_id, admin_name, content, create_time, is_admin_del, type, file_name
+  </sql>
+  
+  <sql id="selectCondition">
+      <where>
+          <trim suffixOverrides="and">
+              <if test="entity != null">
+                 <if test="entity.smsId != null">
+                   and id = #{entity.smsId,jdbcType=INTEGER}
+                 </if>
+                 <if test="entity.adminId != null">
+                   and admin_id = #{entity.adminId,jdbcType=INTEGER}
+                 </if>
+                 <if test="entity.adminName != null">
+                   and admin_name = #{entity.adminName,jdbcType=VARCHAR}
+                 </if>
+                 <if test="entity.isAdminDel != null">
+                   and is_admin_del = #{entity.isAdminDel,jdbcType=TINYINT}
+                 </if>
+                 <if test="entity.type != null">
+                   and type = #{entity.type,jdbcType=TINYINT}
+                 </if>
+                 <if test="entity.createTime != null">
+                   and create_time = #{entity.createTime,jdbcType=TIMESTAMP}
+                 </if>
+                 <if test="entity.startTime != null">
+                   and create_time &gt;= #{entity.startTime,jdbcType=TIMESTAMP}
+                 </if>
+                 <if test="entity.endTime != null">
+                   and create_time &lt;= #{entity.endTime,jdbcType=TIMESTAMP}
+                 </if>
+              </if>
+          </trim>
+          <trim suffixOverrides="and">
+              <if test="whereSql!=null">
+                  and ${whereSql}
+              </if>
+          </trim>
+      </where>
+  </sql>
+    
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_sms
+    where id = #{smsId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from base_sms
+    where id = #{smsId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.meiliwan.emall.base.bean.BaseSms" >
+    insert into base_sms (id, admin_id, admin_name, content, create_time, is_admin_del, type)
+    values (#{smsId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{cteateTime,jdbcType=TIMESTAMP}, #{isAdminDel,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.base.bean.BaseSms" >
+    insert into base_sms
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="smsId != null" >
+        id,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="adminName != null" >
+        admin_name,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isAdminDel != null" >
+        is_admin_del,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+    </trim>
+    
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="smsId != null" >
+        #{smsId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAdminDel != null" >
+        #{isAdminDel,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.base.bean.BaseSms" >
+    update base_sms
+    <set >
+      <if test="smsId != null" >
+        id = #{smsId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null" >
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAdminDel != null" >
+        is_admin_del = #{isAdminDel,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id = #{smsId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.base.bean.BaseSms" >
+    update base_sms
+    set admin_id = #{adminId,jdbcType=INTEGER},
+        admin_name = #{adminName,jdbcType=VARCHAR},
+	      content = #{content,jdbcType=VARCHAR},
+	      create_time = #{createTime,jdbcType=TIMESTAMP},
+	      is_admin_del = #{isAdminDel,jdbcType=TINYINT},
+	      type = #{type,jdbcType=TINYINT},
+	      file_name = #{fileName,jdbcType=VARCHAR}
+    where id = #{smsId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据条件查询 -->
+  <select id="getListByEntityAndPageInfo"
+          resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from base_sms
+      <include refid="selectCondition" />
+      <if test="orderBy!=null">
+          ${orderBy}
+      </if>
+      <if test="pageInfo!=null">
+          limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+      </if>
+  </select>
+  
+  <select id="getTotalByEntity"
+          resultType="java.lang.Integer">
+      select count(*) from base_sms
+      <include refid="selectCondition" />
+  </select>
+  <select id="getEntityByObj" parameterType="com.meiliwan.emall.base.bean.BaseSms" >
+  	  select <include refid="Base_Column_List" />
+      from base_sms
+      <include refid="selectCondition" />
+  </select>
+</mapper>

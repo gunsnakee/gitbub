@@ -1,0 +1,54 @@
+app-web
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ice-config>
+	
+     <services >
+      <service identity="pmsService" 
+                         replicaGroup="pmsIceBoxReplicaGroup" 
+                         connectMode="test"
+                         localPort="10012"/>
+      <service identity="omsService" 
+                         replicaGroup="omsIceBoxReplicaGroup" 
+                         connectMode="test"
+                         localPort="10003"/>
+      <service identity="spService" 
+                         replicaGroup="spIceBoxReplicaGroup" 
+                         connectMode="test"
+                         localPort="10005"/>
+      <service identity="mmsService" 
+                         replicaGroup="mmsIceBoxReplicaGroup" 
+                         connectMode="test"
+                         localPort="10007"/>      
+      <service identity="baseService" 
+                         replicaGroup="baseIceBoxReplicaGroup" 
+                         connectMode="test"
+                         localPort="10008"/>
+      <service identity="accountService" 
+                         replicaGroup="accountIceBoxReplicaGroup" 
+                         connectMode="test"
+                         localPort="10013"/>
+      <service identity="payService" 
+                         replicaGroup="payIceBoxReplicaGroup" 
+                         connectMode="test"
+                         localPort="10017"/> 
+     <service identity="antispamService" 
+                         replicaGroup="antispamIceBoxReplicaGroup" 
+                         connectMode="test"
+                         localPort="10089"/>
+    <service identity="stockService" 
+                         replicaGroup="stockIceBoxReplicaGroup" 
+                         connectMode="test"
+                         localPort="10090"/>
+     <service identity="monitorService" 
+                         replicaGroup="monitorIceBoxReplicaGroup" 
+                         connectMode="test"
+                         localPort="10018"/>
+<service identity="cmsService" 
+                         replicaGroup="cmsIceBoxReplicaGroup" 
+                         connectMode="test"
+                         localPort="10014"/>
+    </services>
+
+
+</ice-config>

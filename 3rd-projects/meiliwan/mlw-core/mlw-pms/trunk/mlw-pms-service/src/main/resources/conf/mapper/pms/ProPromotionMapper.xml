@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.pms.dao.ProPromotionDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.pms.bean.ProPromotion" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pro_id" property="proId" jdbcType="INTEGER" />
+      <result column="third_category_id" property="thirdCategoryId" jdbcType="INTEGER" />
+    <result column="sequence" property="sequence" jdbcType="TINYINT" />
+    <result column="is_del" property="isDel" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pro_id,third_category_id, sequence, is_del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pro_promotion
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pro_promotion
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.pms.bean.ProPromotion" >
+    insert into pro_promotion (id, pro_id,third_category_id, sequence,
+      is_del)
+    values (#{id,jdbcType=INTEGER}, #{proId,jdbcType=INTEGER},#{thirdCategoryId,jdbcType=INTEGER}, #{sequence,jdbcType=TINYINT},
+      #{isDel,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.pms.bean.ProPromotion" >
+    insert into pro_promotion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="proId != null" >
+        pro_id,
+      </if>
+        <if test="thirdCategoryId != null" >
+            third_category_id,
+        </if>
+      <if test="sequence != null" >
+        sequence,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null" >
+        #{proId,jdbcType=INTEGER},
+      </if>
+        <if test="thirdCategoryId != null" >
+            #{thirdCategoryId,jdbcType=INTEGER},
+        </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=TINYINT},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.pms.bean.ProPromotion" >
+    update pro_promotion
+    <set >
+      <if test="proId != null" >
+        pro_id = #{proId,jdbcType=INTEGER},
+      </if>
+        <if test="thirdCategoryId != null" >
+            third_category_id = #{thirdCategoryId,jdbcType=INTEGER},
+        </if>
+      <if test="sequence != null" >
+        sequence = #{sequence,jdbcType=TINYINT},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.pms.bean.ProPromotion" >
+    update pro_promotion
+    set pro_id = #{proId,jdbcType=INTEGER},
+    third_category_id = #{thirdCategoryId,jdbcType=INTEGER},
+      sequence = #{sequence,jdbcType=TINYINT},
+      is_del = #{isDel,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.id!=null and entity.id &gt;0">
+                        and id=#{entity.id,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.proId != null">
+                        and pro_id= #{entity.proId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.thirdCategoryId != null">
+                        and third_category_id= #{entity.thirdCategoryId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.isDel != null">
+                        and is_del= #{entity.isDel,jdbcType=INTEGER}
+                    </if>
+                    <if test="sequence != null">
+                        and sequence= #{sequence,jdbcType=TINYINT}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pro_promotion
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity" resultType="java.lang.Integer">
+        select count(*) from pro_promotion
+        <include refid="selectCondition"/>
+    </select>
+
+    <!-- 删除对象 -->
+    <select id="deleteByEntity" resultType="java.lang.Integer"  parameterType="com.meiliwan.emall.pms.bean.ProPromotion">
+        delete  from pro_promotion
+        <where>
+            <trim suffixOverrides="and">
+                    <if test="id!=null and id &gt;0">
+                        and id &gt; 0
+                    </if>
+                    <if test="proId != null">
+                        and pro_id= #{proId,jdbcType=INTEGER}
+                    </if>
+                    <if test="thirdCategoryId != null">
+                        and third_category_id= #{thirdCategoryId,jdbcType=INTEGER}
+                    </if>
+                    <if test="isDel != null">
+                        and is_del= #{isDel,jdbcType=INTEGER}
+                    </if>
+            </trim>
+        </where>
+    </select>
+</mapper>

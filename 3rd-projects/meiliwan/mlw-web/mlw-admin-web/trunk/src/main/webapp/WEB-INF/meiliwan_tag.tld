@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+    <display-name>mlw</display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>mlw</short-name>
+    <uri>http://www.meiliwan.com/mlw</uri>
+
+    <!-- Invoke 'Generate' action to add tags or functions -->
+    <function>
+        <name>img</name>
+        <function-class>com.meiliwan.common.util.ImageUtils</function-class>
+        <function-signature>java.lang.String getResizeImageUrl(java.lang.String,java.lang.Integer,java.lang.Integer)</function-signature>
+    </function>
+    <function>
+        <name>hover</name>
+        <function-class>com.meiliwan.common.util.StringUtils</function-class>
+        <function-signature>java.lang.String isHover(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+    </function>
+     <function>
+        <name>stringHide</name>
+        <function-class>com.meiliwan.common.util.StringUtils</function-class>
+        <function-signature>java.lang.String stringHide(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>getJsonValue</name>
+        <function-class>com.meiliwan.common.util.StringUtils</function-class>
+        <function-signature>java.lang.String getJsonValue(java.lang.String,java.lang.String)</function-signature>
+    </function>
+</taglib>

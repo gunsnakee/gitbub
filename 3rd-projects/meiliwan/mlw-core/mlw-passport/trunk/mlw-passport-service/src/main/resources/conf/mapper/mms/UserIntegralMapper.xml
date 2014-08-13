@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meiliwan.emall.mms.dao.UserIntegralDao">
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.mms.bean.UserIntegral">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="integral_balance" jdbcType="INTEGER" property="integralBalance" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_del" jdbcType="TINYINT" property="isDel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, integral_balance, update_time, create_time, is_del
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_integral
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_integral
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.mms.bean.UserIntegral">
+    insert into user_integral (id, uid, integral_balance, 
+      update_time, create_time, is_del
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{integralBalance,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.mms.bean.UserIntegral"
+          useGeneratedKeys="true" keyProperty="id">
+    insert into user_integral
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="integralBalance != null">
+        integral_balance,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="integralBalance != null">
+        #{integralBalance,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.mms.bean.UserIntegral">
+    update user_integral
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="integralBalance != null">
+        integral_balance = #{integralBalance,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.mms.bean.UserIntegral">
+    update user_integral
+    set uid = #{uid,jdbcType=INTEGER},
+      integral_balance = #{integralBalance,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.id!=null and entity.id &gt;0">
+                        and id=#{entity.id,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.uid != null">
+                        and uid = #{entity.uid,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.integralBalance != null">
+                        and integral_balance = #{entity.integralBalance,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.updateTime != null">
+                        and update_time = #{entity.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.createTime != null">
+                        and create_time = #{entity.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.isDel != null">
+                        and  is_del = #{entity.isDel,jdbcType=TINYINT}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user_integral
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from user_integral
+        <include refid="selectCondition" />
+    </select>
+
+    <!-- 增加 减少用户积分值-->
+    <update id="updateIntegralBalance" parameterType="com.meiliwan.emall.mms.bean.UserIntegral">
+    update user_integral
+    set
+      integral_balance =integral_balance + #{integralBalance,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

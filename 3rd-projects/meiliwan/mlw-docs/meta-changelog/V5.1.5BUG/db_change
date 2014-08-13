@@ -1,0 +1,13 @@
+===============================V5.1.5 BUG db change===========================================
+###### day 2013.12.20 zixin.wu ###################
+UPDATE pro_product set falls_image_uri = left(falls_image_uri,LOCATE('.jpg',falls_image_uri)+3)
+注意：更新完数据库后，记得刷新搜索索引
+
+###### day 2013.12.27 guangde.tang ###################
+--订单收货地址表字段更改。。。
+ALTER TABLE `mlw_order`.`oms_ord_addr` CHANGE COLUMN `phone` `phone` varchar(32) DEFAULT NULL;
+
+###### day 2013.12.27 yiyou.luo ###################
+--收货地址表电话号码字符长度变动，sql如下：
+ALTER TABLE `user_recv_addr`
+MODIFY COLUMN `phone`  varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '电话' AFTER `mobile`;

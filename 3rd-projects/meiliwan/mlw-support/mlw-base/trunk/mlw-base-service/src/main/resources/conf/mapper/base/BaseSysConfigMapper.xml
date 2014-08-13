@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meiliwan.emall.base.dao.BaseSysConfigDao">
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.base.bean.BaseSysConfig">
+    <id column="sys_config_id" jdbcType="INTEGER" property="sysConfigId" />
+    <result column="sys_config_code" jdbcType="VARCHAR" property="sysConfigCode" />
+    <result column="sys_config_value" jdbcType="VARCHAR" property="sysConfigValue" />
+    <result column="sys_config_name" jdbcType="VARCHAR" property="sysConfigName" />
+    <result column="descp" jdbcType="VARCHAR" property="descp" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_del" jdbcType="TINYINT" property="isDel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_config_id, sys_config_code, sys_config_value, sys_config_name, descp, create_time, 
+    update_time, is_del
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_sys_config
+    where sys_config_id = #{sysConfigId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from base_sys_config
+    where sys_config_id = #{sysConfigId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.base.bean.BaseSysConfig">
+    insert into base_sys_config (sys_config_id, sys_config_code, sys_config_value,
+      sys_config_name, descp, create_time, 
+      update_time, is_del)
+    values (#{sysConfigId,jdbcType=INTEGER}, #{sysConfigCode,jdbcType=VARCHAR}, #{sysConfigValue,jdbcType=VARCHAR}, 
+      #{sysConfigName,jdbcType=VARCHAR}, #{descp,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.base.bean.BaseSysConfig"
+          useGeneratedKeys="true" keyProperty="sysConfigId">
+    insert into base_sys_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysConfigId != null">
+        sys_config_id,
+      </if>
+      <if test="sysConfigCode != null">
+        sys_config_code,
+      </if>
+      <if test="sysConfigValue != null">
+        sys_config_value,
+      </if>
+      <if test="sysConfigName != null">
+        sys_config_name,
+      </if>
+      <if test="descp != null">
+        descp,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysConfigId != null">
+        #{sysConfigId,jdbcType=INTEGER},
+      </if>
+      <if test="sysConfigCode != null">
+        #{sysConfigCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysConfigValue != null">
+        #{sysConfigValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sysConfigName != null">
+        #{sysConfigName,jdbcType=VARCHAR},
+      </if>
+      <if test="descp != null">
+        #{descp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.base.bean.BaseSysConfig">
+    update base_sys_config
+    <set>
+      <if test="sysConfigCode != null">
+        sys_config_code = #{sysConfigCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysConfigValue != null">
+        sys_config_value = #{sysConfigValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sysConfigName != null">
+        sys_config_name = #{sysConfigName,jdbcType=VARCHAR},
+      </if>
+      <if test="descp != null">
+        descp = #{descp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=TINYINT},
+      </if>
+    </set>
+    where sys_config_id = #{sysConfigId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.base.bean.BaseSysConfig">
+    update base_sys_config
+    set sys_config_code = #{sysConfigCode,jdbcType=VARCHAR},
+      sys_config_value = #{sysConfigValue,jdbcType=VARCHAR},
+      sys_config_name = #{sysConfigName,jdbcType=VARCHAR},
+      descp = #{descp,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=TINYINT}
+    where sys_config_id = #{sysConfigId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <sql id="selectCondition">
+      <where>
+          <trim suffixOverrides="and">
+              <if test="entity != null">
+                  <if test="entity.sysConfigId!=null and entity.sysConfigId &gt;0">
+                      and sys_config_id=#{entity.sysConfigId,jdbcType=INTEGER}
+                  </if>
+                  <if test="entity.sysConfigCode != null">
+                      and sys_config_code = #{entity.sysConfigCode,jdbcType=VARCHAR}
+                  </if>
+                  <if test="entity.sysConfigValue != null">
+                      and sys_config_value = #{entity.sysConfigValue,jdbcType=VARCHAR}
+                  </if>
+                  <if test="entity.sysConfigName != null">
+                      and sys_config_name = #{entity.sysConfigName,jdbcType=VARCHAR}
+                  </if>
+                  <if test="entity.descp != null">
+                      and descp = #{entity.descp,jdbcType=VARCHAR}
+                  </if>
+                  <if test="entity.createTime != null">
+                      and create_time = #{entity.createTime,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="entity.updateTime != null">
+                      and update_time = #{entity.updateTime,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="entity.isDel != null">
+                      and is_del = #{entity.isDel,jdbcType=TINYINT}
+                  </if>
+              </if>
+          </trim>
+          <trim suffixOverrides="and">
+              <if test="whereSql!=null">
+                  and ${whereSql}
+              </if>
+          </trim>
+      </where>
+  </sql>
+  
+  <!-- 根据条件查询 -->
+  <select id="getListByEntityAndPageInfo"
+          resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from base_sys_config
+      <include refid="selectCondition" />
+      <if test="orderBy!=null">
+          ${orderBy}
+      </if>
+      <if test="pageInfo!=null">
+          limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+      </if>
+  </select>
+
+    <!-- 查询总数 -->
+  <select id="getTotalByEntity"
+          resultType="java.lang.Integer">
+      select count(*) from base_sys_config
+      <include refid="selectCondition" />
+  </select>
+
+    <!--SEO  查询分页 start-->
+    <sql id="seoSelectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <!--<if test="entity.sysConfigId!=null and entity.sysConfigId &gt;0">
+                        and sys_config_id=#{entity.sysConfigId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.sysConfigCode != null">
+                        and sys_config_code = #{entity.sysConfigCode,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.sysConfigValue != null">
+                        and sys_config_value = #{entity.sysConfigValue,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.sysConfigName != null">
+                        and sys_config_name = #{entity.sysConfigName,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.descp != null">
+                        and descp = #{entity.descp,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.createTime != null">
+                        and create_time = #{entity.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.updateTime != null">
+                        and update_time = #{entity.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.isDel != null">
+                        and is_del = #{entity.isDel,jdbcType=TINYINT}
+                    </if>-->
+                    and sys_config_name like'%SEO%'
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getSeoListByEntityAndPageInfo"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from base_sys_config
+        <include refid="seoSelectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getSeoTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from base_sys_config
+        <include refid="seoSelectCondition" />
+    </select>
+    <!--SEO  查询分页 end-->
+</mapper>

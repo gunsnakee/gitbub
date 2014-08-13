@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BASE_Log" >
+
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.commons.log.BizLog" >
+    <result column="model" property="model" jdbcType="VARCHAR" />
+    <result column="sub_model" property="subModel" jdbcType="VARCHAR" />
+    <result column="log_code" property="logCode" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="TINYINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="uc" property="uc" jdbcType="VARCHAR" />
+    <result column="obj" property="obj" jdbcType="VARCHAR" />
+    <result column="obj_id" property="objId" jdbcType="VARCHAR" />
+    <result column="op" property="op" jdbcType="VARCHAR" />
+    <result column="host" property="host" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="user_client_ip" property="userClientIp" jdbcType="VARCHAR" />
+    <result column="svr_ip" property="svrIp" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="extra_data" property="extraData" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="ResultMapWithBLOBs" type="com.meiliwan.emall.commons.log.BizLog" extends="BaseResultMap" >
+    	<result column="descp" property="descp" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	    id, model, sub_model, log_code, flag, user_id, user_name, uc, obj, obj_id, op, host, 
+	    url, user_client_ip, svr_ip, time, extra_data
+  </sql>
+  <sql id="Blob_Column_List" >
+    descp
+  </sql>
+  	
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.commons.log.BizLog" >
+    insert into biz_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="model != null" >
+        model,
+      </if>
+      <if test="subModel != null" >
+        sub_model,
+      </if>
+      <if test="logCode != null" >
+        log_code,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="uc != null" >
+        uc,
+      </if>
+      <if test="obj != null" >
+        obj,
+      </if>
+      <if test="objId != null" >
+        obj_id,
+      </if>
+      <if test="op != null" >
+        op,
+      </if>
+      <if test="host != null" >
+        host,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="userClientIp != null" >
+        user_client_ip,
+      </if>
+      <if test="svrIp != null" >
+        svr_ip,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="extraData != null" >
+        extra_data,
+      </if>
+      <if test="descp != null" >
+        descp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="model != null" >
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="subModel != null" >
+        #{subModel,jdbcType=VARCHAR},
+      </if>
+      <if test="logCode != null" >
+        #{logCode,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="uc != null" >
+        #{uc,jdbcType=VARCHAR},
+      </if>
+      <if test="obj != null" >
+        #{obj,jdbcType=VARCHAR},
+      </if>
+      <if test="objId != null" >
+        #{objId,jdbcType=VARCHAR},
+      </if>
+      <if test="op != null" >
+        #{op,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null" >
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="userClientIp != null" >
+        #{userClientIp,jdbcType=VARCHAR},
+      </if>
+      <if test="svrIp != null" >
+        #{svrIp,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extraData != null" >
+        #{extraData,jdbcType=VARCHAR},
+      </if>
+      <if test="descp != null" >
+        #{descp,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+</mapper>

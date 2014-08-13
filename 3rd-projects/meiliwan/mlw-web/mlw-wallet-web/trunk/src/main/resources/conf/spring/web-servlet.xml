@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:p="http://cxf.apache.org/policy" xmlns:ss="http://www.springframework.org/schema/security"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+   	http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd 
+   	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd 
+   	http://cxf.apache.org/policy http://cxf.apache.org/schemas/policy.xsd
+   	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+   	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+   	http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd 
+   	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd 
+   	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+   	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+   	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <context:annotation-config />
+    <context:component-scan base-package="com.meiliwan.emall.account.web" />
+
+    <!-- 静态资源1 -->
+    <mvc:resources mapping="/css/**" location="/css/" />
+    <!-- 静态资源2 -->
+    <mvc:resources mapping="/js/**" location="/js/" />
+    <!-- 静态资源3 -->
+    <mvc:resources mapping="/images/**" location="/images/" />
+    <!--静态资源5-->
+    <mvc:resources mapping="/flash/**" location="/flash/" />
+    <!-- 静态资源6 -->
+
+    <!-- 默认的注解映射的支持 ,它会自动注册DefaultAnnotationHandlerMapping 与AnnotationMethodHandlerAdapter  -->
+    <mvc:annotation-driven />
+
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <!-- 多个拦截器,顺序执行 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/ucenter/**" />
+            <bean class="com.meiliwan.emall.commons.web.interceptor.LoginInterceptor"> </bean>
+        </mvc:interceptor>
+        <!-- 多个拦截器,顺序执行 -->
+        <mvc:interceptor>
+            <mvc:mapping  path="/ucenter/*/add*" />
+            <mvc:mapping  path="/ucenter/*/upd*" />
+            <mvc:mapping  path="/ucenter/*/del*" />
+            <mvc:mapping  path="/enterprise/add*" />
+            <bean class="com.meiliwan.emall.commons.web.interceptor.SubmitInterceptor">
+                <property name="friendlyPage" value="http://www.meiliwan.com/error?code=ERORR_REPEATSUBMIT"/>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+    <bean id="viewResolver" abstract="true">
+        <property name="attributes">
+            <props />
+        </property>
+    </bean>
+
+    <!-- freemarker的配置 -->
+    <!-- FreeMarker视图解析   如返回student。。在这里配置后缀名ftl和视图解析器。。-->
+    <bean id="freemarkerResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver" parent="viewResolver">
+        <!--<property name="cache" value="true"/> -->
+        <property name="order" value="1" />
+        <property name="viewNames">
+            <array>
+                <value>*</value>
+            </array>
+        </property>
+        <property name="suffix" value=".ftl" />
+        <property name="requestContextAttribute" value="request" />
+        <property name="exposeSpringMacroHelpers" value="true" />
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+        <property name="allowSessionOverride" value="true" />
+        <property name="contentType" value="text/html;charset=utf-8" /><!--编码 -->
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+    </bean>
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+
+    <bean id="freemarkerConfig"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <description>Required for Freemarker to work in web tier</description>
+        <property name="configuration" ref="freemarkerConfiguration" />
+    </bean>
+
+    <bean id="freemarkerConfiguration"
+          class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+        <description>Using the Config directly so we can use it outside the
+            web tier
+        </description>
+        <!-- 模板加载路径 -->
+        <property name="templateLoaderPaths">
+            <list>
+                <value>/WEB-INF/freemarker/</value>
+                <value>/</value>
+                <!-- <value>classpath:org/springframework/web/servlet/view/freemarker</value> -->
+            </list>
+        </property>
+        <property name="configLocation">
+            <value>classpath:conf/freemarker.properties</value>
+        </property>
+        <!--全局变量部分 -->
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="xml_escape" value-ref="fmXmlEscape" />
+                <entry key="html_escape" value-ref="fmHtmlEscape" />
+            </map>
+        </property>
+        <property name="defaultEncoding" value="utf-8" />
+    </bean>
+
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+    <bean id="fmHtmlEscape" class="freemarker.template.utility.HtmlEscape" />
+
+    <!-- ====================== i18n =============================== -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:i18n/messages" />
+    </bean>
+	<!-- Exception Resolver -->
+	<bean class="com.meiliwan.emall.commons.exception.ErrorCodeMappingExceptionResolver">
+        <property name="defaultErrorView" value="http://www.meiliwan.com/error" />
+        <property name="redirect" value="true" />
+	</bean>
+	<!-- 返回之前的操作页面的ViewResolver -->
+	<bean class="com.meiliwan.emall.account.view.RefererViewResolver"/>
+
+
+    <bean id="controllerPerformanceMonitor"
+          class="com.meiliwan.emall.commons.web.interceptor.ControllerPrefMonitorInterceptor" />
+    <aop:config>
+        <aop:pointcut id="allDaoMethods" expression="execution(*  com.meiliwan.emall.*.web.controller..*.*(..)) "/>
+        <aop:advisor pointcut-ref="allDaoMethods" advice-ref="controllerPerformanceMonitor"  />
+    </aop:config>
+</beans>

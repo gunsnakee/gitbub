@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.cms.ff.dao.BlockDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.cms.ff.bean.Block" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="block_name" property="blockName" jdbcType="VARCHAR" />
+    <result column="template_id" property="templateId" jdbcType="INTEGER" />
+    <result column="block_type" property="blockType" jdbcType="INTEGER" />
+    <result column="id_code" property="idCode" jdbcType="INTEGER" />
+    <result column="block_desc_param" property="blockDescParam" jdbcType="LONGVARCHAR" />
+    <result column="json_content" property="jsonContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, block_name, template_id, block_type, id_code,block_desc_param, json_content
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from block
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from block
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.cms.ff.bean.Block" >
+    insert into block (id, block_name, template_id, 
+      block_type, id_code, block_desc_param, 
+      json_content)
+    values (#{id,jdbcType=INTEGER}, #{blockName,jdbcType=VARCHAR}, #{templateId,jdbcType=INTEGER}, 
+      #{blockType,jdbcType=INTEGER}, #{idCode,jdbcType=INTEGER}, #{blockDescParam,jdbcType=LONGVARCHAR}, 
+      #{jsonContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.cms.ff.bean.Block" >
+    insert into block
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="blockName != null" >
+        block_name,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="blockType != null" >
+        block_type,
+      </if>
+      <if test="idCode != null" >
+        id_code,
+      </if>
+      <if test="blockDescParam != null" >
+        block_desc_param,
+      </if>
+      <if test="jsonContent != null" >
+        json_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="blockName != null" >
+        #{blockName,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="blockType != null" >
+        #{blockType,jdbcType=INTEGER},
+      </if>
+      <if test="idCode != null" >
+        #{idCode,jdbcType=INTEGER},
+      </if>
+      <if test="blockDescParam != null" >
+        #{blockDescParam,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jsonContent != null" >
+        #{jsonContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.cms.ff.bean.Block" >
+    update block
+    <set >
+      <if test="blockName != null" >
+        block_name = #{blockName,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="blockType != null" >
+        block_type = #{blockType,jdbcType=INTEGER},
+      </if>
+      <if test="idCode != null" >
+        id_code = #{idCode,jdbcType=INTEGER},
+      </if>
+      <if test="blockDescParam != null" >
+        block_desc_param = #{blockDescParam,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jsonContent != null" >
+        json_content = #{jsonContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.cms.ff.bean.Block" >
+    update block
+    set block_name = #{blockName,jdbcType=VARCHAR},
+      template_id = #{templateId,jdbcType=INTEGER},
+      block_type = #{blockType,jdbcType=INTEGER},
+      id_code = #{idCode,jdbcType=INTEGER},
+      block_desc_param = #{blockDescParam,jdbcType=LONGVARCHAR},
+      json_content = #{jsonContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from block
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from block
+        <include refid="selectCondition" />
+    </select>
+
+</mapper>

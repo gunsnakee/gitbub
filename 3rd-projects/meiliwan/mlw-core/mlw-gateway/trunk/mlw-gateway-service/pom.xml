@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.meiliwan.emall</groupId>
+		<artifactId>mlw-gateway</artifactId>
+		<version>5.2.3-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>mlw-gateway-service</artifactId>
+	<name>mlw-gateway-service</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<!-- test -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.meiliwan.emall</groupId>
+			<artifactId>mlw-commons-ice</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.meiliwan.emall</groupId>
+			<artifactId>mlw-commons-utils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.meiliwan.emall</groupId>
+			<artifactId>mlw-commons-db</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.meiliwan.emall</groupId>
+			<artifactId>mlw-wallet-client</artifactId>
+			<version>${mlw.wallet.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.meiliwan.emall</groupId>
+			<artifactId>mlw-gateway-client</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meiliwan.emall</groupId>
+			<artifactId>mlw-base-client</artifactId>
+			<version>${mlw.base.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+			<version>0.7.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.25</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+	</dependencies>
+
+</project>

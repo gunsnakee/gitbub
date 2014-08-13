@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.pay.dao.impl.B2BPayItemDaoImpl" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.pay.bean.PayItem" >
+    <id column="pay_id" property="payId" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="pay_code" property="payCode" jdbcType="VARCHAR" />
+    <result column="pay_amount" property="payAmount" jdbcType="DECIMAL" />
+    <result column="third_trade_no" property="thirdTradeNo" jdbcType="VARCHAR" />
+    <result column="third_pay_uid" property="thirdPayUid" jdbcType="VARCHAR" />
+    <result column="third_pay_email" property="thirdPayEmail" jdbcType="VARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="success_time" property="successTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.meiliwan.emall.pay.bean.PayItem" extends="BaseResultMap" >
+    <result column="extra_info" property="extraInfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pay_id, order_id, pay_code, pay_amount, third_trade_no, third_pay_uid, third_pay_email, 
+    pay_status, create_time, success_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    extra_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from b2b_pay_item
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from b2b_pay_item
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.pay.bean.PayItem" >
+    insert into b2b_pay_item (pay_id, order_id, pay_code, 
+      pay_amount, third_trade_no, third_pay_uid, 
+      third_pay_email, pay_status, create_time, success_time,
+      extra_info)
+    values (#{payId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{payCode,jdbcType=VARCHAR}, 
+      #{payAmount,jdbcType=DECIMAL}, #{thirdTradeNo,jdbcType=VARCHAR}, #{thirdPayUid,jdbcType=VARCHAR}, 
+      #{thirdPayEmail,jdbcType=VARCHAR}, #{payStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{successTime,jdbcType=TIMESTAMP}, 
+      #{extraInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.pay.bean.PayItem" >
+    insert into b2b_pay_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="payId != null" >
+        pay_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="payCode != null" >
+        pay_code,
+      </if>
+      <if test="payAmount != null" >
+        pay_amount,
+      </if>
+      <if test="thirdTradeNo != null" >
+        third_trade_no,
+      </if>
+      <if test="thirdPayUid != null" >
+        third_pay_uid,
+      </if>
+      <if test="thirdPayEmail != null" >
+        third_pay_email,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="successTime != null" >
+        success_time,
+      </if>
+      <if test="extraInfo != null" >
+        extra_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="payId != null" >
+        #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payCode != null" >
+        #{payCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null" >
+        #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdTradeNo != null" >
+        #{thirdTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdPayUid != null" >
+        #{thirdPayUid,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdPayEmail != null" >
+        #{thirdPayEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successTime != null" >
+        #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extraInfo != null" >
+        #{extraInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.pay.bean.PayItem" >
+    update b2b_pay_item
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payCode != null" >
+        pay_code = #{payCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null" >
+        pay_amount = #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdTradeNo != null" >
+        third_trade_no = #{thirdTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdPayUid != null" >
+        third_pay_uid = #{thirdPayUid,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdPayEmail != null" >
+        third_pay_email = #{thirdPayEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successTime != null" >
+        success_time = #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extraInfo != null" >
+        extra_info = #{extraInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.meiliwan.emall.pay.bean.PayItem" >
+    update b2b_pay_item
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      pay_code = #{payCode,jdbcType=VARCHAR},
+      pay_amount = #{payAmount,jdbcType=DECIMAL},
+      third_trade_no = #{thirdTradeNo,jdbcType=VARCHAR},
+      third_pay_uid = #{thirdPayUid,jdbcType=VARCHAR},
+      third_pay_email = #{thirdPayEmail,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      success_time = #{successTime,jdbcType=TIMESTAMP},
+      extra_info = #{extraInfo,jdbcType=LONGVARCHAR}
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.pay.bean.PayItem" >
+    update b2b_pay_item
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      pay_code = #{payCode,jdbcType=VARCHAR},
+      pay_amount = #{payAmount,jdbcType=DECIMAL},
+      third_trade_no = #{thirdTradeNo,jdbcType=VARCHAR},
+      third_pay_uid = #{thirdPayUid,jdbcType=VARCHAR},
+      third_pay_email = #{thirdPayEmail,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      success_time = #{successTime,jdbcType=TIMESTAMP}
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="getPayItemByOrderId" resultMap="ResultMapWithBLOBs">
+	    select <include refid="Base_Column_List" />,
+               <include refid="Blob_Column_List" />
+	     from b2b_pay_item where order_id = #{orderId,jdbcType=VARCHAR} 
+    </select>
+    
+  <delete id="delFailPayItemByOrderId" parameterType="java.lang.String" >
+     delete from b2b_pay_item where order_id = #{orderId,jdbcType=VARCHAR} and pay_status != 'PAY_FINISHED'
+  </delete>
+  
+</mapper>

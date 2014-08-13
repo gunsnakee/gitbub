@@ -1,0 +1,39 @@
+===============================V5.1.6 zk change===========================================
+--------------------- day 2014.01.03 yinggao.zhuo --------------
+--原因：把配置文件抽取到zookeeper上。
+/mlwconf/monitor-web/加入redis_config.xml文件，文件内容如下：
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Redis-Server-Config>
+   <Redis-Servers>
+      <Redis-Server uuid="0101">
+        <name>userWriter</name>
+         <description>Redis Server1</description>
+         <host>10.249.15.196</host>
+         <port>6379</port>
+         <maxActive>300</maxActive>
+         <maxIdle>50</maxIdle>
+         <maxWait>3000</maxWait>
+         <testOnBorrow>true</testOnBorrow>
+         <isMaster>true</isMaster>
+      </Redis-Server>
+      <Redis-Server uuid="0103">
+        <name>userWriter</name>
+         <description>Redis Server2</description>
+         <host>10.249.15.195</host>
+         <port>6379</port>
+         <maxActive>300</maxActive>
+         <maxIdle>50</maxIdle>
+         <maxWait>3000</maxWait>
+         <testOnBorrow>true</testOnBorrow>
+         <isMaster>true</isMaster>
+      </Redis-Server>
+   </Redis-Servers>
+</Redis-Server-Config>
+
+monitor-service/orderJdbc.properties
+的文件内容替换为下面的链接
+order.jdbc.url=jdbc:mysql://10.249.15.199:3306/mlw_order?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+order.jdbc.username=13mlw
+order.jdbc.password=mlwhappy543
+

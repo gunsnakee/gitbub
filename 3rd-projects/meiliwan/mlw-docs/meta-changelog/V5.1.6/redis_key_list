@@ -1,0 +1,16 @@
+JedisKey中添加了如下key：
+    pms$cmt$score(0,"1到5分对应的伪评论内容，用于给无评论内容的评价随机填充评论内容",8,JedisKey.SET,true),   
+    pms$cardpwd(0,"保存礼品卡的密码序列", 0, JedisKey.SET,false),//add by liushangfeng 2013-12-26
+    pms$cardNo(2*60,"礼品卡卡号的存储,id用时分(HHmm)的格式", 0, JedisKey.SET, false),//add by liushangfeng 2013-12-26
+    base$stationFare(0,"全局的运费信息", 3,JedisKey.STRING, false), //add by liushangfeng 2013-12-30
+    base$transportPrice(0,"跟地区相关的运费信息", 3, JedisKey.STRING, false), //add by liushangfeng 2013-12-30
+    sp$proId(0,"存储商品Id为key，活动id为值的Set结构",7,JedisKey.SET,true),//add by liushangfeng 2013-12-26
+    sp$actId(0,"保存活动及其相关规则信息",7,JedisKey.HASH, true),//add by liushangfeng 2013-12-26
+    search$actIds(0,"存储最新修改过的活动信息，供搜索使用",7,JedisKey.SET,true),//add by liushangfeng 2013-12-26
+    search$delProInfos(0, "存储从活动中删除的商品信息，供搜索使用", 7, JedisKey.SET, true),//add by liushangfeng 2013-12-26
+参数含义：
+    第一个参数：代表设置这个key的过期时间
+    第二个参数：对这个key的描述
+    第三个参数：在redis宕机后，从后台恢复这些数据的优先级，数字越大代表优先级越高
+    第四个参数：规定这个key的存储类型
+    第五个参数：代表是否需要持久化到mongodb中去

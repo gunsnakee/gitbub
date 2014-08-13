@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.monitor.dao.UnionOrderDao" >
+  <resultMap id="UnionOrderMap" type="com.meiliwan.emall.monitor.bean.UnionOrder" >
+    <id column="id" property="Id" jdbcType="INTEGER" />
+    <result column="source_id" property="sourceId" jdbcType="VARCHAR" />
+    <result column="source_type" property="sourceType" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
+     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="mlw_query_info" property="mlwQueryInfo" jdbcType="LONGVARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="pay_method" property="payMethod" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id,source_id,source_type,order_id,uid,total_price,create_time,mlw_query_info,pay_status,pay_method,order_status
+  </sql>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="UnionOrderMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from union_order
+    where id = #{Id,jdbcType=INTEGER}
+  </select>
+  
+  <sql id="selectCondition">
+      <where>
+          <trim suffixOverrides="and">
+                  <if test="sourceType != null">
+                      and source_type=#{sourceType, jdbcType=VARCHAR}
+                  </if>
+                  <if test="prefixSourceId != null">
+                      and source_id like #{prefixSourceId, jdbcType=VARCHAR}
+                  </if>
+                  <if test="startTime != null">
+                      <![CDATA[ and create_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+                  </if>
+                  <if test="endTime != null">
+                     <![CDATA[ and create_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
+                  </if>
+                  <if test="orderStatus != null">
+                      and order_status = #{orderStatus,jdbcType=INTEGER}
+                  </if>
+          </trim>
+          <trim suffixOverrides="and">
+              <if test="whereSql!=null">
+                  and ${whereSql}
+              </if>
+          </trim>
+      </where>
+  </sql>
+  
+  
+    <select id="get2wCodeListBySourceId" resultMap="UnionOrderMap">
+        select <include refid="Base_Column_List" /> 
+          from union_order
+            <include refid="selectCondition" />
+    </select>
+  
+  
+</mapper>

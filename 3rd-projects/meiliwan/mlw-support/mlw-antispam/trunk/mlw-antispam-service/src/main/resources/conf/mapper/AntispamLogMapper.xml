@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.antispam.dao.AntispamLogDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.antispam.bean.AntispamLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="content_type" property="contentType" jdbcType="CHAR" />
+    <result column="business_name" property="businessName" jdbcType="VARCHAR" />
+    <result column="content_id" property="contentId" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="result" property="result" jdbcType="CHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, content_type, business_name, content_id, content, uid, ip, create_time, audit_time, 
+    result, reason
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from antispam_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from antispam_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.antispam.bean.AntispamLog" >
+    insert into antispam_log (id, content_type, business_name, 
+      content_id, content, uid, 
+      ip, create_time, audit_time, 
+      result, reason)
+    values (#{id,jdbcType=INTEGER}, #{contentType,jdbcType=CHAR}, #{businessName,jdbcType=VARCHAR}, 
+      #{contentId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 
+      #{ip,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{auditTime,jdbcType=TIMESTAMP}, 
+      #{result,jdbcType=CHAR}, #{reason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.antispam.bean.AntispamLog" >
+    insert into antispam_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="contentType != null" >
+        content_type,
+      </if>
+      <if test="businessName != null" >
+        business_name,
+      </if>
+      <if test="contentId != null" >
+        content_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null" >
+        #{contentType,jdbcType=CHAR},
+      </if>
+      <if test="businessName != null" >
+        #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="contentId != null" >
+        #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=CHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.antispam.bean.AntispamLog" >
+    update antispam_log
+    <set >
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=CHAR},
+      </if>
+      <if test="businessName != null" >
+        business_name = #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="contentId != null" >
+        content_id = #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=CHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.antispam.bean.AntispamLog" >
+    update antispam_log
+    set content_type = #{contentType,jdbcType=CHAR},
+      business_name = #{businessName,jdbcType=VARCHAR},
+      content_id = #{contentId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      result = #{result,jdbcType=CHAR},
+      reason = #{reason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.id!=null and entity.id &gt;0">
+                        and id=#{entity.id,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.contentType != null">
+                        and content_type = #{entity.contentType,jdbcType=CHAR}
+                    </if>
+                    <if test="entity.businessName != null" >
+                       and  business_name = #{entity.businessName,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.contentId != null" >
+                        and  content_id = #{entity.contentId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.content != null" >
+                        and  content = #{entity.content,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.uid != null" >
+                        and  uid = #{entity.uid,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.ip != null" >
+                        and  ip = #{entity.ip,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.createTime != null" >
+                        and  create_time = #{entity.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.auditTime != null" >
+                        and  audit_time = #{entity.auditTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.result != null" >
+                        and  result = #{entity.result,jdbcType=CHAR}
+                    </if>
+                    <if test="entity.reason != null" >
+                        and  reason = #{entity.reason,jdbcType=VARCHAR}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from antispam_log
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity" resultType="java.lang.Integer">
+        select count(*) from antispam_log
+        <include refid="selectCondition" />
+    </select>
+</mapper>

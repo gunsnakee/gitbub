@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.pms.dao.ProActionDao">
+    <resultMap id="BaseResultMap" type="com.meiliwan.emall.pms.bean.ProAction">
+        <id column="pro_id" property="proId" jdbcType="INTEGER"/>
+        <result column="love" property="love" jdbcType="INTEGER"/>
+        <result column="one_score_num" property="oneScoreNum" jdbcType="INTEGER"/>
+        <result column="two_score_num" property="twoScoreNum" jdbcType="INTEGER"/>
+        <result column="three_score_num" property="threeScoreNum" jdbcType="INTEGER"/>
+        <result column="four_score_num" property="fourScoreNum" jdbcType="INTEGER"/>
+        <result column="five_score_num" property="fiveScoreNum" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="REAL"/>
+        <result column="real_sale_num" property="realSaleNum" jdbcType="INTEGER"/>
+        <result column="show_sale_num" property="showSaleNum" jdbcType="INTEGER"/>
+        <result column="real_view_num" property="realViewNum" jdbcType="INTEGER"/>
+        <result column="show_view_num" property="showViewNum" jdbcType="INTEGER"/>
+        <result column="comment_id" property="commentId" jdbcType="INTEGER" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    pro_id, love, one_score_num, two_score_num, three_score_num, four_score_num, five_score_num,
+    score, real_sale_num, show_sale_num, real_view_num, show_view_num, comment_id, update_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from pro_action
+        where pro_id = #{proId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pro_action
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.meiliwan.emall.pms.bean.ProAction" useGeneratedKeys="true" keyProperty="proId">
+    insert into pro_action (pro_id, love, one_score_num,
+      two_score_num, three_score_num, four_score_num,
+      five_score_num, score, real_sale_num,
+      show_sale_num, real_view_num, show_view_num, comment_id, update_time)
+    values (#{proId,jdbcType=INTEGER}, #{love,jdbcType=INTEGER}, #{oneScoreNum,jdbcType=INTEGER},
+      #{twoScoreNum,jdbcType=INTEGER}, #{threeScoreNum,jdbcType=INTEGER}, #{fourScoreNum,jdbcType=INTEGER},
+      #{fiveScoreNum,jdbcType=INTEGER}, #{score,jdbcType=REAL}, #{realSaleNum,jdbcType=INTEGER},
+      #{showSaleNum,jdbcType=INTEGER}, #{realViewNum,jdbcType=INTEGER}, #{showViewNum,jdbcType=INTEGER}, #{commentId,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.meiliwan.emall.pms.bean.ProAction" useGeneratedKeys="true" keyProperty="proId">
+        insert into pro_action
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="proId != null">
+                pro_id,
+            </if>
+            <if test="love != null">
+                love,
+            </if>
+            <if test="oneScoreNum != null">
+                one_score_num,
+            </if>
+            <if test="twoScoreNum != null">
+                two_score_num,
+            </if>
+            <if test="threeScoreNum != null">
+                three_score_num,
+            </if>
+            <if test="fourScoreNum != null">
+                four_score_num,
+            </if>
+            <if test="fiveScoreNum != null">
+                five_score_num,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+            <if test="realSaleNum != null">
+                real_sale_num,
+            </if>
+            <if test="showSaleNum != null">
+                show_sale_num,
+            </if>
+            <if test="realViewNum != null">
+                real_view_num,
+            </if>
+            <if test="showViewNum != null">
+                show_view_num,
+            </if>
+            <if test="commentId != null" >
+                comment_id,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="proId != null">
+                #{proId,jdbcType=INTEGER},
+            </if>
+            <if test="love != null">
+                #{love,jdbcType=INTEGER},
+            </if>
+            <if test="oneScoreNum != null">
+                #{oneScoreNum,jdbcType=INTEGER},
+            </if>
+            <if test="twoScoreNum != null">
+                #{twoScoreNum,jdbcType=INTEGER},
+            </if>
+            <if test="threeScoreNum != null">
+                #{threeScoreNum,jdbcType=INTEGER},
+            </if>
+            <if test="fourScoreNum != null">
+                #{fourScoreNum,jdbcType=INTEGER},
+            </if>
+            <if test="fiveScoreNum != null">
+                #{fiveScoreNum,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=REAL},
+            </if>
+            <if test="realSaleNum != null">
+                #{realSaleNum,jdbcType=INTEGER},
+            </if>
+            <if test="showSaleNum != null">
+                #{showSaleNum,jdbcType=INTEGER},
+            </if>
+            <if test="realViewNum != null">
+                #{realViewNum,jdbcType=INTEGER},
+            </if>
+            <if test="showViewNum != null">
+                #{showViewNum,jdbcType=INTEGER},
+            </if>
+            <if test="commentId != null" >
+                #{commentId,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.pms.bean.ProAction">
+        update pro_action
+        <set>
+            <if test="love != null">
+                love = #{love,jdbcType=INTEGER},
+            </if>
+            <if test="oneScoreNum != null">
+                one_score_num = #{oneScoreNum,jdbcType=INTEGER},
+            </if>
+            <if test="twoScoreNum != null">
+                two_score_num = #{twoScoreNum,jdbcType=INTEGER},
+            </if>
+            <if test="threeScoreNum != null">
+                three_score_num = #{threeScoreNum,jdbcType=INTEGER},
+            </if>
+            <if test="fourScoreNum != null">
+                four_score_num = #{fourScoreNum,jdbcType=INTEGER},
+            </if>
+            <if test="fiveScoreNum != null">
+                five_score_num = #{fiveScoreNum,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                score = #{score,jdbcType=REAL},
+            </if>
+            <if test="realSaleNum != null">
+                real_sale_num = #{realSaleNum,jdbcType=INTEGER},
+            </if>
+            <if test="showSaleNum != null">
+                show_sale_num = #{showSaleNum,jdbcType=INTEGER},
+            </if>
+            <if test="realViewNum != null">
+                real_view_num = #{realViewNum,jdbcType=INTEGER},
+            </if>
+            <if test="showViewNum != null">
+                show_view_num = #{showViewNum,jdbcType=INTEGER},
+            </if>
+            <if test="commentId != null" >
+                comment_id = #{commentId,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where pro_id = #{proId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.pms.bean.ProAction">
+    update pro_action
+    set love = #{love,jdbcType=INTEGER},
+      one_score_num = #{oneScoreNum,jdbcType=INTEGER},
+      two_score_num = #{twoScoreNum,jdbcType=INTEGER},
+      three_score_num = #{threeScoreNum,jdbcType=INTEGER},
+      four_score_num = #{fourScoreNum,jdbcType=INTEGER},
+      five_score_num = #{fiveScoreNum,jdbcType=INTEGER},
+      score = #{score,jdbcType=REAL},
+      real_sale_num = #{realSaleNum,jdbcType=INTEGER},
+      show_sale_num = #{showSaleNum,jdbcType=INTEGER},
+      real_view_num = #{realViewNum,jdbcType=INTEGER},
+      show_view_num = #{showViewNum,jdbcType=INTEGER},
+      comment_id = #{commentId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </update>
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.proId!=null and entity.proId &gt;0">
+                        and pro_id=#{entity.proId,jdbcType=INTEGER}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pro_action
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from pro_action
+        <include refid="selectCondition"/>
+    </select>
+
+    <update id="updateActionByOpt">
+        update pro_action
+        set ${param} = ${param} + 1 ,update_time = #{updateTime,jdbcType=VARCHAR}
+        where pro_id = ${id}
+    </update>
+
+    <!-- 修改商品销量 -->
+    <update id="updateProSale">
+        update pro_action
+        set  real_sale_num = real_sale_num + ${num},show_sale_num = show_sale_num + ${num},update_time = #{updateTime,jdbcType=VARCHAR}
+        where pro_id = ${id}
+    </update>
+
+    <!-- 修改商品销量 -->
+    <update id="updateProScan">
+        update pro_action
+        set  real_scan_num = real_view_num + ${num},show_view_num = show_view_num + ${num},update_time = #{updateTime,jdbcType=VARCHAR}
+        where pro_id = ${id}
+    </update>
+
+    <!-- 用户删除评论时候，对应的评论数减一操作 -->
+    <update id="updateCommentByDelete">
+        update pro_action
+        set ${param} = ${param} - 1 ,update_time = #{updateTime,jdbcType=VARCHAR}
+        where pro_id = ${id}
+    </update>
+
+    <!-- 修改优秀评论ID -->
+    <update id="updateCommentIdById">
+        update pro_action
+        set  comment_id = #{commentId,jdbcType=INTEGER},update_time = #{updateTIme,jdbcType=VARCHAR}
+        where pro_id = ${id}
+    </update>
+</mapper>

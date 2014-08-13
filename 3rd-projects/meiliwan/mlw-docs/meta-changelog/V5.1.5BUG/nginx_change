@@ -1,0 +1,12 @@
+===============================V5.1.5 BUG nginx change===========================================
+###### day 2013.12.20 shangfeng.liu #######################
+1.在www.meiliwan.com.conf配置文件中添加如下配置：
+       location /act/ {
+          root /data/www/res.meiliwan.com;
+          expires 10d;
+       }
+
+ 并将200服务器上的 /data/www/res.meiliwan.com/act 目录拷贝到线上的4台前端服务器
+
+
+

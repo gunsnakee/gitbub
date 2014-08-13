@@ -1,0 +1,34 @@
+===============================V5.2.1 admin change ===========================================
+
+
+菜单名称                              权限Str                             链接                        目标                    菜单类别       父节点名称
+心愿单                         662d965a9c9d87ccd03c3719e146e82a         /pms/wishcard/list          navTab                 菜单            商品
+心愿单详情                 4f6e5635ff8954c76a85d1c3fa063a6e             /pms/wishcard/detail         navTab                 功能            商品
+心愿单查看备注          668d8b7ede6fcf4249e6c30cba152ea8             /pms/wishcard/readRemark         navTab                 功能            商品
+添加心愿单备注          350b088af8d83b2e199b7627e2ea7920         /pms/wishcard/addRemark              navTab                 功能            商品
+
+
+
+父菜单为配送管理:
+运费设置     (id:111,/base/fare/priceSetting,navTab)(排序:1)(功能)(权限Key:75)
+运费列表     (id:10247,/base/fare/list,navTab)(排序:0)(菜单)(权限Key:15e94329352619aa52156f9904a02ba2)
+全局运费     (id:10246,/base/stationFare/view)(排序:0)(功能)(权限Key:d84f080a7ad4ef7a92778b9acfdacf6c)
+
+
+
+1、活动相关权限（因为活动这块之前上过一个版本，所以测试库可能会有冲突的链接，添加之前请先删掉之前相关链接）
+菜单名称                         		权限Str                           				   链接                     目标           是否菜单      父节点名称
+活动管理		        				 5419061f502bdbe1144a0a5c21b89d21   			/sp/activity/list				navTab          菜单    活动管理
+去添加、修改、上下架、删除活动             df4cacdf9ef0805cbbdafc8d718ec692               	/sp/activity/addOrUpdate 		navTab		功能	活动管理
+查看活动商品列表					 e4375acdf9550d1641cf9c75bb76e121			/sp/activity/listActPro   			navTab		功能	活动管理
+跳到添加活动商品页面     				 f0f3813a7b9c7b7d3d3412a70c187590			/sp/activity/showProList              navTab		功能	活动管理
+添加商品到活动						 57bbbf75435f8f8400ced2c2801af78e				/sp/activity/addActPro        		navTab		功能	活动管理
+修改活动商品优惠信息  		 	         e830dda4c98af835b3141d7c4edf650b			/sp/activity/updateActPro		navTab		功能	活动管理
+活动商品编辑完成并上线			         f0d4c36be0d03264c14451d52bcdf809			/sp/activity/editDone			navTab		功能	活动管理
+
+
+2、评论缺省值相关权限
+菜单名称                        			权限Str                           链接                                              目标          菜单       父节点名称
+评价缺省值   bbceedf95626c05b091e2bbaa7689f85		/pms/comment/list_dv           navTab		菜单	售后服务
+创建评价缺省值 542f3aae13751f9bcc27f1b8ca3bc14e     /pms/comment/add_dv          dialog		功能	评价缺省值
+

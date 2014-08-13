@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.pms.dao.SkuSelfPropertyDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.pms.bean.SkuSelfProperty" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pro_id" property="proId" jdbcType="INTEGER" />
+    <result column="self_prop_name" property="selfPropName" jdbcType="VARCHAR" />
+    <result column="self_prop_value" property="selfPropValue" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pro_id, self_prop_name, self_prop_value, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sku_self_property
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sku_self_property
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.pms.bean.SkuSelfProperty" >
+    insert into sku_self_property (id, pro_id, self_prop_name, 
+      self_prop_value, create_time)
+    values (#{id,jdbcType=INTEGER}, #{proId,jdbcType=INTEGER}, #{selfPropName,jdbcType=VARCHAR}, 
+      #{selfPropValue,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.pms.bean.SkuSelfProperty" >
+    insert into sku_self_property
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="proId != null" >
+        pro_id,
+      </if>
+      <if test="selfPropName != null" >
+        self_prop_name,
+      </if>
+      <if test="selfPropValue != null" >
+        self_prop_value,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null" >
+        #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="selfPropName != null" >
+        #{selfPropName,jdbcType=VARCHAR},
+      </if>
+      <if test="selfPropValue != null" >
+        #{selfPropValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.pms.bean.SkuSelfProperty" >
+    update sku_self_property
+    <set >
+      <if test="proId != null" >
+        pro_id = #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="selfPropName != null" >
+        self_prop_name = #{selfPropName,jdbcType=VARCHAR},
+      </if>
+      <if test="selfPropValue != null" >
+        self_prop_value = #{selfPropValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.pms.bean.SkuSelfProperty" >
+    update sku_self_property
+    set pro_id = #{proId,jdbcType=INTEGER},
+      self_prop_name = #{selfPropName,jdbcType=VARCHAR},
+      self_prop_value = #{selfPropValue,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.id!=null and entity.id &gt;0">
+                        and id=#{entity.id,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.proId!=null and entity.proId &gt;0">
+                        and pro_id=#{entity.proId,jdbcType=INTEGER}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sku_self_property
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from sku_self_property
+        <include refid="selectCondition"/>
+    </select>
+
+    <!-- 批量增加SKU固有属性 -->
+    <insert id="insertByBatch">
+        insert into sku_self_property(pro_id, self_prop_name, self_prop_value, create_time)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.proId,jdbcType=INTEGER}, #{item.selfPropName,jdbcType=VARCHAR},#{item.selfPropValue,jdbcType=VARCHAR},#{item.createTime})
+        </foreach>
+    </insert>
+</mapper>

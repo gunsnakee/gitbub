@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meiliwan.emall.sp2.dao.ActivityDao">
+    <resultMap id="BaseResultMap" type="com.meiliwan.emall.sp2.bean.ActivityBean">
+        <id column="act_id" jdbcType="INTEGER" property="actId" />
+        <result column="act_name" jdbcType="VARCHAR" property="actName" />
+        <result column="act_type" jdbcType="VARCHAR" property="actType" />
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+        <result column="online_time" jdbcType="TIMESTAMP" property="onlineTime" />
+        <result column="state" jdbcType="TINYINT" property="state" />
+        <result column="act_icon" jdbcType="VARCHAR" property="actIcon" />
+        <result column="act_user_type" jdbcType="TINYINT" property="actUserType" />
+        <result column="is_cycle" jdbcType="TINYINT" property="isCycle" />
+        <result column="cycle_type" jdbcType="TINYINT" property="cycleType" />
+        <result column="uid" jdbcType="VARCHAR" property="uid" />
+        <result column="admin" jdbcType="VARCHAR" property="admin" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="privilege_type" jdbcType="VARCHAR" property="privilegeType" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="act_desc" jdbcType="LONGVARCHAR" property="actDesc" />
+        <result column="act_wenan" jdbcType="VARCHAR" property="actWenan" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    act_id, act_name, act_type, start_time, end_time, online_time, state, act_icon, act_user_type,
+    is_cycle, cycle_type, uid, admin, create_time, update_time,privilege_type,act_wenan
+  </sql>
+    <sql id="Blob_Column_List">
+    act_desc
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from sp2_activity
+        where act_id = #{actId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sp2_activity
+    where act_id = #{actId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.meiliwan.emall.sp2.bean.ActivityBean">
+    insert into sp2_activity (act_id, act_name, act_type,
+      start_time, end_time, online_time,
+      state, act_icon, act_user_type,
+      is_cycle, cycle_type, uid, admin,
+      create_time, update_time, act_desc,privilege_type,act_wenan
+      )
+    values (#{actId,jdbcType=INTEGER}, #{actName,jdbcType=VARCHAR}, #{actType,jdbcType=VARCHAR},
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{onlineTime,jdbcType=TIMESTAMP},
+      #{state,jdbcType=TINYINT}, #{actIcon,jdbcType=VARCHAR}, #{actUserType,jdbcType=TINYINT},
+      #{isCycle,jdbcType=TINYINT}, #{cycleType,jdbcType=TINYINT}, #{uid,jdbcType=VARCHAR}, #{admin,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{actDesc,jdbcType=LONGVARCHAR},#{privilegeType,jdbcType=VARCHAR},
+      #{actWenan,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.meiliwan.emall.sp2.bean.ActivityBean"
+            useGeneratedKeys="true" keyProperty="actId">
+        insert into sp2_activity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="actId != null">
+                act_id,
+            </if>
+            <if test="actName != null">
+                act_name,
+            </if>
+            <if test="actType != null">
+                act_type,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="onlineTime != null">
+                online_time,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="actIcon != null">
+                act_icon,
+            </if>
+            <if test="actUserType != null">
+                act_user_type,
+            </if>
+            <if test="isCycle != null">
+                is_cycle,
+            </if>
+            <if test="cycleType != null">
+                cycle_type,
+            </if>
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="admin != null">
+                admin,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="actDesc != null">
+                act_desc,
+            </if>
+            <if test="privilegeType != null">
+                privilege_type,
+            </if>
+            <if test="actWenan != null">
+                act_wenan,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="actId != null">
+                #{actId,jdbcType=INTEGER},
+            </if>
+            <if test="actName != null">
+                #{actName,jdbcType=VARCHAR},
+            </if>
+            <if test="actType != null">
+                #{actType,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="onlineTime != null">
+                #{onlineTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=TINYINT},
+            </if>
+            <if test="actIcon != null">
+                #{actIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="actUserType != null">
+                #{actUserType,jdbcType=TINYINT},
+            </if>
+            <if test="isCycle != null">
+                #{isCycle,jdbcType=TINYINT},
+            </if>
+            <if test="cycleType != null">
+                #{cycleType,jdbcType=TINYINT},
+            </if>
+            <if test="uid != null">
+                #{uid,jdbcType=VARCHAR},
+            </if>
+            <if test="admin != null">
+                #{admin,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="actDesc != null">
+                #{actDesc,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="privilegeType != null">
+                #{privilegeType,jdbcType=VARCHAR},
+            </if>
+            <if test="actWenan != null">
+                #{actWenan,jdbcType=VARCHAR},
+            </if>
+
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.sp2.bean.ActivityBean">
+        update sp2_activity
+        <set>
+            <if test="actName != null">
+                act_name = #{actName,jdbcType=VARCHAR},
+            </if>
+            <if test="actType != null">
+                act_type = #{actType,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="onlineTime != null">
+                online_time = #{onlineTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=TINYINT},
+            </if>
+            <if test="actIcon != null">
+                act_icon = #{actIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="actUserType != null">
+                act_user_type = #{actUserType,jdbcType=TINYINT},
+            </if>
+            <if test="isCycle != null">
+                is_cycle = #{isCycle,jdbcType=TINYINT},
+            </if>
+            <if test="cycleType != null">
+                cycle_type = #{cycleType,jdbcType=TINYINT},
+            </if>
+            <if test="uid != null">
+                uid = #{uid,jdbcType=VARCHAR},
+            </if>
+            <if test="admin != null">
+                admin = #{admin,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="actDesc != null">
+                act_desc = #{actDesc,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="privilegeType != null">
+                privilege_type = #{privilegeType,jdbcType=VARCHAR},
+            </if>
+            <if test="actWenan != null">
+                act_wenan = #{actWenan,jdbcType=VARCHAR},
+            </if>
+
+        </set>
+        where act_id = #{actId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.meiliwan.emall.sp2.bean.ActivityBean">
+    update sp2_activity
+    set act_name = #{actName,jdbcType=VARCHAR},
+      act_type = #{actType,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      online_time = #{onlineTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=TINYINT},
+      act_icon = #{actIcon,jdbcType=VARCHAR},
+      act_user_type = #{actUserType,jdbcType=TINYINT},
+      is_cycle = #{isCycle,jdbcType=TINYINT},
+      cycle_type = #{cycleType,jdbcType=TINYINT},
+      uid = #{uid,jdbcType=VARCHAR},
+      admin = #{admin,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      act_desc = #{actDesc,jdbcType=LONGVARCHAR},
+      privilege_type = #{privilegeType,jdbcType=VARCHAR},
+      act_wenan = #{actWenan,jdbcType=VARCHAR}
+
+    where act_id = #{actId,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.sp2.bean.ActivityBean">
+    update sp2_activity
+    set act_name = #{actName,jdbcType=VARCHAR},
+      act_type = #{actType,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      online_time = #{onlineTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=TINYINT},
+      act_icon = #{actIcon,jdbcType=VARCHAR},
+      act_user_type = #{actUserType,jdbcType=TINYINT},
+      is_cycle = #{isCycle,jdbcType=TINYINT},
+      cycle_type = #{cycleType,jdbcType=TINYINT},
+      uid = #{uid,jdbcType=VARCHAR},
+      admin = #{admin,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      privilege_type = #{privilegeType,jdbcType=VARCHAR},
+      act_wenan = #{actWenan,jdbcType=VARCHAR}
+    where act_id = #{actId,jdbcType=INTEGER}
+  </update>
+
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.actId!=null and entity.actId &gt;0">
+                        and act_id=#{entity.actId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.actType != null" >
+                        and act_type= #{entity.actType,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.startTime != null" >
+                        and start_time &gt;= #{entity.startTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.endTime != null" >
+                        and end_time  &lt;= #{entity.endTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.state != null" >
+                        and state= #{entity.state,jdbcType=TINYINT}
+                    </if>
+                    <if test="entity.actName != null">
+                        and act_name like #{entity.actName,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.actName != null">
+                        and privilege_type = #{entity.privilegeType,jdbcType=VARCHAR}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap" parameterType="com.meiliwan.emall.sp2.bean.ActivityBean">
+        select
+        <include refid="Base_Column_List" />
+        from sp2_activity
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from sp2_activity
+        <include refid="selectCondition" />
+    </select>
+
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectConditionActivityDTO">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.actId!=null and entity.actId &gt;0">
+                        and act_id=#{entity.actId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.actType != null" >
+                        and act_type= #{entity.actType,jdbcType=VARCHAR}
+                    </if>
+                    <!--<if test="entity.state != null" >
+                        and state= #{entity.state,jdbcType=TINYINT}
+                    </if>-->
+                    <if test="entity.actName != null">
+                        and act_name like #{entity.actName,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.privilegeType != null">
+                        and privilege_type = #{entity.privilegeType,jdbcType=VARCHAR}
+                    </if>
+
+                    <!-- startTime 与 endTime 期间进行的活动-->
+                    <if test="entity.startTime != null" >
+                        <if test="entity.endTime != null" >
+                            and ((start_time &lt;= #{entity.startTime,jdbcType=TIMESTAMP} and end_time &gt;=#{entity.endTime,jdbcType=TIMESTAMP})
+                            or(start_time &lt;= #{entity.startTime,jdbcType=TIMESTAMP} and end_time &gt;=#{entity.startTime,jdbcType=TIMESTAMP})
+                            or(start_time &lt;= #{entity.endTime,jdbcType=TIMESTAMP} and end_time &gt;=#{entity.endTime,jdbcType=TIMESTAMP})
+                            or(start_time &gt;= #{entity.startTime,jdbcType=TIMESTAMP} and end_time &lt;=#{entity.endTime,jdbcType=TIMESTAMP})
+                            )
+                        </if>
+                    </if>
+                    <if test="entity.startTime != null" >
+                        <if test="entity.endTime == null" >
+                            and (
+                                 (start_time &lt;= #{entity.startTime,jdbcType=TIMESTAMP} and end_time &gt;=#{entity.startTime,jdbcType=TIMESTAMP})
+                                 or start_time &gt;= #{entity.startTime,jdbcType=TIMESTAMP}
+                            )
+                        </if>
+                    </if>
+                    <if test="entity.endTime != null" >
+                        <if test="entity.startTime == null" >
+                            and (
+                                 (start_time &lt;= #{entity.endTime,jdbcType=TIMESTAMP} and end_time &gt;=#{entity.endTime,jdbcType=TIMESTAMP})
+                                 or end_time &lt;=#{entity.endTime,jdbcType=TIMESTAMP}
+                            )
+                        </if>
+                    </if>
+
+                    <!-- 未上架 -->
+                    <if test="entity.actViewState == 0" >
+                        and state= 0
+                    </if>
+                    <!-- 下架-->
+                    <if test="entity.actViewState == -1" >
+                        and state= -1
+                    </if>
+                    <!-- 未开始(上线)： 10
+                         正在进行（(上线）：11
+                         已结束（(上线）： 12
+                     -->
+                    <if test="entity.actViewState == 10" >
+                        and state= 1  and  start_time &gt;= #{entity.currentTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.actViewState == 11" >
+                        and state= 1
+                        and  start_time &lt;= #{entity.currentTime,jdbcType=TIMESTAMP}
+                        and  end_time &gt;= #{entity.currentTime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="entity.actViewState == 12" >
+                        and state= 1
+                        and  end_time &lt;= #{entity.currentTime,jdbcType=TIMESTAMP}
+                    </if>
+
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfoActivityDTO" resultMap="BaseResultMap" parameterType="com.meiliwan.emall.sp2.bean.ActivityBean">
+        select
+        <include refid="Base_Column_List" />
+        from sp2_activity
+        <include refid="selectConditionActivityDTO" />
+        order by create_time desc
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+    <!-- 查询总数 -->
+    <select id="getTotalByEntityActivityDTO"
+            resultType="java.lang.Integer">
+        select count(*) from sp2_activity
+        <include refid="selectConditionActivityDTO" />
+    </select>
+</mapper>

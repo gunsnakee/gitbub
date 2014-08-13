@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.sp2.dao.SpTicketBatchProdDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.sp2.bean.SpTicketBatchProd" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="batch_id" property="batchId" jdbcType="INTEGER" />
+    <result column="pro_id" property="proId" jdbcType="INTEGER" />
+      <result column="ticket_name" property="ticketName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, batch_id, pro_id, ticket_name, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sp_ticket_batch_prod
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sp_ticket_batch_prod
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.sp2.bean.SpTicketBatchProd" >
+    insert into sp_ticket_batch_prod (id, batch_id, pro_id, ticket_name,
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{batchId,jdbcType=INTEGER}, #{proId,jdbcType=INTEGER}, #{ticketName,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.sp2.bean.SpTicketBatchProd" >
+    insert into sp_ticket_batch_prod
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="batchId != null" >
+        batch_id,
+      </if>
+      <if test="proId != null" >
+        pro_id,
+      </if>
+        <if test="ticketName != null" >
+            ticket_name,
+        </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null" >
+        #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null" >
+        #{proId,jdbcType=INTEGER},
+      </if>
+        <if test="ticketName != null" >
+            #{ticketName,jdbcType=VARCHAR},
+        </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.sp2.bean.SpTicketBatchProd" >
+    update sp_ticket_batch_prod
+    <set >
+      <if test="batchId != null" >
+        batch_id = #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null" >
+        pro_id = #{proId,jdbcType=INTEGER},
+      </if>
+        <if test="ticketName != null" >
+            ticket_name = #{ticketName,jdbcType=VARCHAR},
+        </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.sp2.bean.SpTicketBatchProd" >
+    update sp_ticket_batch_prod
+    set batch_id = #{batchId,jdbcType=INTEGER},
+      pro_id = #{proId,jdbcType=INTEGER},
+      ticket_name = #{ticketName,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.batchId != null">
+                        and batch_id=#{entity.batchId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.proId != null">
+                        and pro_id=#{entity.proId,jdbcType=INTEGER}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_ticket_batch_prod
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from sp_ticket_batch_prod
+        <include refid="selectCondition"/>
+    </select>
+
+    <!-- 批量批次和商品关系 -->
+    <insert id="insertByBatchProd">
+        insert into sp_ticket_batch_prod(batch_id, pro_id, ticket_name, create_time)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.batchId,jdbcType=INTEGER}, #{item.proId,jdbcType=INTEGER}, #{item.ticketName,jdbcType=VARCHAR}, #{item.createTime})
+        </foreach>
+    </insert>
+
+    <select id="getTicketProdsByProIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_ticket_batch_prod
+        where pro_id in
+        <foreach item="item" collection="ids"
+                 open="(" separator="," close=")">
+            ${item}
+        </foreach>
+    </select>
+    
+    <!-- 根据优惠券批次号和商品ids获取优惠券和批次之间的关系列表 -->
+     <select id="getTicketProdsByProIdsAndBatchIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_ticket_batch_prod
+        where pro_id in
+        <foreach item="item" collection="proIds"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and batch_id in
+        <foreach item="item" collection="batchIds"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <delete id="deleteProdById">
+        delete from sp_ticket_batch_prod
+        where pro_id = #{proId,jdbcType=INTEGER} and batch_id = #{batchId,jdbcType=INTEGER}
+    </delete>
+</mapper>

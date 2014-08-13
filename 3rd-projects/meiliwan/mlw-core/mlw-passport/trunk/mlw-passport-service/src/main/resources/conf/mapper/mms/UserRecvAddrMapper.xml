@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.mms.dao.UserRecvAddrDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.mms.bean.UserRecvAddr" >
+    <id column="recv_addr_id" property="recvAddrId" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="county_code" property="countyCode" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="town_code" property="townCode" jdbcType="VARCHAR" />
+    <result column="detail_addr" property="detailAddr" jdbcType="VARCHAR" />
+    <result column="recv_name" property="recvName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="is_default" property="isDefault" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="is_del" property="isDel" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    recv_addr_id, uid, province, province_code, city, city_code, county, county_code, 
+    town, town_code, detail_addr, recv_name, mobile, phone, email, is_default, create_time, 
+    zip_code, is_del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_recv_addr
+    where recv_addr_id = #{recvAddrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_recv_addr
+    where recv_addr_id = #{recvAddrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.mms.bean.UserRecvAddr" >
+    insert into user_recv_addr (recv_addr_id, uid, province, 
+      province_code, city, city_code, 
+      county, county_code, town, 
+      town_code, detail_addr, recv_name, 
+      mobile, phone, email, 
+      is_default, create_time, zip_code, 
+      is_del)
+    values (#{recvAddrId,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, 
+      #{provinceCode,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{county,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, 
+      #{townCode,jdbcType=VARCHAR}, #{detailAddr,jdbcType=VARCHAR}, #{recvName,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{isDefault,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{zipCode,jdbcType=VARCHAR}, 
+      #{isDel,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.mms.bean.UserRecvAddr"
+          useGeneratedKeys="true" keyProperty="recvAddrId">
+    insert into user_recv_addr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recvAddrId != null" >
+        recv_addr_id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="countyCode != null" >
+        county_code,
+      </if>
+      <if test="town != null" >
+        town,
+      </if>
+      <if test="townCode != null" >
+        town_code,
+      </if>
+      <if test="detailAddr != null" >
+        detail_addr,
+      </if>
+      <if test="recvName != null" >
+        recv_name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recvAddrId != null" >
+        #{recvAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="townCode != null" >
+        #{townCode,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddr != null" >
+        #{detailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="recvName != null" >
+        #{recvName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.mms.bean.UserRecvAddr" >
+    update user_recv_addr
+    <set >
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        county_code = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="townCode != null" >
+        town_code = #{townCode,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddr != null" >
+        detail_addr = #{detailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="recvName != null" >
+        recv_name = #{recvName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=TINYINT},
+      </if>
+    </set>
+      where
+      uid = #{uid,jdbcType=INTEGER}
+      <if test="recvAddrId!=null">
+          and recv_addr_id = #{recvAddrId,jdbcType=INTEGER}
+      </if>
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.mms.bean.UserRecvAddr" >
+    update user_recv_addr
+    set
+      province = #{province,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      county_code = #{countyCode,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      town_code = #{townCode,jdbcType=VARCHAR},
+      detail_addr = #{detailAddr,jdbcType=VARCHAR},
+      recv_name = #{recvName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      is_default = #{isDefault,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=TINYINT}
+      where
+      uid = #{uid,jdbcType=INTEGER}
+      <if test="recvAddrId!=null">
+          and recv_addr_id = #{recvAddrId,jdbcType=INTEGER}
+      </if>
+  </update>
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.uid!=null and entity.uid &gt;0">
+                        and uid=#{entity.uid,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.recvAddrId != null">
+                        and recv_addr_id=#{entity.recvAddrId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.isDefault!=null ">
+                        and is_default=#{entity.isDefault,jdbcType=INTEGER}
+                    </if>
+                    and is_del = 0
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user_recv_addr
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from user_recv_addr
+        <include refid="selectCondition" />
+    </select>
+</mapper>

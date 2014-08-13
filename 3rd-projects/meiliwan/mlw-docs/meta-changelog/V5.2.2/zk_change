@@ -1,0 +1,34 @@
+===============================V5.2.2 zk change===========================================
+------------------------------- day 2014.01.1.20 daquan.lu --------------------------------------
+注册送10元红包活动。需要在zookeeper的配置文件加上活动开始和截至的时间，以及活动的金额
+1、需要在zk对commons目录下得system.properties里面加上（测试）
+act.send.money.startTime=2014-01-10 00:00:01
+act.send.money.endTime=2014-03-08 23:59:00
+act.send.money=10
+
+
+------------------------------- day 2014.01.1.20 zixin.wu --------------------------------------
+--由于礼品卡相关定时扫描任务移到mq-job模块上进行，需要新建一个礼品卡相关的pms ice服务，相关的配置如下：
+名称：bg-pms-service
+内容：
+<?xml version="1.0" encoding="UTF-8"?>
+<ice-config>
+
+<springConfig>
+      <config>conf/spring/bg-pms-service.xml</config> 
+  </springConfig>
+
+  <services >
+    <service identity="bg-pmsService" 
+                         replicaGroup="bg-pmsIceBoxReplicaGroup" 
+                         connectMode="dev"
+                         localPort="10312"/>
+   <service identity="pmsService" 
+                         replicaGroup="pmsIceBoxReplicaGroup" 
+                         connectMode="dev"
+                         localPort="10012"/>
+    </services>
+
+</ice-config>
+
+需要启动bg-mq-job工程

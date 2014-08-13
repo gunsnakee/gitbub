@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.dao.pay.PayItemDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.pay.bean.PayItem" >
+    <id column="pay_id" property="payId" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="pay_code" property="payCode" jdbcType="VARCHAR" />
+    <result column="pay_amount" property="payAmount" jdbcType="DECIMAL" />
+    <result column="third_trade_no" property="thirdTradeNo" jdbcType="VARCHAR" />
+    <result column="third_pay_uid" property="thirdPayUid" jdbcType="VARCHAR" />
+    <result column="third_pay_email" property="thirdPayEmail" jdbcType="VARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="success_time" property="successTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.meiliwan.emall.pay.bean.PayItem" extends="BaseResultMap" >
+    <result column="extra_info" property="extraInfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pay_id, order_id, pay_code, pay_amount, third_trade_no, third_pay_uid, third_pay_email, 
+    pay_status, create_time, success_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    extra_info
+  </sql>
+  
+  <select id="getPayItemByDateAndPayCode" resultMap="ResultMapWithBLOBs">
+     select <include refid="Base_Column_List" />,
+            <include refid="Blob_Column_List" />
+     from pay_item where 
+     <![CDATA[
+     create_time >= '${startDate}' and create_time <= '${endDate}'
+     ]]>
+     and pay_code in ${payCode} and pay_status != 'PAY_FINISHED'
+  </select>
+  
+  <select id="getPayItemByOrderIdAndPayCode" resultMap="ResultMapWithBLOBs">
+     select <include refid="Base_Column_List" />,
+            <include refid="Blob_Column_List" />
+     from pay_item where order_id = ${orderId} and pay_code = ${payCode}
+  </select>
+  
+</mapper>

@@ -1,0 +1,492 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="" name="keywords">
+<meta content="" name="description">
+<title>心愿单</title>
+<link href="http://www.meiliwan.com/css/com.css?v=5.1.4.2" rel="stylesheet">
+<link href="http://www.meiliwan.com/css/wishlist.css" rel="stylesheet" />
+<style type="text/css">
+
+</style>
+<script>
+
+</script>
+</head>
+
+<body>
+<!--容器 开始-->
+<div class="container">
+	<!--头部 开始-->
+<div class="test_head">
+    <div class="topbar" id="J-topbar">
+        <div class="inn">
+            <div class="fl">
+                <ul>
+                    <li class="bar-item">
+                        <a href="#" class="ico top-collect" id="J_add_mlw" title="收藏美丽湾">收藏美丽湾</a>
+                    </li>
+                    <li class="bar-item J-login">
+                        <a href="https://passport.meiliwan.com/user/login?targetUrl=http://www.meiliwan.com/"
+                                class="t-login" id="J-login">登录</a>
+                        <a href="https://passport.meiliwan.com/user/reg" class="t-register" id="J-reg">注册</a>
+                    </li>
+                    <!--登录状态-->
+                    <li class="bar-item J-logout hide">
+                        欢迎您！
+                        <a href="/" class="top-name"></a>
+                    </li>
+                    <li class="bar-item J-logout ml10 hide">
+                        <a href="#" class="t-out">退出</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fr">
+                <ul>
+                	<li class="bar-item mr20">
+		                <a href="http://www.meiliwan.com" class="gotoindex pl5 pr5" title="美丽湾首页">美丽湾首页</a>
+		            </li>
+                    <li class="bar-item bar-hotline mr20">
+                        客服热线：<b class="fc-orange">4006-887-887</b>
+                    </li>
+                    <li class="bar-item">
+                        <a href="http://www.meiliwan.com/ucenter/order/list" class="ico top-order" title="我的订单">我的订单</a>
+                    </li>
+                    <li class="borbg fl"></li>
+                    <li class="bar-item bar-service bar-item_link">
+                        <a href="#" class="ico top-sever" title="客户服务"><span>客户服务</span><i class="ico"></i></a>
+                        <ul class="list">
+                            <li>
+                                <i></i>
+                                <a href="http://www.meiliwan.com/enterprise/register.html" class="ico qqserver">企业采购</a>
+                            </li>
+                            <li>
+                                <i></i>
+                                <a href="http://www.meiliwan.com/ucenter/retorder/list" class="ico payment">在线退换货</a>
+                            </li>
+                            <li>
+                                <i></i>
+                                <a href="http://www.meiliwan.com/ucenter/user/complaints" class="ico complaint">在线投诉</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="borbg fl"></li>
+                    <li class="bar-item bar-item_link">
+                        <a href="#" class="ico top-nav" title="网站导航"><span>网站导航</span><i class="ico"></i></a>
+                        <div class="navlist hide">
+                            <p class="ico ml15 top-goods yahei"><strong>特色商品馆</strong></p>
+                            <p class="pl15">
+                                <a href="http://www.meiliwan.com/coffee.html" title="东南亚咖啡馆">东南亚咖啡馆</a><span class="ml15 mr15">|</span><a href="http://www.meiliwan.com/snack.html" title="零食馆">零食馆</a><span class="ml15 mr15">|</span><a href="http://www.meiliwan.com/durian.html" title="榴莲馆">榴莲馆</a><span class="ml10 mr10">|</span><a href="http://www.meiliwan.com/seafood.html" title="南海产品馆">南海产品馆</a><span class="ml10 mr10">|</span><a href="http://www.meiliwan.com/seasoner.html" title="东南亚进口调料馆">东南亚进口调料馆</a><span class="ml10 mr10">|</span><a href="http://www.meiliwan.com/grains.html" title="农家大米杂粮干货">农家大米杂粮干货</a><span class="ml10 mr10">|</span><a href="http://www.meiliwan.com/jadeite.html" title="翡翠馆">翡翠馆</a>
+                            </p>
+                            <p class="bb1sdedede pb5 pl15">
+                                <a href="http://www.meiliwan.com/aroma.html" title="精油香薰馆">精油香薰馆</a><span class="ml15 mr15">|</span><a href="http://www.meiliwan.com/crafts.html" title="红木沉香贝壳锡器馆">红木沉香贝壳锡器馆</a><span class="ml15 mr15">|</span><a href="http://www.meiliwan.com/rubber.html" title="天然橡胶制品生活用品馆">天然橡胶制品生活用品馆</a>
+                            </p>
+                            <p class="ico ml15 top-state yahei"><strong>特色国家馆</strong></p>
+                            <p class="pl15 pb5">
+                                <a href="http://thailand.meiliwan.com/" title="泰国">泰国</a><span class="ml10 mr10">|</span><a href="http://vietnam.meiliwan.com/" title="越南">越南</a><span class="ml10 mr10">|</span><a href="http://malaysia.meiliwan.com/" title="马来西亚">马来西亚</a><span class="ml10 mr10">|</span><a href="http://indonesia.meiliwan.com/" title="印度尼西亚">印度尼西亚</a><span class="ml10 mr10">|</span><a href="http://singapore.meiliwan.com/" title="新加坡">新加坡</a><span class="ml10 mr10">|</span><a href="http://philippin.meiliwan.com/" title="菲律宾">菲律宾</a><span class="ml10 mr10">|</span><a href="http://brunei.meiliwan.com/" title="文莱">文莱</a><span class="ml10 mr10">|</span><a href="http://burma.meiliwan.com/" title="缅甸">缅甸</a><span class="ml10 mr10">|</span><a href="http://laos.meiliwan.com/" title="老挝">老挝</a><span class="ml10 mr10">|</span><a href="http://cambodia.meiliwan.com/" title="柬埔寨">柬埔寨</a><span class="ml10 mr10">|</span><a href="http://gx.meiliwan.com/" title="中国广西">中国广西</a>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="header">
+    <div class="inn">
+            <div class="logo">
+                <a title="美丽湾" target="_blank" href="http://www.meiliwan.com">
+                    <img width="150" height="51" title="美丽湾" alt="美丽湾" src="http://www.meiliwan.com/images/logo.jpg">
+                </a>
+            </div>
+            <div title="美丽湾" class="logo2">
+                    <img width="210" height="45" title="美丽湾" alt="美丽湾" src="http://www.meiliwan.com/images/img_commiment.jpg">
+            </div>
+        <div class="searchbar">
+            <div class="searchC fl">
+                <div class="ssC pos-r">
+                    <label class="pos-a" for="J_search">
+                        搜索
+                    </label>
+                    <form id="stationSearchForm" method="get" action="#">
+                        <input type="text" autocomplete="off" class="ss_input" name="keyword" id="J_search"><a target="_self" title="搜索" class="ss_btn" href="#">搜索</a>
+                    </form>
+                </div>
+                <div class="hotwords">
+                    <strong class="gray c92">热门搜索：</strong>
+                        <a target="_blank" href="http://www.meiliwan.com/search?keyword=%E6%A4%B0%E6%B5%86">椰浆</a>
+                        <a target="_blank" href="http://www.meiliwan.com/search?keyword=%E7%BF%A1%E7%BF%A0%E7%94%9F%E8%82%96">翡翠生肖</a>
+                        <a target="_blank" href="http://www.meiliwan.com/search?keyword=%E6%B3%B0%E5%9B%BD%E9%A6%99%E7%B1%B3">泰国香米</a>
+                        <a href="http://www.meiliwan.com/search?keyword=7D%E8%8A%92%E6%9E%9C%E5%B9%B2">7D芒果干</a>
+                        <a target="_blank" href="http://www.meiliwan.com/search?keyword=%E7%BA%A2%E9%85%B8%E6%9E%9D">红酸枝</a>
+                        <a target="_blank" href="http://www.meiliwan.com/search?keyword=%E9%B1%BF%E9%B1%BC&amp;pf=&amp;brand=5&amp;sort=0&amp;store=">鱿鱼丝</a>
+                </div>
+            </div>
+            <div class="relateword pos-a">
+                <div class="relateborder">
+                    <ul class="searchTB">
+                    </ul>
+                </div>
+            </div>
+            <div class="cart-info fr h40">
+                <div class="btn-wrap h40 lh40" style="cursor: pointer;">
+                    <i class="ico-car fl"></i>
+                    <span class="s-quantity fl">购物车有<b class="fc-red buyCount1">0</b>件</span>
+                    <i class="ico-arrow fl"></i>
+                </div>
+                <div class="cart-list">
+                    <p class="empty hide" style="display: block;">
+                        购物车中还没有商品，赶紧选购吧！
+                    </p>
+                    <div class="caritem hide" style="display: none;">
+                        <div class="twP">
+                        </div>
+                        <div class="sum">
+                            <p>
+                                <span>共<b class="fc-red buyCount"></b>件商品</span>
+                                <span class="s-c">总计：<b class="fn-rmb fc-red finalPayPrice">¥</b></span>
+                            </p>
+                        </div>
+                        <a class="anC2 fr" href="http://www.meiliwan.com/cart/view"><span>去购物车结算</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+	<!--头部 结束-->
+	<!--主体 开始-->
+	<div class="main overflow">
+		<div class="mlra overflow w1125">
+			<form class="fl w685">
+				<h1 class="bold c333 fs18 mt30 yahei">美丽湾心愿单</h1>
+				<h2 class="bold fs14 mt20 yahei">您想要描述的东南亚商品</h2>
+				<table class="bb1db8b8b8 mt20">
+					<tr>
+						<td class="fs14 yahei" width="105"><span class="mr5 red">*</span>商品名称？</td>
+						<td><input type="text" class="h30 w255"></td>
+					</tr>
+					<tr>
+						<td class="fs14 yahei"><p class="mt20"><span class="mr5 red">*</span>详细描述<br>&nbsp;&nbsp;&nbsp;一下</p></td>
+						<td><textarea class="h120 mt20 w560"></textarea></td>
+					</tr>
+					<tr>
+						<td class="fs14 mt20 yahei"><p class="mt20">说不清楚？<br>来张图片</p></td>
+						<td><a href="#" class="bc26b8dc inlineBlock fs14 mr10 mt20 noDecoration txtcenter w110h42 white yahei">上传图片</a>支持jpg、png、jpeg格式并且小于<strong class="fce63200 ml5 mr5">5M</strong>的图片</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><div class="bcdbdbdb h100 mb20 mt20 pos-r w100"><a href="#" class="b-0 bc4e4e4e h20 lh20 noDecoration pos-a r-0 txtcenter w40 white yahei">删除</a></div></td>
+					</tr>
+				</table>
+				<table class="bb1db8b8b8 mt20">
+					<tr>
+						<td class="fs14 yahei" width="105"><span class="mr5 red">*</span>来自哪个国家</td>
+						<td><select class="h22 w195"></select></td>
+					</tr>
+					<tr>
+						<td class="fs14 yahei"><p class="mt20"><span class="mr5 red">*</span>具体在哪里<br>&nbsp;&nbsp;&nbsp;可以买到</p></td>
+						<td><textarea class="h120 mb20 mt20 w560"></textarea></td>
+					</tr>
+				</table>
+				<p class="bold fs14 mt20 yahei">如果我们找到了它要怎么寄给您？<span class="fce63200">有收货地址的登录用户直接调用默认收货地址</span></p>
+				<table class="mt20">
+					<tr>
+						<td class="fs14 yahei" width="105">收货人：</td>
+						<td><input type="text" class="h30 w255"></td>
+					</tr>
+					<tr>
+						<td class="fs14 yahei"><p class="mt20">地区：</td>
+						<td><select class="h22 mr10 mt20 w100"></select><select class="h22 mr10 mt20 w100"></select><select class="h22 mr10 mt20 w100"></select></td>
+					</tr>
+					<tr>
+						<td class="fs14 yahei"><p class="mt20">详细地址：</td>
+						<td><textarea class="h120 mb20 mt20 w560"></textarea></td>
+					</tr>
+					<tr>
+						<td class="fs14 yahei"><p class="mt20">手机：</p></td>
+						<td><input type="text" class="h30 mt20 w255"></td>
+					</tr>
+					<tr>
+						<td class="fs14 yahei"><p class="mt20">固定电话：</p></td>
+						<td><input type="text" class="h30 mt20 w255"></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><a href="#" class="bcff9a23 block fs14 mt20 noDecoration txtcenter w110h42 white yahei">提交</a></td>
+					</tr>
+				</table>
+			</form>
+			<div class="bcf1f1f1 fr h1207 w440">
+				<h3 class="bold fs18 ml30 mt20 yahei">什么是美丽湾心愿单？</h3>
+				<p class="fs14 lh24 ml30 yahei">美丽湾一直致力于寻找东南亚最好，最特色的商品。<br>如果你知道一些东南亚的商品是美丽湾没有发现的，<br>那么就不要在犹豫了！</p>
+				<p class="fs14 lh24 ml30 mt30 yahei">快点填写美丽湾心愿单分享给我们。</p>
+				<h3 class="bold fs18 ml30 mt50 yahei">填写美丽湾心愿单能获得什么好处？</h3>
+				<p class="fs14 lh24 ml30 yahei">如果心愿单上描述的商品是我们一直在寻找的东南亚好东西！</p>
+				<p class="fs14 lh24 ml30 mt30 yahei">我们一定会将它找到并<span class="fce63200">免费</span>寄送到您的手上，<br>还会<span class="fce63200">附送</span>一些美丽湾的好东西给您以表谢意！</p>
+			</div>
+		</div>
+	</div>
+	<!--主体 结束-->
+	<!--尾部 开始-->
+<div class="test_foot">
+    <div class="footer1 ">
+        <div class="ftTop">
+            <div class="mlra w1100">
+                <div class="ftLeft">
+                    <h3>关于美丽湾</h3>
+                    <a class="mlwlogo" href="http://www.meiliwan.com"><img src="http://img2.meiliwan.com/images/mlwlogo.jpg" width="260" height="43"></a>
+                    <div class="ftWeibo mr50">
+                        <span>@美丽湾</span>
+                        <a target="_blank" href="http://e.weibo.com/meiliwan?ref=http%3A%2F%2Fweibo.com%2F1771578611%2Fmyfollow">+关注</a>
+                    </div>
+                    <div class="ftWeChat">
+                        <p>美丽湾官方微信</p>
+                        <img src="http://img3.meiliwan.com/images/code80x80.jpg" width="80" height="80">
+                    </div>
+                </div>
+                <!--ftLeft end-->
+                <div class="ftCenter">
+                    <h3>美丽服务</h3>
+                    <div class="mb50 oh">
+                        <ul class="ulmr1">
+                            <li class="guide"><span></span>购物指南</li>
+                            <li class="mb10">
+                                <a href="http://www.meiliwan.com/help/shopping.html">购物流程</a>
+                            </li>
+                            <li class="mb10">
+                                <a href="http://www.meiliwan.com/help/order.html">订单管理</a>
+                            </li>
+                            <li>
+                                <a href="http://www.meiliwan.com/help/question.html">常见问题</a>
+                            </li>
+                        </ul>
+                        <ul class="ulmr1">
+                            <li class="delivery"><span></span>配送说明</li>
+                            <li class="mb10">
+                                <a href="http://www.meiliwan.com/help/shipping.html">运费标准</a>
+                            </li>
+                            <li>
+                                <a href="http://www.meiliwan.com/help/time.html">配送时间</a>
+                            </li>
+                        </ul>
+                        <ul class="ulmr1">
+                            <li class="pay"><span></span>支付方式</li>
+                            <li class="mb10">
+                                <a href="http://www.meiliwan.com/help/onlinepay.html">网上支付</a>
+                            </li>
+                            <li>
+                                <a href="http://www.meiliwan.com/help/paylater.html">货到付款</a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="afterSale"><span></span>售后服务</li>
+                            <li class="mb10">
+                                <a href="http://www.meiliwan.com/help/return.html">退换货流程</a>
+                            </li>
+                            <li class="mb10">
+                                <a href="http://www.meiliwan.com/help/clause.html">退换货条款</a>
+                            </li>
+                            <li>
+                                <a href="http://www.meiliwan.com/help/money.html">退款说明</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="oh">
+                        <ul class="ulmr2">
+                            <li class="aboutMlw"><span></span>关于美丽湾</li>
+                            <li class="mb10">
+                                <a href="http://www.meiliwan.com/help/about_us.html">关于我们</a>
+                            </li>
+                            <li>
+                                <a href="http://www.meiliwan.com/help/recruitment.html">人才招聘</a>
+                            </li>
+                        </ul>
+                        <ul class="ulmr2">
+                            <li class="contact"><span></span>联系方式</li>
+                            <li class="mb10">客服热线：<span class="fce53200">4006-887-887</span></li>
+                            <li>
+                                <a href="http://www.meiliwan.com/help/contact_us.html">其他方式</a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="cooperation"><span></span>招商合作</li>
+                            <li class="mb10">
+                                <a href="http://www.meiliwan.com/links.html">友情链接</a>
+                            </li>
+                            <li class="mb10">
+                                <a href="http://www.meiliwan.com/enterprise/register.html">企业采购</a>
+                            </li>
+                            <li>
+                                <a href="http://www.meiliwan.com/help/gyshz.html">供应商合作</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--ftCenter end-->
+                <div class="ftRight">
+                    <h3>美丽承诺</h3>
+                    <ul class="promise">
+                        <li class="authentic">
+                            <a href="#">100%正品</a>
+                        </li>
+                        <li class="supply">
+                            <a href="#">源头采购</a>
+                        </li>
+                        <li class="indep">
+                            <a href="#">自行发货</a>
+                        </li>
+                        <li class="return">
+                            <a href="#">7天退货</a>
+                        </li>
+                        <li class="change">
+                            <a href="#">15天换货</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--ftRight end-->
+            </div>
+        </div>
+        <!--ftTop end-->
+        <div class="copyright">
+            <div class="mlra w1100 mt50 mb50">
+                <p class="mb20">CopyRight ? 2012-2013 Inc.All Rights Reserved 美丽传说股份有限公司 版权所有<span
+                        class="pl10">桂B2-20130006</span> <span class="pl5">桂网文&nbsp;(2013)&nbsp;0738-002号</span></p>
+                <div>
+                    <a class="mr50"
+                            href="http://www.gx.cyberpolice.cn/AlarmInfo/getTishi.do?icon=baicp&amp;checkCode=2ea3800355ac1cbae376780b7f3e5575"
+                            title="广西网警网站备案" target="_blank"><img src="http://img1.meiliwan.com/images/baicp.gif"
+                            width="110" height="50"></a>
+                    <a href="https://ss.knet.cn/verifyseal.dll?sn=e13110545010043282usdp000000&amp;ct=df&amp;a=1&amp;pa=0.6096748888958246"
+                            target="_blank" class="knetclick"><img src="http://img0.meiliwan.com/images/cpright03.jpg"
+                            class="mt10" alt="可信网站"></a>
+                    <div class="hide knet">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer end-->
+    <div class="floatSide floatSide2">
+        <div class="floatSideHeader w120">
+            <!-- <div class="fl ba920 floathandle pos-a">
+            &lt;
+            </div> -->
+        </div>
+        <div class="floatSideMain w120">
+            <div class="r-cart pos-r">
+                <div class="cart-view">
+                    <a href="http://www.meiliwan.com/cart/view">购物车</a>
+                    <strong class="buyCount2">0</strong>
+                </div>
+                <div class="cart-list oh" style="/* display: none; */">
+                    <p class="empty hide" style="display: block;">
+                        购物车中还没有商品，赶紧选购吧！
+                    </p>
+                    <div class="twP oh caritem hide" style="display: none;"></div>
+                    <div class="clear oh pos-r z-100 bcd5 caritem" style="display: none;">
+                        <div class="sum">
+                            <p>
+                                <span>共<b class="fc-red buyCount">1</b>件商品</span> <span class="s-c">总计：<b
+                                    class="fn-rmb fc-red finalPayPrice">?22</b></span>
+                            </p>
+                        </div>
+                        <a href="http://www.meiliwan.com/cart/view" class="anC2 fr"
+                                title="去购物车结算"><span>去购物车结算</span></a>
+                    </div>
+                </div>
+            </div>
+            <ul class="customerService">
+                <li>
+                    <a target="_blank"
+                            href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzkzODAyNjA0NF84MjMxNl80MDA2ODg3ODg3XzJf"
+                            title="美丽湾客服">美丽湾客服</a>
+                </li>
+                <li class="musgoods pos-r muspop">
+                    <a href="#" title="特色商品馆">特色商品馆</a>
+                    <div class="hide musmain">
+                        <div class="popgoods pos-a fs14 yahei">
+                            <i class="bg_main m5 fl"></i>特色商品馆
+                        </div>
+                        <div class="pos-a popmain pl20 pr20 pt10 pb10">
+                            <div class="oh nowrap">
+                                <a href="http://www.meiliwan.com/coffee.html">东南亚咖啡馆</a>
+                                <span>|</span>
+                                <a href="http://www.meiliwan.com/snack.html">零食馆</a>
+                                <span>|</span>
+                                <a href="http://www.meiliwan.com/durian.html">榴莲馆</a>
+                                <span>|</span>
+                                <a href="http://www.meiliwan.com/seafood.html">南海产品馆</a>
+                            </div>
+                            <div class="oh nowrap">
+                                <a href="http://www.meiliwan.com/seasoner.html">东南亚进口调料馆</a>
+                                <span>|</span>
+                                <a href="http://www.meiliwan.com/grains.html">农家大米杂粮干货</a>
+                                <span>|</span>
+                                <a href="http://www.meiliwan.com/aroma.html">精油香薰馆</a>
+                            </div>
+                            <div class="oh nowrap">
+                                <a href="http://www.meiliwan.com/jadeite.html">翡翠馆</a>
+                                <span>|</span>
+                                <a href="http://www.meiliwan.com/crafts.html">红木沉香贝壳锡器馆</a>
+                                <span>|</span>
+                                <a href="http://www.meiliwan.com/rubber.html">天然橡胶制品生活用品馆</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="musnational pos-r muspop">
+                    <a href="#" title="特色国家馆">特色国家馆</a>
+                    <div class="hide musmain">
+                        <div class="popnational pos-a fs14 yahei">
+                            <i class="bg_main m5 fl"></i>特色国家馆
+                        </div>
+                        <div class="pos-a popmain pl20 pr20 pt10 pb10">
+                            <div class="oh nowrap">
+                                <a href="http://thailand.meiliwan.com/">泰国</a>
+                                <span>|</span>
+                                <a href="http://vietnam.meiliwan.com/">越南</a>
+                                <span>|</span>
+                                <a href="http://malaysia.meiliwan.com/">马来西亚</a>
+                                <span>|</span>
+                                <a href="http://indonesia.meiliwan.com/">印度尼西亚</a>
+                                <span>|</span>
+                                <a href="http://singapore.meiliwan.com/">新加坡</a>
+                            </div>
+                            <div class="oh nowrap">
+                                <a href="http://philippin.meiliwan.com/">菲律宾</a>
+                                <span>|</span>
+                                <a href="http://brunei.meiliwan.com/">文莱</a>
+                                <span>|</span>
+                                <a href="http://burma.meiliwan.com/">缅甸</a>
+                                <span>|</span>
+                                <a href="http://laos.meiliwan.com/">老挝</a>
+                                <span>|</span>
+                                <a href="http://cambodia.meiliwan.com/">柬埔寨</a>
+                                <span>|</span>
+                                <a href="http://gx.meiliwan.com/">中国广西</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="servicePhone">
+                    <a href="#" title="客服电话">客服电话</a>
+                </li>
+            </ul>
+        </div>
+        <div class="floatSideFooter">
+            <a href="#" class="btn-toTop"></a>
+        </div>
+    </div>
+</div>
+	<!--尾部 结束-->
+</div>
+<!--容器 结束-->
+<script src="http://www.meiliwan.com/js/jquery-1.8.3.min.js?v=5.1.4.2"></script>
+<script src="http://www.meiliwan.com/js/mlw.core.js?v=5.1.4.2"></script>
+<script src="http://www.meiliwan.com/js/com.js?v=5.1.4.2"></script>
+</body>
+
+</html>

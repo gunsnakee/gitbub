@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+   	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
+   	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+   	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+   	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<import resource="../dataSource.xml" />
+    
+    <bean id="sfUnionOrderSqlSessionFactory"
+		class="com.meiliwan.emall.core.db.shard.spring.support.SqlSessionFactoryBean">
+		<property name="mainDataSource" ref="omsDataSource" />
+		<property name="mapperLocations">
+			<array>
+				<value>classpath*:conf/mapper/union/OrdMapper.xml</value>
+			</array>
+		</property>
+	</bean>
+	    <bean id="sfUnionUserSqlSessionFactory"
+		class="com.meiliwan.emall.core.db.shard.spring.support.SqlSessionFactoryBean">
+		<property name="mainDataSource" ref="mmsDataSource" />
+		<property name="mapperLocations">
+			<array>
+				<value>classpath*:conf/mapper/union/UserPassportMapper.xml</value>
+			</array>
+		</property>
+	</bean>
+	
+	<bean id="sFUnionOrderDao" class="com.meiliwan.emall.union.dao.impl.SFUnionOrderImpl">
+		<property name="sqlSessionFactory" ref="sfUnionOrderSqlSessionFactory" />
+	</bean>
+	
+	<bean id="unionUserDao" class="com.meiliwan.emall.union.dao.impl.UnionUserDaoImpl">
+		<property name="sqlSessionFactory" ref="sfUnionUserSqlSessionFactory" />
+	</bean>
+	<bean id="ordClient" class="com.meiliwan.emall.oms.client.OrdClient">
+	</bean>
+	<bean id="sFUnionOrderService" class="com.meiliwan.emall.union.service.SFUnionOrderService">
+		<property name="sFUnionOrderDao" ref="sFUnionOrderDao" />
+		<property name="unionUserDao" ref="unionUserDao" />
+		<property name="ordClient" ref="ordClient" />
+	</bean>
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<property name="maxUploadSize" value="83886080" /><!-- 80M -->
+		<property name="maxInMemorySize" value="2048" />
+	</bean>
+</beans>

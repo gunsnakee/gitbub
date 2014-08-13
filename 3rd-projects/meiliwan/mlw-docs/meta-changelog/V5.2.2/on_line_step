@@ -1,0 +1,108 @@
+###############
+一、更新数据库
+###############
+--mlw_account 库中的表 wallet_opt_record增加一个字段 用做红包
+ALTER TABLE `mlw_account`.`wallet_opt_record` ADD COLUMN `child_type` varchar(45) COMMENT '在同一操作类型中作子类区分' ;
+
+--便于记录礼品卡的导入记录，现在修改相关表结构，如下
+ALTER TABLE mlw_prod.card_import_log add card_batch_id VARCHAR(64) DEFAULT 0 COMMENT '卡批次号';
+ALTER TABLE mlw_prod.card_import_log add card_name VARCHAR(128)  COMMENT '卡名称';
+ALTER TABLE mlw_prod.card_import_log add card_type TINYINT DEFAULT 0 COMMENT '卡类型';
+ALTER TABLE mlw_prod.card_import_log add card_price DECIMAL(12,2) DEFAULT 0.00 COMMENT '卡面额';
+ALTER TABLE mlw_prod.card_import_log add buyer_name VARCHAR(64)  COMMENT '购买人账号';
+ALTER TABLE mlw_prod.card_import_log add seller_name VARCHAR(64) COMMENT '卡销售人名称';
+
+
+
+
+###############
+二、更新zookeeper
+###############
+--注册送10元红包活动。需要在zookeeper的配置文件加上活动开始和截至的时间，以及活动的金额
+1、需要在zk对commons目录下得system.properties里面加上（测试）
+act.send.money.startTime=2014-01-27 00:00:01
+act.send.money.endTime=2014-02-08 23:59:00
+act.send.money=10
+
+--由于礼品卡相关定时扫描任务移到mq-job模块上进行，需要新建一个礼品卡相关的pms ice服务，相关的配置如下：
+名称：bg-pms-service
+内容：
+<?xml version="1.0" encoding="UTF-8"?>
+<ice-config>
+
+<springConfig>
+      <config>conf/spring/bg-pms-service.xml</config> 
+  </springConfig>
+
+  <services >
+    <service identity="bg-pmsService" 
+                         replicaGroup="bg-pmsIceBoxReplicaGroup" 
+                         connectMode="prod"
+                         localPort="10312"/>
+   <service identity="pmsService" 
+                         replicaGroup="pmsIceBoxReplicaGroup" 
+                         connectMode="prod"
+                         localPort="10012"/>
+    </services>
+
+</ice-config>
+
+
+###############
+三、编译发布程序代码
+###############
+使用root登录198, 到/data/compileAnddeploy/prod_release/下
+发布server
+	./release.sh mlw-pms
+	./release.sh mlw-oms
+	./release.sh mlw-base
+	./release.sh mlw-wallet
+	./release.sh mlw-gateway
+	./release.sh mlw-sp
+
+发布web
+	./release_web.sh mlw-wallet-web
+	./release_web.sh mlw-passport-web
+	./release_web.sh mlw-gateway-web
+	./release_web.sh mlw-admin-web
+	./release_web.sh mlw-www-web
+	
+发布res
+  ./release_res.sh mlw-web-res
+
+
+
+###############
+四、修改nginx配置
+###############
+无
+
+
+###############
+五、使用线上后台管理员账户到后台添加菜单和功能项
+###############
+无
+
+
+###############
+六、ice服务的回滚：
+###############
+
+
+
+###############
+七、web服务的回滚：
+###############
+
+      
+      
+###############
+八、CMS/静态资源版本号：
+5.2.2
+###############
+   
+
+###############
+九、缓存状态重置：
+###############
+	

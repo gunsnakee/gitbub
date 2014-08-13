@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.cms.dao.CmsLinkDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.cms.bean.CmsLink" >
+      <id column="link_id" property="linkId" jdbcType="INTEGER" />
+      <result column="position_id" property="positionId" jdbcType="INTEGER" />
+      <result column="link_url" property="linkUrl" jdbcType="VARCHAR" />
+      <result column="link_name" property="linkName" jdbcType="VARCHAR" />
+      <result column="link_name_ext" property="linkNameExt" jdbcType="VARCHAR" />
+      <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+      <result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+      <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+      <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+      <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
+      <result column="status" property="status" jdbcType="INTEGER" />
+      <result column="open_flag" property="openFlag" jdbcType="INTEGER" />
+      <result column="online_flag" property="onlineFlag" jdbcType="INTEGER" />
+      <result column="mlw_price" property="mlwPrice" jdbcType="DECIMAL" />
+      <result column="market_price" property="marketPrice" jdbcType="DECIMAL" />
+      <result column="sale_num" property="saleNum" jdbcType="INTEGER" />
+      <result column="com_num" property="comNum" jdbcType="INTEGER" />
+      <result column="score" property="score" jdbcType="FLOAT" />
+      <result column="discount" property="discount" jdbcType="VARCHAR" />
+      <result column="hide_flag" property="hideFlag" jdbcType="INTEGER" />
+      <result column="page_id" property="pageId" jdbcType="INTEGER" />
+      <result column="pro_id" property="proId" jdbcType="INTEGER" />
+    <result column="link_desc" property="linkDesc" jdbcType="LONGVARCHAR" />
+      <result column="mark" property="mark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    link_id, position_id, link_url, link_name, link_name_ext, pic_url, begin_time, end_time,
+    modify_time, modify_user, status, open_flag, mlw_price, market_price, sale_num, com_num,
+    score, hide_flag, page_id, pro_id,link_desc, online_flag, discount,mark
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_link
+    where link_id = #{linkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_link
+    where link_id = #{linkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.cms.bean.CmsLink" >
+    insert into cms_link (link_id, position_id, link_url, 
+      link_name, link_name_ext, pic_url,
+      begin_time, end_time, modify_time,
+      modify_user, status, open_flag, online_flag,
+      mlw_price, market_price, sale_num,
+      com_num, score, discount, hide_flag,
+      page_id, pro_id, link_desc)
+    values (#{linkId,jdbcType=INTEGER}, #{positionId,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, 
+      #{linkName,jdbcType=VARCHAR}, #{linkNameExt,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR},
+      #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP},
+      #{modifyUser,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{openFlag,jdbcType=INTEGER}, #{onlineFlag,jdbcType=INTEGER},
+      #{mlwPrice,jdbcType=DECIMAL}, #{marketPrice,jdbcType=DECIMAL}, #{saleNum,jdbcType=INTEGER},
+      #{comNum,jdbcType=INTEGER}, #{score,jdbcType=FLOAT}, #{discount,jdbcType=VARCHAR}, #{hideFlag,jdbcType=INTEGER},
+      #{pageId,jdbcType=INTEGER}, #{proId,jdbcType=INTEGER},  #{linkDesc,jdbcType=LONGVARCHAR}, #{mark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.cms.bean.CmsLink" >
+    insert into cms_link
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+        <if test="linkId != null" >
+            link_id,
+        </if>
+        <if test="positionId != null" >
+            position_id,
+        </if>
+        <if test="linkUrl != null" >
+            link_url,
+        </if>
+        <if test="linkName != null" >
+            link_name,
+        </if>
+        <if test="linkNameExt != null" >
+            link_name_ext,
+        </if>
+        <if test="picUrl != null" >
+            pic_url,
+        </if>
+        <if test="beginTime != null" >
+            begin_time,
+        </if>
+        <if test="endTime != null" >
+            end_time,
+        </if>
+        <if test="modifyTime != null" >
+            modify_time,
+        </if>
+        <if test="modifyUser != null" >
+            modify_user,
+        </if>
+        <if test="status != null" >
+            status,
+        </if>
+        <if test="openFlag != null" >
+            open_flag,
+        </if>
+        <if test="onlineFlag != null" >
+            online_flag,
+        </if>
+        <if test="mlwPrice != null" >
+            mlw_price,
+        </if>
+        <if test="marketPrice != null" >
+            market_price,
+        </if>
+        <if test="saleNum != null" >
+            sale_num,
+        </if>
+        <if test="comNum != null" >
+            com_num,
+        </if>
+        <if test="score != null" >
+            score,
+        </if>
+        <if test="discount != null" >
+            discount,
+        </if>
+        <if test="hideFlag != null" >
+            hide_flag,
+        </if>
+        <if test="pageId != null" >
+            page_id,
+        </if>
+        <if test="proId != null" >
+            pro_id,
+        </if>
+        <if test="linkDesc != null" >
+            link_desc,
+        </if>
+        <if test="mark != null" >
+            mark,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+        <if test="linkId != null" >
+            #{linkId,jdbcType=INTEGER},
+        </if>
+        <if test="positionId != null" >
+            #{positionId,jdbcType=INTEGER},
+        </if>
+        <if test="linkUrl != null" >
+            #{linkUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="linkName != null" >
+            #{linkName,jdbcType=VARCHAR},
+        </if>
+        <if test="linkNameExt != null" >
+            #{linkNameExt,jdbcType=VARCHAR},
+        </if>
+        <if test="picUrl != null" >
+            #{picUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="beginTime != null" >
+            #{beginTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="endTime != null" >
+            #{endTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="modifyTime != null" >
+            #{modifyTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="modifyUser != null" >
+            #{modifyUser,jdbcType=VARCHAR},
+        </if>
+        <if test="status != null" >
+            #{status,jdbcType=INTEGER},
+        </if>
+        <if test="openFlag != null" >
+            #{openFlag,jdbcType=INTEGER},
+        </if>
+        <if test="onlineFlag != null" >
+            #{onlineFlag,jdbcType=INTEGER},
+        </if>
+        <if test="mlwPrice != null" >
+            #{mlwPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="marketPrice != null" >
+            #{marketPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="saleNum != null" >
+            #{saleNum,jdbcType=INTEGER},
+        </if>
+        <if test="comNum != null" >
+            #{comNum,jdbcType=INTEGER},
+        </if>
+        <if test="score != null" >
+            #{score,jdbcType=FLOAT},
+        </if>
+        <if test="discount != null" >
+            #{discount,jdbcType=VARCHAR},
+        </if>
+        <if test="hideFlag != null" >
+            #{hideFlag,jdbcType=INTEGER},
+        </if>
+        <if test="pageId != null" >
+            #{pageId,jdbcType=INTEGER},
+        </if>
+        <if test="proId != null" >
+            #{proId,jdbcType=INTEGER},
+        </if>
+        <if test="linkDesc != null" >
+            #{linkDesc,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="mark != null" >
+            #{mark,jdbcType=LONGVARCHAR},
+        </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.cms.bean.CmsLink" >
+    update cms_link
+    <set >
+        <if test="positionId != null" >
+            position_id = #{positionId,jdbcType=INTEGER},
+        </if>
+        <if test="linkUrl != null" >
+            link_url = #{linkUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="linkName != null" >
+            link_name = #{linkName,jdbcType=VARCHAR},
+        </if>
+        <if test="linkNameExt != null" >
+            link_name_ext = #{linkNameExt,jdbcType=VARCHAR},
+        </if>
+        <if test="picUrl != null" >
+            pic_url = #{picUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="beginTime != null" >
+            begin_time = #{beginTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="endTime != null" >
+            end_time = #{endTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="modifyTime != null" >
+            modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="modifyUser != null" >
+            modify_user = #{modifyUser,jdbcType=VARCHAR},
+        </if>
+        <if test="status != null" >
+            status = #{status,jdbcType=INTEGER},
+        </if>
+        <if test="openFlag != null" >
+            open_flag = #{openFlag,jdbcType=INTEGER},
+        </if>
+        <if test="onlineFlag != null" >
+            online_flag = #{onlineFlag,jdbcType=INTEGER},
+        </if>
+        <if test="mlwPrice != null" >
+            mlw_price = #{mlwPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="marketPrice != null" >
+            market_price = #{marketPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="saleNum != null" >
+            sale_num = #{saleNum,jdbcType=INTEGER},
+        </if>
+        <if test="comNum != null" >
+            com_num = #{comNum,jdbcType=INTEGER},
+        </if>
+        <if test="score != null" >
+            score = #{score,jdbcType=FLOAT},
+        </if>
+        <if test="discount != null" >
+            discount = #{discount,jdbcType=VARCHAR},
+        </if>
+        <if test="hideFlag != null" >
+            hide_flag = #{hideFlag,jdbcType=INTEGER},
+        </if>
+        <if test="pageId != null" >
+            page_id = #{pageId,jdbcType=INTEGER},
+        </if>
+        <if test="proId != null" >
+            pro_id = #{proId,jdbcType=INTEGER},
+        </if>
+        <if test="linkDesc != null" >
+            link_desc = #{linkDesc,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="mark != null" >
+            #{mark,jdbcType=LONGVARCHAR},
+        </if>
+    </set>
+    where link_id = #{linkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.cms.bean.CmsLink" >
+    update cms_link
+    set position_id = #{positionId,jdbcType=INTEGER},
+      link_url = #{linkUrl,jdbcType=VARCHAR},
+      link_name = #{linkName,jdbcType=VARCHAR},
+      link_name_ext = #{linkNameExt,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      open_flag = #{openFlag,jdbcType=INTEGER},
+      online_flag = #{onlineFlag,jdbcType=FLOAT},
+      mlw_price = #{mlwPrice,jdbcType=DECIMAL},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      sale_num = #{saleNum,jdbcType=INTEGER},
+      com_num = #{comNum,jdbcType=INTEGER},
+      score = #{score,jdbcType=FLOAT},
+      discount = #{discount,jdbcType=VARCHAR},
+      hide_flag = #{hideFlag,jdbcType=INTEGER},
+      page_id = #{pageId,jdbcType=INTEGER},
+      pro_id = #{proId,jdbcType=INTEGER},
+      link_desc = #{linkDesc,jdbcType=LONGVARCHAR},
+      mark = #{mark,jdbcType=LONGVARCHAR}
+    where link_id = #{linkId,jdbcType=INTEGER}
+  </update>
+
+
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.id!=null and entity.id &gt;0">
+                        and link_id=#{entity.id,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.positionId != null" >
+                        and position_id = #{entity.positionId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.linkUrl != null" >
+                        and link_url = #{entity.linkUrl,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.status != null" >
+                        and status = #{entity.status,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.openFlag != null" >
+                        and open_flag = #{entity.openFlag,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.onlineFlag != null" >
+                        and online_flag = #{entity.onlineFlag,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.pageId != null" >
+                        and page_id = #{entity.pageId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.proId != null" >
+                        and pro_id = #{entity.proId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.linkDesc != null" >
+                        and link_desc = #{entity.linkDesc,jdbcType=LONGVARCHAR}
+                    </if>
+
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from cms_link
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity" resultType="java.lang.Integer">
+        select count(*) from cms_link
+        <include refid="selectCondition" />
+    </select>
+
+    <!--根据条件进行更新-->
+    <update id="updateByCondition" >
+        update cms_link
+        <set >
+           <if test="entity!=null">
+               <if test="entity.positionId != null" >
+                   position_id = #{entity.positionId,jdbcType=INTEGER},
+               </if>
+               <if test="entity.linkUrl != null" >
+                   link_url = #{entity.linkUrl,jdbcType=VARCHAR},
+               </if>
+               <if test="entity.linkName != null" >
+                   link_name = #{entity.linkName,jdbcType=VARCHAR},
+               </if>
+               <if test="entity.linkNameExt != null" >
+                   link_name_ext = #{entity.linkNameExt,jdbcType=VARCHAR},
+               </if>
+               <if test="entity.picUrl != null" >
+                   pic_url = #{entity.picUrl,jdbcType=VARCHAR},
+               </if>
+               <if test="entity.beginTime != null" >
+                   begin_time = #{entity.beginTime,jdbcType=TIMESTAMP},
+               </if>
+               <if test="entity.endTime != null" >
+                   end_time = #{entity.endTime,jdbcType=TIMESTAMP},
+               </if>
+               <if test="entity.modifyTime != null" >
+                   modify_time = #{entity.modifyTime,jdbcType=TIMESTAMP},
+               </if>
+               <if test="entity.modifyUser != null" >
+                   modify_user = #{entity.modifyUser,jdbcType=VARCHAR},
+               </if>
+               <if test="entity.status != null" >
+                   status = #{entity.status,jdbcType=INTEGER},
+               </if>
+               <if test="entity.openFlag != null" >
+                   open_flag = #{entity.openFlag,jdbcType=INTEGER},
+               </if>
+               <if test="entity.onlineFlag != null" >
+                   online_flag = #{entity.onlineFlag,jdbcType=INTEGER},
+               </if>
+               <if test="entity.mlwPrice != null" >
+                   mlw_price = #{entity.mlwPrice,jdbcType=DECIMAL},
+               </if>
+               <if test="entity.marketPrice != null" >
+                   market_price = #{entity.marketPrice,jdbcType=DECIMAL},
+               </if>
+               <if test="entity.saleNum != null" >
+                   sale_num = #{entity.saleNum,jdbcType=INTEGER},
+               </if>
+               <if test="entity.comNum != null" >
+                   com_num = #{entity.comNum,jdbcType=INTEGER},
+               </if>
+               <if test="entity.score != null" >
+                   score = #{entity.score,jdbcType=FLOAT},
+               </if>
+               <if test="entity.discount != null" >
+                   discount = #{entity.discount,jdbcType=VARCHAR},
+               </if>
+               <if test="entity.hideFlag != null" >
+                   hide_flag = #{entity.hideFlag,jdbcType=INTEGER},
+               </if>
+               <if test="entity.proId != null" >
+                   pro_id = #{entity.proId,jdbcType=INTEGER},
+               </if>
+               <if test="entity.linkDesc != null" >
+                   link_desc = #{entity.linkDesc,jdbcType=LONGVARCHAR},
+               </if>
+               <if test="entity.mark != null" >
+                   mark = #{entity.mark,jdbcType=LONGVARCHAR},
+               </if>
+           </if>
+        </set>
+        where 1=1
+        <if test="entity != null">
+            <if test="entity.id!=null and entity.id &gt;0">
+                and link_id=#{entity.id,jdbcType=INTEGER}
+            </if>
+            <if test="entity.pageId != null" >
+               and  page_id = #{entity.pageId,jdbcType=INTEGER}
+            </if>
+        </if>
+    </update>
+
+    <!--根据条件进行删除-->
+    <delete id="deleteByCondition" parameterType="java.lang.Integer" >
+    delete from cms_link
+    where 1=0
+        <if test="entity != null">
+            or
+            <trim prefixOverrides="and">
+                <if test="entity.id!=null and entity.id &gt;0">
+                    and link_id=#{entity.id,jdbcType=INTEGER}
+                </if>
+
+                <if test="entity.positionId != null" >
+                    and position_id = #{entity.positionId,jdbcType=INTEGER}
+                </if>
+                <if test="entity.linkUrl != null" >
+                    and link_url = #{entity.linkUrl,jdbcType=VARCHAR}
+                </if>
+                <if test="entity.linkName != null" >
+                    and link_name = #{entity.linkName,jdbcType=VARCHAR}
+                </if>
+                <if test="entity.picUrl != null" >
+                    and pic_url = #{entity.picUrl,jdbcType=VARCHAR}
+                </if>
+                <if test="entity.beginTime != null" >
+                    and  begin_time = #{entity.beginTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="entity.endTime != null" >
+                    and end_time = #{entity.endTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="entity.modifyTime != null" >
+                    and modify_time = #{entity.modifyTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="entity.modifyUser != null" >
+                    and modify_user = #{entity.modifyUser,jdbcType=VARCHAR}
+                </if>
+                <if test="entity.status != null" >
+                    and status = #{entity.status,jdbcType=INTEGER}
+                </if>
+                <if test="entity.openFlag != null" >
+                    and open_flag = #{entity.openFlag,jdbcType=INTEGER}
+                </if>
+                <if test="entity.rollFlag != null" >
+                    and roll_flag = #{entity.rollFlag,jdbcType=INTEGER}
+                </if>
+                <if test="entity.redTitleFlag != null" >
+                    and red_title_flag = #{entity.redTitleFlag,jdbcType=INTEGER}
+                </if>
+                <if test="entity.bigTitleFlag != null" >
+                    and big_title_flag = #{entity.bigTitleFlag,jdbcType=INTEGER}
+                </if>
+                <if test="entity.onlineFlag != null" >
+                    and online_flag = #{entity.onlineFlag,jdbcType=INTEGER}
+                </if>
+                <if test="entity.fixFlag != null" >
+                    and  fix_flag = #{entity.fixFlag,jdbcType=INTEGER}
+                </if>
+                <if test="entity.picAdr != null" >
+                    and pic_adr = #{entity.picAdr,jdbcType=INTEGER}
+                </if>
+                <if test="entity.pageId != null" >
+                    and page_id = #{entity.pageId,jdbcType=INTEGER}
+                </if>
+                <if test="entity.proId != null" >
+                    and pro_id = #{entity.proId,jdbcType=INTEGER}
+                </if>
+            </trim>
+        </if>
+
+  </delete>
+
+  <!--&lt;!&ndash;批量更新&ndash;&gt;
+  <update id="batchUpdateStatus">
+      update cms_link
+      set status=1
+      <trim prefixOverrides="where">
+          where
+          <trim suffixOverrides="or">
+              <foreach collection="list" item="signalItem">
+                  ( lind_id=#{signalItem} and page_id=#{pageId} )  or
+              </foreach>
+          </trim>
+      </trim>
+  </update>-->
+
+</mapper>

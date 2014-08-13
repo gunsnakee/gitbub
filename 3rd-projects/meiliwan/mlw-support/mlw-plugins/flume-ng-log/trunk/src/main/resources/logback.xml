@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration scan="false">
+
+	<!-- appenders -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> -->
+		<rollingPolicy class="com.mlcs.core.log.appender.MlcsRollingPolicy">
+			<fileNamePattern>/tmp/md{yyyy/MM/dd}/mytest_%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>%m</pattern>
+		</encoder>
+	</appender>
+	
+	<!--
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+       <file>/tmp/${year}/${month}/${day}/${hour}/mytest.log</file>
+       <encoder charset="UTF-8">
+        <pattern>%m</pattern>
+       </encoder>
+    </appender>
+	-->
+	
+	<logger name="com.mlcs" level="info" additivity="false">
+            <appender-ref ref="FILE" />
+     </logger>
+     <!-- root logger -->
+     <root level="ERROR">
+         <appender-ref ref="FILE" />
+     </root>
+	
+</configuration>

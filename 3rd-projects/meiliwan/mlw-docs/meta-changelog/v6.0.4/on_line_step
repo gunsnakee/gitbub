@@ -1,0 +1,109 @@
+
+-------------------- 增加一条超时订单处理任务 lzl ----------------------------------
+INSERT INTO mlw_task.`task_job` (`job_id`, `module`, `method`, `create_user`, `cyc_times`, `source`, `STATUS`, `create_time`, `update_time`) VALUES('','bg-omsService@bg-omsIceBoxReplicaGroup','timeOutOrderTaskService/autoCheckTimeOutOrderReceived','梁庄龙','0 30 2  * * ?','超时未签收的历史订单签收处理','1','2014-05-26 19:00:00','2014-05-26 19:00:00');
+INSERT INTO mlw_task.`task_job` (`job_id`, `module`, `method`, `create_user`, `cyc_times`, `source`, `STATUS`, `create_time`, `update_time`) VALUES('','bg-omsService@bg-omsIceBoxReplicaGroup','timeOutOrderTaskService/autoCheckTimeOutOrderAppraise','梁庄龙','0 40 2  * * ?','超时未评价的历史订单评价处理','1','2014-05-26 19:00:00','2014-05-26 19:00:00');
+
+
+---------- lsf sf order -----------------------------
+use mlw_task;
+update task_job set method='orderStatusSyncService/syncOrderStatus' where module = 'task-unionService@task-unionIceBoxReplicaGroup';
+
+------------------CMS插入每日特价模版------
+update cms_page set page_ftl='<!DOCTYPE html>\n<html>\n<head>\n    <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"/>\n    <meta name=\"viewport\" content=\"width=320, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"/>\n    <title>美日特价</title>\n    <link rel=\"stylesheet\" href=\"http://m.meiliwan.com/html5/css/android.css\">\n    <script src=\"http://m.meiliwan.com/js/jquery-1.8.3.min.js\"></script>\n    <script src=\"http://m.meiliwan.com/js/android.js\"></script>\n</head>\n<body>\n<div class=\"container\">\n    <div class=\"keepTime\">\n    <ul class=\"timeUl\" date-countdown=\"#DateCount#\">\n            <li class=\"mr5\">还剩</li>\n            <li><span class=\"hours\">25</span></li>\n            <li><span class=\"split\"></span></li>\n            <li><span class=\"minutes\">25</span></li>\n            <li><span class=\"split\"></span></li>\n            <li><span class=\"seconds\">25</span></li>\n            <li class=\"ml5\">结束</li>\n        </ul>\n    </div>\n    <div class=\"content oh pt10 pl10\">\n\n        <#list list as data>\n              <div class=\"itemBox fl pr10 pb10\">\n            <div class=\"picBox\"><a href=\"#\" onclick=\"javascript:android.getProduct(${data.proId!})\"><img src=\"${data.imgUrl}\" alt=\"\" width=\"100%\"></a></div>\n            <p class=\"pName\"><a pid=\"001\" href=\"#\" onclick=\"javascript:android.getProduct(${data.proId!})\"><#if data.proName?length lt 19>${data.proName}<#else>${data.proName?substring(0,19)}...</#if></a></p>\n            <p class=\"orgPrice\">¥${data.actPrice?string(\'0.00\')}</p>\n            <div><span class=\"currPrice fl\">¥${data.mlwPrice?string(\'0.00\')}</span><a class=\"shoppingCart fr\" href=\"#\" onclick=\"javascript:android.addCart(${data.proId!})\" ></a></div>\n        </div>\n        </#list>\n\n    </div>\n</div>\n</body>\n</html>'
+ where page_name='html5_topic_meiritejia' and id!='';
+
+update   mlw_cms.thematic_model set model_ftl='<!DOCTYPE html> <html> <head>     <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"/>     <meta name=\"viewport\" content=\"width=320, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"/>     <title>${title}</title>     <link rel=\"stylesheet\" href=\"/html5/css/android.css\"> </head> <body> <input type=\"hidden\" value=\"${pageState}\"> <div class=\"container\">     <div class=\"banner\">         <a href=\"\"><img src=\"${html5HeadImg}\" alt=\"\" width=\"100%\"></a>     </div>     <div class=\"content oh pt10 pl10\">         <#if productJsonVoListAll?? >         <#list productJsonVoListAll  as list>             <div class=\"itemBox fl pr10 pb10\">             <input name=\"state\" value=\"${list.state}\" type=\"hidden\">             <input name=\"stock\" value=\"${list.stock}\" type=\"hidden\">             <div class=\"picBox\">             <a href=\"http://www.meiliwan.com/${list.proId}.html\" target=\"_blank\" title=\"${list.proName}\"><img src=\"${list.picUrl}\" alt=\"${list.proName}\" width=\"100%\"></a>             </div>             <p><a href=\"http://www.meiliwan.com/${list.proId}.html\"  title=\"${list.proName}\">\n<#if list.proName?length lt 19>   \n${list.proName}\n<#else> \n     ${list.proName?substring(0,19)}... \n</#if>\n</a></p>             <p class=\"orgPrice\">¥${list.marketPrice?string(\'0.00\')}</p>             <div><span class=\"currPrice fl\">¥${list.mlwPrice?string(\'0.00\')}</span><a class=\"shoppingCart1 fr\" href=\"#\" onclick=\"javascript:android.addCart(\'${list.proId!}\')\"></a></div>         </div>          </#list>         </#if>      </div> </div> </body> </html>'
+where model_name='productAreaHtml5';
+update mlw_cms.thematic_model set model_ftl='<!DOCTYPE html> <html> <head>     <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"/>     <meta name=\"viewport\" content=\"width=320, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"/>     <title>通用活动专题</title>     <link rel=\"stylesheet\" href=\"/html5/css/android.css\"> </head> <body> <input type=\"hidden\" value=\"${pageState}\"> <div class=\"container\">     <div class=\"banner\">         <a href=\"\"><img src=\"${html5HeadImg}\" alt=\"\" width=\"100%\"></a>     </div>     <div class=\"content oh pt10 pl10\">         <#if productJsonVoListAll?? >         <#list productJsonVoListAll  as list>             <div class=\"itemBox fl pr10 pb10\">             <input name=\"state\" value=\"${list.state}\" type=\"hidden\">             <input name=\"stock\" value=\"${list.stock}\" type=\"hidden\">             <div class=\"picBox\">              <a href=\"javascript:void(0);\" target=\"_blank\" onclick=\"javascript:android.getProduct(${list.proId})\"><img src=\"${list.picUrl}\" alt=\"${list.proName}\" width=\"100%\"></a>  </div><p> <a href=\"javascript:void(0);\"  onclick=\"javascript:android.getProduct(${list.proId})\"><#if list.proName?length lt 19>${list.proName}<#else>${list.proName?substring(0,19)}...</#if></a></p> <p class=\"orgPrice\">¥${list.marketPrice?string(\'0.00\')}</p>             <div><span class=\"currPrice fl\">¥${list.mlwPrice?string(\'0.00\')}</span><a class=\"shoppingCart fr\" href=\"javascript:void(0);\" onclick=\"javascript:android.addCart(${list.proId!})\"></a></div>         </div>          </#list>         </#if>      </div> </div> </body> </html>  '
+ where model_name='productAreaAndroid' and model_id!='';  
+ 
+update  mlw_cms.thematic_template set template_ftl='<!DOCTYPE html>\n<html>\n<head>\n    <meta content=\"text/html; charset=utf-8\" http-equiv=\"Content-Type\">\n    <title>美丽湾-${title}</title>\n    <meta content=\"${keyword}\" name=\"keywords\">\n    <meta content=\"${desc}\" name=\"description\">\n    <link href=\"http://www.meiliwan.com/css/com.css\" rel=\"stylesheet\">\n    <link href=\"http://www.meiliwan.com/css/thematic/style.css\" rel=\"stylesheet\">\n    <style type=\"text/css\">\n\n    </style>\n    <script>\n\n    </script>\n</head>\n<body>\n<!--容器 开始-->\n<div class=\"container\">\n<input type=\"hidden\" id=\"pageState\" name=\"pageState\" value=\"${pageState}\">\n<!--头部 开始-->\n${topbar}\n<!--头部 结束-->\n<!--主体 开始-->\n<div class=\"main mlra overflow\" style=\"background:#${pageParam.bgColor} url(${pageParam.headImg}) no-repeat center 0 ;\">\n    <div class=\"mlra overflow w990\">\n    ${areaContent}\n    </div>\n    <div class=\"clear h60\"></div>\n</div>\n<!--主体 结束-->\n<!--尾部 开始-->\n    ${footer}\n<!--尾部 结束-->\n    <div class=\"floatSide\">\n        <#list anchorList as list>\n            <#if list_index == 0>\n                 <img src=\"${list!}\" alt=\"\"><br>\n                <#else>\n                 <a href=\"#${list_index}\"><img src=\"${list!}\" alt=\"\"></a><br>\n            </#if>\n        </#list>\n    </div>\n</div>\n<!--容器 结束-->\n\n<div class=\"pop_tip overflow\" style=\"display:none; z-index:99999;\">\n    <div class=\"pop_tip_title h30 lh28\" style=\"background:#fe642c;\">\n        <!--a href=\"#\" class=\"bold fr fs14 mr10 white\">X</a-->\n        <span class=\"fs14 ml10 white yahei\">温馨提示</span>\n    </div>\n    <div class=\"pop_content bcfff\">\n        <img src=\"http://www.meiliwan.com/images/thematic/img175x135.png\" alt=\"\" class=\"fl ml30 mr25\" height=\"135\" style=\"margin-bottom:45px;margin-top:45px;\" width=\"175\">\n        <p class=\"c333 lh24\" style=\"padding-top:100px;\"><strong class=\"fs14\">这个活动已经结束啦，不过美丽湾还有更多精彩活动哦！</strong></p>\n        <p class=\"lh24\"><a href=\"http://www.meiliwan.com/\" class=\"fc235f9d underline\">如果您的浏览器没有自动跳转，请点击链接</a></p>\n        <div class=\"clear\"></div>\n    </div>\n</div>\n\n<script src=\"http://www.meiliwan.com/js/jquery-1.8.3.min.js?v=5.1.4.2\"></script>\n<script src=\"http://www.meiliwan.com/js/mlw.core.js?v=5.1.4.2\"></script>\n<script src=\"http://www.meiliwan.com/js/com.js?v=5.1.4.2\"></script>\n<script src=\"http://www.meiliwan.com/js/mlw.dialogbox.js?v=6.0.0\"></script>\n<script src=\"http://www.meiliwan.com/js/cart/cart.js?v=6.0.0\"></script>\n<!--[if IE 6]>\n<script src=\"http://www.meiliwan.com/js/DD_belatedPNG_0.0.8a.js\"></script>\n<script>\n    DD_belatedPNG.fix(\'body *\');//图标\n</script>\n<![endif]-->\n<script>\n    $(\".section1 li\").add(\".section2 li\").hover(function(){\n        $(this).addClass(\"hover\");\n    },function(){\n        $(this).removeClass(\"hover\");\n    });\n    /**\n     *加入购物车\n     */\n    $(\"a.btn-addToCart1\").add(\"a.btn-addToCart2\").not(\".disabled\").on(\'click\', function(e) {\n        e.preventDefault();\n        var proId = $(this).attr(\'name\');\n        $.post(\"http://www.meiliwan.com/product/checkStock\", {\n            proId : proId\n        }, function(data) {\n            if (data > 0) {\n                imlw.cart.addCartOpt(\"product\", proId, 1, imlw.cart.addDefaultCallback);\n            } else {\n                $.mlwbox.remind(\'库存不足！\', null, {\n                    title : \'提示\',\n                    bar : true\n                });\n            }\n        }, \"html\");\n        return false;\n    });\n    $(\"a.disabled\").on(\"click\",function(){\n        return false;\n    });\n    $(\".floatSide2\").hide();\n$(\".floatSide\").find(\"a:last\").gotop();\n    /*时间到期后调用弹出框方法*/\nvar PoP=function(){\n    $.pop({\n        bullet: \'.pop_tip\',\n        mask: \'<div class=\"mask\"></div>\'\n    });\n    setTimeout(function(){\n        location.href=\"http://www.meiliwan.com/\";\n    },3000);\n};\nvar end = $(\"#pageState\").val();\nif(end!=1){\n    PoP();\n}\n</script>\n<script>\n    var _bdhmProtocol = ((\"https:\" == document.location.protocol) ? \" https://\" : \" http://\");\n    document.write(unescape(\"%3Cscript src=\'\" + _bdhmProtocol + \"hm.baidu.com/h.js%3F3b8970e87794fecc64ecdf684350400d\' type=\'text/javascript\'%3E%3C/script%3E\"));\n</script>\n</body>\n\n</html>'
+where template_id=3;
+
+
+###############
+三、编译发布程序代码
+###############
+--------------- 6.0.4 --------------------------------------
+注：增加了两个mq节点
+<task-flowshop rabbit-msgtype="topic" flowshop-name="shop7">
+        <desc><![CDATA[]]></desc>
+        <msg-patterns>
+            <msg-pattern>order.order.receivedOrder</msg-pattern>
+        </msg-patterns>
+        <taskworkers>
+            <taskworker classname="com.meiliwan.emall.async.order.OrderReceivedTaskWorker" ord="1"/>
+        </taskworkers>
+    </task-flowshop>
+    
+    <task-flowshop rabbit-msgtype="topic" flowshop-name="shop8">
+        <desc><![CDATA[]]></desc>
+        <msg-patterns>
+            <msg-pattern>order.order.appraiseOrder</msg-pattern>
+        </msg-patterns>
+        <taskworkers>
+            <taskworker classname="com.meiliwan.emall.async.order.OrderAppraiseTaskWorker" ord="1"/>
+        </taskworkers>
+    </task-flowshop>
+
+commons基础包：
+	mlw-commons-cache
+	mlw-commons-utils
+
+根据开发过程中涉及的模块发布：
+	/data/compileAnddeploy/prod_release 下发布service
+		 ./release.sh  mlw-oms
+		 ./release.sh  mlw-pms
+		 ./release.sh  mlw-sp
+		 ./release.sh  mlw-base
+		 ./release.sh  mlw-cms2
+		 ./release.sh  mlw-passport
+		 ./release_mq.sh  ord_service
+		 ./release.sh  bg-oms
+		 ./release.sh  task-union
+
+
+  /data/compileAnddeploy/prod_release 下发布web
+  	 ./release_web.sh mlw-admin-web
+  	 ./release_web.sh mlw-www-web
+  	 ./release_web.sh mlw-cms2-web
+  	 ./release_web.sh mlw-passport-web
+  	 ./release_web.sh mlw-monitor-web
+  	 
+		 
+  	
+  /data/compileAnddeploy/prod_release 下发布静态资源
+		 ./release_res.sh mlw-web-res
+
+
+###############
+四、修改nginx配置
+###############
+无
+
+
+###############
+六、ice服务的回滚：
+###############
+
+
+
+###############
+七、web服务的回滚：
+###############
+
+      
+      
+###############
+八、CMS/静态资源版本号：6.0.4
+###############
+   cms页脚的修改
+
+###############
+九、缓存状态重置： 
+###############
+
+
+
+
+

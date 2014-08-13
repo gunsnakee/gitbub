@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.cms2.dao.CmsPageBlockDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.cms2.bean.CmsPageBlock" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="block_name" property="blockName" jdbcType="VARCHAR" />
+    <result column="cache_code" property="cacheCode" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+    <result column="block_description" property="blockDescription" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="block_edit_type" property="blockEditType" jdbcType="INTEGER" />
+    <result column="page_id" property="pageId" jdbcType="INTEGER" />
+    <result column="role_str" property="roleStr" jdbcType="VARCHAR" />
+    <result column="block_browe_ftl" property="blockBroweFtl" jdbcType="LONGVARCHAR" />
+    <result column="block_edit_ftl" property="blockEditFtl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, block_name, cache_code, admin_id, admin_name, block_description, update_time, 
+    create_time, block_edit_type, page_id, role_str,block_browe_ftl,block_edit_ftl
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_page_block
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_page_block
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.cms2.bean.CmsPageBlock" >
+    insert into cms_page_block (id, block_name, cache_code, 
+      admin_id, admin_name, block_description, 
+      update_time, create_time, block_edit_type, 
+      page_id, role_str, block_browe_ftl,
+      block_edit_ftl)
+    values (#{id,jdbcType=INTEGER}, #{blockName,jdbcType=VARCHAR}, #{cacheCode,jdbcType=INTEGER}, 
+      #{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{blockDescription,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=DATE}, #{createTime,jdbcType=DATE}, #{blockEditType,jdbcType=INTEGER}, 
+      #{pageId,jdbcType=INTEGER}, #{roleStr,jdbcType=VARCHAR}, #{blockBroweFtl,jdbcType=LONGVARCHAR},
+      #{blockEditFtl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.cms2.bean.CmsPageBlock" >
+    insert into cms_page_block
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="blockName != null" >
+        block_name,
+      </if>
+      <if test="cacheCode != null" >
+        cache_code,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="adminName != null" >
+        admin_name,
+      </if>
+      <if test="blockDescription != null" >
+        block_description,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="blockEditType != null" >
+        block_edit_type,
+      </if>
+      <if test="pageId != null" >
+        page_id,
+      </if>
+      <if test="roleStr != null" >
+        role_str,
+      </if>
+      <if test="blockBroweFtl != null" >
+        block_browe_ftl,
+      </if>
+      <if test="blockEditFtl != null" >
+        block_edit_ftl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="blockName != null" >
+        #{blockName,jdbcType=VARCHAR},
+      </if>
+      <if test="cacheCode != null" >
+        #{cacheCode,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="blockDescription != null" >
+        #{blockDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="blockEditType != null" >
+        #{blockEditType,jdbcType=INTEGER},
+      </if>
+      <if test="pageId != null" >
+        #{pageId,jdbcType=INTEGER},
+      </if>
+      <if test="roleStr != null" >
+        #{roleStr,jdbcType=VARCHAR},
+      </if>
+      <if test="blockBroweFtl != null" >
+        #{blockBroweFtl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="blockEditFtl != null" >
+        #{blockEditFtl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.cms2.bean.CmsPageBlock" >
+    update cms_page_block
+    <set >
+      <if test="blockName != null" >
+        block_name = #{blockName,jdbcType=VARCHAR},
+      </if>
+      <if test="cacheCode != null" >
+        cache_code = #{cacheCode,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null" >
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="blockDescription != null" >
+        block_description = #{blockDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="blockEditType != null" >
+        block_edit_type = #{blockEditType,jdbcType=INTEGER},
+      </if>
+      <if test="pageId != null" >
+        page_id = #{pageId,jdbcType=INTEGER},
+      </if>
+      <if test="roleStr != null" >
+        role_str = #{roleStr,jdbcType=VARCHAR},
+      </if>
+      <if test="blockBroweFtl != null" >
+        block_browe_ftl = #{blockBroweFtl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="blockEditFtl != null" >
+        block_edit_ftl = #{blockEditFtl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.cms2.bean.CmsPageBlock" >
+    update cms_page_block
+    set block_name = #{blockName,jdbcType=VARCHAR},
+      cache_code = #{cacheCode,jdbcType=INTEGER},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      admin_name = #{adminName,jdbcType=VARCHAR},
+      block_description = #{blockDescription,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=DATE},
+      block_edit_type = #{blockEditType,jdbcType=INTEGER},
+      page_id = #{pageId,jdbcType=INTEGER},
+      role_str = #{roleStr,jdbcType=VARCHAR},
+      block_browe_ftl = #{blockBroweFtl,jdbcType=LONGVARCHAR},
+      block_edit_ftl = #{blockEditFtl,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                        <if test="entity.blockName != null">
+                            and block_name = #{entity.blockName,jdbcType=VARCHAR}
+                        </if>
+                        <if test="entity.pageId != null">
+                            and page_id = #{entity.pageId,jdbcType=INTEGER}
+                        </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from cms_page_block
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from cms_page_block
+        <include refid="selectCondition" />
+    </select>
+</mapper>

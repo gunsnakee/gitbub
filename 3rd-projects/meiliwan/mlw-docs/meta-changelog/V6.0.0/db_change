@@ -1,0 +1,67 @@
+===============================V6.0.0 db change===========================================
+------------------- zyg -----------------------------------------------------------
+1、增加表
+use mlw_bkstage;
+CREATE TABLE `bks_market_mail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mail` varchar(64) NOT NULL DEFAULT '' COMMENT '邮箱名',
+  `send_times` int(11) NOT NULL DEFAULT '0' COMMENT '发送次数',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mail` (`mail`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+use mlw_order;
+create index ord_transport_IDX on oms_ord_transport(order_id ,logistics_number);
+
+2、数据库相关：pms模块的数据库全部更换整个数据库，由原来的mlw_prod改为mlw_product
+
+3.日志相关
+use mlw_monitor;
+alter table mlw_log add column error_uuid varchar(50);
+alter table monitor_log add column error_uuid varchar(50);
+
+------------------- wzx -----------------------------------------------------------
+ 一品多规的业务数据迁移部分sql 
+--第一部分：
+insert into mlw_product.card select * from mlw_prod.card; 
+insert into mlw_product.card_batch select * from mlw_prod.card_batch; 
+insert into mlw_product.card_import_log select * from mlw_prod.card_import_log; 
+insert into mlw_product.card_import_result select * from mlw_prod.card_import_result; 
+insert into mlw_product.card_opt_log select * from mlw_prod.card_opt_log; 
+insert into mlw_product.pro_brand select * from mlw_prod.pro_brand; 
+insert into mlw_product.pro_brand_category select * from mlw_prod.pro_brand_category; 
+insert into mlw_product.pro_category select * from mlw_prod.pro_category; 
+insert into mlw_product.pro_comment select * from mlw_prod.pro_comment; 
+insert into mlw_product.pro_comment_click select * from mlw_prod.pro_comment_click; 
+insert into mlw_product.pro_comment_dv select * from mlw_prod.pro_comment_dv; 
+insert into mlw_product.pro_consult select * from mlw_prod.pro_consult; 
+insert into mlw_product.pro_enterprise_purchase select * from mlw_prod.pro_enterprise_purchase; 
+insert into mlw_product.pro_place select * from mlw_prod.pro_place; 
+insert into mlw_product.pro_store select * from mlw_prod.pro_store; 
+insert into mlw_product.pro_store_category select * from mlw_prod.pro_store_category; 
+insert into mlw_product.pro_supplier select * from mlw_prod.pro_supplier; 
+insert into mlw_product.pro_stock select * from mlw_prod.pro_stock; 
+insert into mlw_product.pro_stock_log select * from mlw_prod.pro_stock_log; 
+insert into mlw_product.stock_import_log select * from mlw_prod.stock_import_log; 
+insert into mlw_product.stock_import_result select * from mlw_prod.stock_import_result; 
+insert into mlw_product.wish_card select * from mlw_prod.wish_card;
+--第二部分：
+insert into mlw_product.pro_spu select pro_id,pro_name,short_name,adv_name,0,first_category_id,second_category_id,third_category_id,brand_id,supplier_id,place_id,admin_id,property_string,is_cod,1,0,'','',1,create_time,delete_time,update_time from mlw_prod.pro_product;
+INSERT INTO mlw_product.pro_detail SELECT pro_id,summary,descp_menu,descp,sale_tag,search_keyword,seo_title,seo_keyword,seo_descp,factory,editor_rec from mlw_prod.pro_detail;
+INSERT INTO mlw_product.pro_images SELECT p.pro_id,0,0,default_image_uri,image_uris,create_time,update_time FROM mlw_prod.pro_product p,mlw_prod.pro_detail d WHERE p.pro_id = d.pro_id;
+INSERT INTO mlw_product.pro_property SELECT pro_prop_id,parent_id,name,descp,category_id,state,admin_id,sequence,0,property_type,is_required,is_filter,create_time,update_time from mlw_prod.pro_property; 
+INSERT INTO mlw_product.pro_property_value SELECT * from mlw_prod.pro_property_value ;
+INSERT INTO mlw_product.pro_product_property SELECT pro_id,pro_prop_id,value_id,value,0,0,create_time from mlw_prod.pro_product_property ;
+INSERT INTO mlw_product.pro_product SELECT p.pro_id,'',p.pro_id,0,pro_name,short_name,adv_name,bar_code,mlw_price,market_price,
+trade_price,default_image_uri,image_uris,is_falls,falls_image_uri,falls_img_height,'',third_category_id,brand_id,supplier_id,admin_id,is_cod,state,create_time,on_time,off_time,delete_time,nation_time,update_time
+ FROM mlw_prod.pro_product p,mlw_prod.pro_detail d WHERE p.pro_id = d.pro_id; 
+INSERT INTO mlw_product.pro_action SELECT a.pro_id,love,one_score_num,two_score_num,three_score_num,four_score_num,five_score_num,score,real_sale_num,show_sale_num,real_view_num,show_view_num,comment_id,update_time,0,0,0,0
+ FROM mlw_prod.pro_action a,mlw_prod.pro_detail d WHERE a.pro_id = d.pro_id ;
+INSERT INTO mlw_product.price_change_log(pro_id,last_price,now_price,admin_id,admin_name,create_time) SELECT pro_id,mlw_price,mlw_price,admin_id,'',create_time FROM mlw_prod.pro_product ;
+INSERT INTO mlw_product.pro_store_prod SELECT * from mlw_prod.pro_store_prod ;
+INSERT INTO mlw_product.sku_self_property SELECT * FROM mlw_prod.pro_self_property ;
+INSERT INTO mlw_product.pro_location SELECT * FROM mlw_prod.pro_location
+
+
+

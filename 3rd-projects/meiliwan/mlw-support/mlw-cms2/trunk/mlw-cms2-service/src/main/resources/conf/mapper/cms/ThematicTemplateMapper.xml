@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.cms2.dao.ThematicTemplateDao" >
+    <resultMap id="BaseResultMap" type="com.meiliwan.emall.cms2.bean.ThematicTemplate" >
+        <id column="template_id" property="templateId" jdbcType="INTEGER" />
+        <result column="template_name" property="templateName" jdbcType="VARCHAR" />
+        <result column="template_ftl" property="templateFtl" jdbcType="LONGVARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    template_id, template_name, template_ftl
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from thematic_template
+        where template_id = #{templateId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from thematic_template
+    where template_id = #{templateId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.meiliwan.emall.cms2.bean.ThematicTemplate" >
+    insert into thematic_template (template_id, template_name, template_ftl
+      )
+    values (#{templateId,jdbcType=INTEGER}, #{templateName,jdbcType=VARCHAR}, #{templateFtl,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.meiliwan.emall.cms2.bean.ThematicTemplate" >
+        insert into thematic_template
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="templateId != null" >
+                template_id,
+            </if>
+            <if test="templateName != null" >
+                template_name,
+            </if>
+            <if test="templateFtl != null" >
+                template_ftl,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="templateId != null" >
+                #{templateId,jdbcType=INTEGER},
+            </if>
+            <if test="templateName != null" >
+                #{templateName,jdbcType=VARCHAR},
+            </if>
+            <if test="templateFtl != null" >
+                #{templateFtl,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.cms2.bean.ThematicTemplate" >
+        update thematic_template
+        <set >
+            <if test="templateName != null" >
+                template_name = #{templateName,jdbcType=VARCHAR},
+            </if>
+            <if test="templateFtl != null" >
+                template_ftl = #{templateFtl,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where template_id = #{templateId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.cms2.bean.ThematicTemplate" >
+    update thematic_template
+    set template_name = #{templateName,jdbcType=VARCHAR},
+     template_ftl = #{templateFtl,jdbcType=LONGVARCHAR}
+    where template_id = #{templateId,jdbcType=INTEGER}
+  </update>
+
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.templateId != null and entity.templateId &gt;0">
+                        and template_id = #{entity.templateId,jdbcType=INTEGER}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from thematic_template
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity" resultType="java.lang.Integer">
+        select count(*) from thematic_template
+        <include refid="selectCondition" />
+    </select>
+</mapper>

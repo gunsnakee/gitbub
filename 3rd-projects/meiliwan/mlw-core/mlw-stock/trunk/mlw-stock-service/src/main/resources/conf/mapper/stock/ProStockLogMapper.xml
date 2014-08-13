@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.stock.dao.ProStockLogDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.stock.bean.ProStockLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pro_id" property="proId" jdbcType="INTEGER" />
+    <result column="stock_value" property="stockValue" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="TINYINT" />
+    <result column="opt_type" property="optType" jdbcType="CHAR" />
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+      <result column="order_item_id" property="orderItemId" jdbcType="VARCHAR" />
+      <result column="front_stock" property="frontStock" jdbcType="INTEGER" />
+      <result column="now_stock" property="nowStock" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pro_id, stock_value, flag,opt_type,batch_no user_id, admin_id, order_id, order_item_id, front_stock, now_stock, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pro_stock_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pro_stock_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.stock.bean.ProStockLog" useGeneratedKeys="true" keyProperty="id">
+    insert into pro_stock_log (id, pro_id, stock_value, 
+      flag, opt_type, batch_no, user_id, admin_id,
+      create_time, order_id, order_item_id, front_stock, now_stock)
+    values (#{id,jdbcType=INTEGER}, #{proId,jdbcType=INTEGER}, #{stockValue,jdbcType=INTEGER}, 
+      #{flag,jdbcType=TINYINT}, #{optType,jdbcType=CHAR}, #{batchNo,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP}, #{orderId,jdbcType=VARCHAR}, #{orderItemId,jdbcType=VARCHAR}, #{frontStock,jdbcType=INTEGER}, #{nowStock,jdbcType=INTEGER},)
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.stock.bean.ProStockLog" useGeneratedKeys="true" keyProperty="id">
+    insert into pro_stock_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="proId != null" >
+        pro_id,
+      </if>
+      <if test="stockValue != null" >
+        stock_value,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+        <if test="optType != null" >
+            opt_type,
+        </if>
+        <if test="batchNo != null" >
+            batch_no,
+        </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+        <if test="orderId != null" >
+            order_id,
+        </if>
+        <if test="orderItemId != null" >
+            order_item_id,
+        </if>
+        <if test="frontStock != null" >
+            front_stock,
+        </if>
+        <if test="nowStock != null" >
+            now_stock,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null" >
+        #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="stockValue != null" >
+        #{stockValue,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=TINYINT},
+      </if>
+        <if test="optType != null" >
+            #{optType,jdbcType=CHAR},
+        </if>
+        <if test="batchNo != null" >
+            #{batchNo,jdbcType=VARCHAR},
+        </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+        <if test="orderId != null" >
+            #{orderId,jdbcType=VARCHAR},
+        </if>
+        <if test="orderItemId != null" >
+            #{orderItemId,jdbcType=VARCHAR},
+        </if>
+        <if test="frontStock != null" >
+            #{frontStock,jdbcType=INTEGER},
+        </if>
+        <if test="nowStock != null" >
+            #{nowStock,jdbcType=INTEGER},
+        </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.stock.bean.ProStockLog" >
+    update pro_stock_log
+    <set >
+      <if test="proId != null" >
+        pro_id = #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="stockValue != null" >
+        stock_value = #{stockValue,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=TINYINT},
+      </if>
+        <if test="optType != null" >
+            opt_type = #{optType,jdbcType=CHAR},
+        </if>
+        <if test="batchNo != null" >
+            batch_no = #{batchNo,jdbcType=VARCHAR},
+        </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+        <if test="orderId != null" >
+            order_id = #{orderId,jdbcType=VARCHAR},
+        </if>
+        <if test="orderItemId != null" >
+            order_item_id = #{orderItemId,jdbcType=VARCHAR},
+        </if>
+        <if test="frontStock != null" >
+            front_stock = #{frontStock,jdbcType=INTEGER},
+        </if>
+        <if test="nowStock != null" >
+            now_stock = #{nowStock,jdbcType=INTEGER},
+        </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.stock.bean.ProStockLog" >
+    update pro_stock_log
+    set pro_id = #{proId,jdbcType=INTEGER},
+      stock_value = #{stockValue,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=TINYINT},
+      opt_type = #{optType,jdbcType=CHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      order_item_id = #{orderItemId,jdbcType=VARCHAR},
+      front_stock = #{frontStock,jdbcType=INTEGER},
+      now_stock = #{nowStock,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.proId!=null and entity.proId &gt;0">
+                        and pro_id=#{entity.proId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.userId!=null and entity.userId &gt;0">
+                        and user_id=#{entity.userId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.adminId!=null and entity.adminId &gt;0">
+                        and admin_id=#{entity.adminId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.batchNo!=null and entity.batchNo &gt;0">
+                        and batch_no=#{entity.batchNo,jdbcType=INTEGER}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pro_stock_log
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from pro_stock_log
+        <include refid="selectCondition"/>
+    </select>
+
+    <insert id="addStockLogOnBatch" parameterType="java.util.List">
+       insert into pro_stock_log (pro_id, stock_value,flag, opt_type, batch_no, user_id, admin_id,create_time,order_id,order_item_id,front_stock,now_stock)
+       values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.proId},#{item.stockValue},#{item.flag},#{item.optType},#{item.batchNo},#{item.userId},#{item.adminId},#{item.createTime},#{item.orderId},#{item.orderItemId},#{item.frontStock},#{item.nowStock})
+        </foreach>
+    </insert>
+
+</mapper>

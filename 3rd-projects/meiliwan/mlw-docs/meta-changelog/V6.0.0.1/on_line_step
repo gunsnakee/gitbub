@@ -1,0 +1,122 @@
+############################################################ 6.0.0.1 泰国泼水节活动 ############################################################
+###############
+一、更新数据库
+###############
+CREATE TABLE `lottery_setting` (
+  `id` int(11) NOT NULL ,
+  `lottery_name` varchar(100) NOT NULL DEFAULT '' COMMENT '奖项',
+  `lottery_product` varchar(500) DEFAULT '' COMMENT '奖品',
+  `total` int(11) NOT NULL DEFAULT '0' COMMENT '数量',
+  `possibility` int(11) NOT NULL DEFAULT '0' COMMENT '可能的数量',
+    `type` tinyint(1) NOT NULL DEFAULT 1 COMMENT '奖项类型1中奖，0未中奖',
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;INSERT INTO `lottery_setting` VALUES ('2', '二等奖', '299元美丽大礼包', '13', '1240', '1', '2014-03-27 10:34:18'), ('3', '三等奖', '199元美丽大礼包', '33', '3140', '1', '2014-03-27 10:35:36'), ('4', '四等奖', '99元美丽大礼包', '80', '1200', '1', '2014-03-27 10:36:32'), ('5', '五等奖', '20元购物金', '200', '19000', '1', '2014-03-27 10:37:02'), ('6', '六等奖', '5元购物金', '10000', '952000', '1', '2014-03-27 10:37:46'), ('7', '七等奖', '再抽一次', '-1', '74267565', '1', '2014-03-27 10:38:58'), ('8', '未中奖', '未中奖', '-1', '24755855', '0', '2014-03-27 10:39:22');CREATE TABLE `lottery_address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `uid` int(11) NOT NULL DEFAULT '0' COMMENT '用户id',
+  `name` varchar(32) NOT NULL DEFAULT '00' COMMENT '姓名',
+  `phone` varchar(32) DEFAULT '00' COMMENT '电话',
+  `province` varchar(32) NOT NULL DEFAULT '0' COMMENT '省',
+  `province_code` varchar(32) NOT NULL DEFAULT '0' COMMENT '省',
+  `city` varchar(32) NOT NULL DEFAULT '0' COMMENT '市',
+  `city_code` varchar(32) NOT NULL DEFAULT '0' COMMENT '市',
+  `town` varchar(64) DEFAULT NULL COMMENT '县',
+  `town_code` varchar(64) DEFAULT NULL COMMENT '县',
+  `address` varchar(500) DEFAULT NULL COMMENT '详细地址',
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `lottery_result_uid` (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE `lottery_result` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `uid` int(11) NOT NULL DEFAULT '0' COMMENT '用户id',
+  `user_name` varchar(50) NOT NULL DEFAULT '' COMMENT '用户名',
+  `lottery_name` varchar(100) NOT NULL DEFAULT '' COMMENT '奖项',
+  `lottery_product` varchar(500) NOT NULL DEFAULT '' COMMENT '奖项',
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `lottery_result_uid` (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+###############
+二、更新zookeeper
+###############
+zk下commons/system.properties
+zk上的参数设置值为下面的值
+act.lottery.startTime=2014-04-10 00:00:00
+act.lottery.endTime=2014-04-30 23:59:59
+2014.watersplashing.time1=2014-04-2 23:59:00
+2014.watersplashing.time2=2014-04-2 23:59:00
+2014.watersplashing.time3=2014-04-2 23:59:00
+2014.watersplashing.time4=2014-04-2 23:59:00
+2014.watersplashing.time5=2014-04-2 23:59:00
+2014.watersplashing.sale1=2014-04-10 00:00:00 
+2014.watersplashing.sale2=2014-04-14 00:00:00 
+2014.watersplashing.sale3=2014-04-18 00:00:00 
+2014.watersplashing.sale4=2014-04-22 00:00:00 
+2014.watersplashing.sale5=2014-04-26 00:00:00 
+2014.watersplashing.sale6=2014-04-30 23:59:59
+
+
+###############
+三、编译发布程序代码
+###############
+
+根据开发过程中涉及的模块发布：
+	/data/compileAnddeploy/prod_release 下发布service
+		 ?
+		 
+		 
+		 
+  	
+ /data/compileAnddeploy/prod_release 下发布web
+		 ?
+		 
+  	
+  /data/compileAnddeploy/prod_release 下发布静态资源
+     ?
+
+
+
+###############
+四、修改nginx配置
+###############
+无
+
+
+###############
+五、使用线上后台管理员账户到后台添加菜单和功能项
+###############
+在"促销"下添加如下菜单
+抽奖设置     (id:10340,/sp/lottery/setting,navTab)(排序:0)(菜单)(权限Key:896ea348942b59beef188e91f45987ea)
+抽奖添加     (id:10341,/sp/lottery/addView,navTab)(排序:0)(功能)(权限Key:c01b2ca592bd125c53a2b5839dc808fa)
+抽奖添加ajax     (id:10342,/sp/lottery/add)(排序:0)(功能)(权限Key:1ae0b00e95399a276f1665eb0d39b7bc)
+抽奖结果 (id:10343,/sp/lottery/result,navTab)(排序:0)(菜单)(权限Key:2bd5ff2a96efa0cc805a2c77c5b7d5d8)
+查看收货地址     (id:10344,/sp/lottery/getAddress,navTab)(排序:0)(功能)(权限Key:a10b527c0d398530aeb87246bf49e430)
+
+
+###############
+六、ice服务的回滚：
+###############
+
+
+
+###############
+七、web服务的回滚：
+###############
+
+      
+      
+###############
+八、CMS/静态资源版本号：6.0.0
+###############
+   
+
+###############
+九、缓存状态重置： 
+###############
+
+
+线上的皮要确认；
+
+

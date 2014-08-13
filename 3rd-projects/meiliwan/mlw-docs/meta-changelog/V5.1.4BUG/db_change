@@ -1,0 +1,106 @@
+===============================V5.1.4 BUG db change===========================================
+
+######day 2013.11.29 zixin.wu ################
+--这是库存导入日志表结构，属于5.1.4的需求，建表语句如下：
+CREATE TABLE `stock_import_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', 
+  `batch_no` VARCHAR(64) NOT NULL DEFAULT '0000' COMMENT '导入商品库存批次号',
+  `bar_code` VARCHAR(32) NOT NULL DEFAULT '00000000' COMMENT '商品条形码',
+  `state` tinyint(2) NOT NULL DEFAULT '0' COMMENT '导入结果状态 1表示导入成功 0表示库存不足 -1表示不存在对应的商品',
+  `original_stock` int(8) NOT NULL DEFAULT '0' COMMENT '商品原有库存', 
+  `change_stock` int(8) NOT NULL DEFAULT '0' COMMENT '商品改变的库存', 
+  `now_stock` int(8) NOT NULL DEFAULT '0' COMMENT '商品现有库存', 
+  `descp` VARCHAR(128)  DEFAULT 'null' COMMENT '操作结果描述',
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE `stock_import_result` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', 
+  `batch_no` VARCHAR(64) NOT NULL DEFAULT '0000' COMMENT '导入商品库存批次号',
+  `admin_id` int(11) NOT NULL DEFAULT '0' COMMENT '管理员ID',
+  `admin_name` VARCHAR(64) DEFAULT '0000' COMMENT '管理员名称',
+  `file_name` VARCHAR(64) DEFAULT '0000' COMMENT '导入库存文件名',
+  `state` tinyint(2) NOT NULL DEFAULT '0' COMMENT '导入结果总状态',
+  `total_num` int(8) NOT NULL DEFAULT '0' COMMENT '导入商品数量',
+  `stock_short_num` int(8) NOT NULL DEFAULT '0' COMMENT '库存不足数量',
+  `mismatch_num` int(8) NOT NULL DEFAULT '0' COMMENT '不匹配商品数量',
+  `descp` VARCHAR(128)  DEFAULT 'null' COMMENT '操作结果描述',
+  `import_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '导入时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE stock_import_result add error_num int(8)  DEFAULT 0 COMMENT '导入失败数量';
+
+alter table stock_import_log CHANGE original_stock original_stock int(8) default 0 comment '商品原始库存';
+alter table stock_import_log CHANGE change_stock change_stock int(8) default 0 comment '商品现有库存';
+
+
+######day 2013.12.06 wenle.peng ################
+1. mlw_base 数据库新增一个表 base_help_pages，198开发环境已经处理了，其他环境未处理，代码如下：
+CREATE TABLE `mlw_base`.`base_help_pages` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `page_name` varchar(255) NOT NULL COMMENT '帮助中心页面名称',
+        `short_url` varchar(255) NOT NULL COMMENT '帮助中心英文名字，用于构建url',
+        `content` text DEFAULT NULL COMMENT '帮助中心具体内容',
+        `admin_id` int(11) NOT NULL,
+        `update_time` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+        PRIMARY KEY (`id`)
+) ENGINE=`InnoDB` AUTO_INCREMENT=5 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ROW_FORMAT=COMPACT CHECKSUM=0 DELAY_KEY_WRITE=0;
+
+
+######day 2013.12.10 shangfeng.liu ################
+1、--5.1.4版本已经将生产sequence的服务转移到了base中，需执行如下sql语句，请记录！
+delimiter $$
+CREATE DEFINER=`root`@`localhost` FUNCTION  `currval`(name VARCHAR(50)) RETURNS bigint(20)
+    DETERMINISTIC
+BEGIN 
+         DECLARE value LONG;          SET value = 0; 
+         SELECT seq_id INTO value FROM sequence WHERE seq_name=name;          RETURN value; 
+END $$
+
+
+CREATE DEFINER=`root`@`localhost` FUNCTION  `nextval`(name VARCHAR(50)) RETURNS bigint(20)
+    DETERMINISTIC
+BEGIN 
+UPDATE sequence SET seq_id=seq_id+1 WHERE seq_name=name;
+RETURN currval(name);
+END $$
+
+delimiter ;
+
+CREATE TABLE  `sequence` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `seq_id` bigint(20) unsigned NOT NULL,
+  `seq_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=innodb AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+2、另外还需将mlw_pay数据库中的sequence数据插入到mlw_base库中的sequence表中
+
+3.另外，在这次上线成功之后，再在mlw_pay这个数据库中执行如下语句：
+  use mlw_pay;
+  drop table  sequence;
+  drop function nextval;
+  drop function currval;
+
+
+
+######day 2013.12.11 wenle.peng ################
+//测试环境已处理
+1.cms 表数据增加
+//site_id 要换成线上的bkstage 数据库中 menu 表中对应菜单的 menuId
+insert into `mlw_cms_pro`.`cms_site` ( `domain`, `site_id`, `path`, `create_user`, `create_time`, `site_name`, `detail`, `modify_time`) values ( 'www.meiliwan.comm', '10302', '/data/www/res.meiliwan.com/pub/', 'wenle.peng', '2013-12-09 13:33:42', 'hc_model_add', '帮助中心管理模块页面增加子菜单 ', '2013-12-09 13:33:55');
+insert into `mlw_cms_pro`.`cms_site` ( `domain`, `site_id`, `path`, `create_user`, `create_time`, `site_name`, `detail`, `modify_time`) values ( 'www.meiliwan.comm', '10233', '/data/www/res.meiliwan.com/pub/', 'wenle.peng', '2013-12-09 13:33:42', 'hc_model_list', '帮助中心管理模块页面列表 ', '2013-12-09 13:33:55');
+insert into `mlw_cms_pro`.`cms_site` ( `domain`, `site_id`, `path`, `create_user`, `create_time`, `site_name`, `detail`, `modify_time`) values ( 'www.meiliwan.comm', '10235', '/data/www/res.meiliwan.com/pub/', 'wenle.peng', '2013-12-09 13:33:42', 'hc_menu', '帮助中心菜单编辑 ', '2013-12-09 13:33:55');
+
+//测试环境已经处理
+2.图片多域名更改（表中url,十个店铺首页，发布）
+3. 先备份cms_link 表数据
+4. update cms_link set pic_url = REPLACE(pic_url, 'http://www.meiliwan.com/images/', 'http://img.meiliwan.com/images/') where pic_url like 'http://www.meiliwan.com/images/%'
+
+//测试环境已处理
+5.帮助中心数据准备(上线前先清除测试数据，从测试环境把 base 库的 base_help_pages 的的数据导入到线上环境) 
+
+

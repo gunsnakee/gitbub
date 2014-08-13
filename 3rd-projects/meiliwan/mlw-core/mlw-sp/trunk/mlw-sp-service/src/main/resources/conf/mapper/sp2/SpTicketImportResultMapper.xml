@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.sp2.dao.SpTicketImportResultDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.sp2.bean.SpTicketImportResult" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="batch_id" property="batchId" jdbcType="INTEGER" />
+      <result column="opt_type" property="optType" jdbcType="TINYINT" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+    <result column="total_num" property="totalNum" jdbcType="INTEGER" />
+    <result column="suc_num" property="sucNum" jdbcType="INTEGER" />
+    <result column="dismatch_nun" property="dismatchNun" jdbcType="INTEGER" />
+    <result column="descp" property="descp" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, file_name, batch_id, opt_type, admin_id, admin_name, total_num, suc_num, dismatch_nun, descp,
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sp_ticket_import_result
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sp_ticket_import_result
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.sp2.bean.SpTicketImportResult" >
+    insert into sp_ticket_import_result (id, file_name, batch_id,opt_type,
+      admin_id, admin_name, total_num, 
+      suc_num, dismatch_nun, descp, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{batchId,jdbcType=INTEGER}, #{optType,jdbcType=INTEGER},
+      #{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{totalNum,jdbcType=INTEGER}, 
+      #{sucNum,jdbcType=INTEGER}, #{dismatchNun,jdbcType=INTEGER}, #{descp,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.sp2.bean.SpTicketImportResult" >
+    insert into sp_ticket_import_result
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+      <if test="batchId != null" >
+        batch_id,
+      </if>
+        <if test="optType != null" >
+            opt_type,
+        </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="adminName != null" >
+        admin_name,
+      </if>
+      <if test="totalNum != null" >
+        total_num,
+      </if>
+      <if test="sucNum != null" >
+        suc_num,
+      </if>
+      <if test="dismatchNun != null" >
+        dismatch_nun,
+      </if>
+      <if test="descp != null" >
+        descp,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null" >
+        #{batchId,jdbcType=INTEGER},
+      </if>
+        <if test="optType != null" >
+            #{optType,jdbcType=INTEGER},
+        </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="sucNum != null" >
+        #{sucNum,jdbcType=INTEGER},
+      </if>
+      <if test="dismatchNun != null" >
+        #{dismatchNun,jdbcType=INTEGER},
+      </if>
+      <if test="descp != null" >
+        #{descp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.sp2.bean.SpTicketImportResult" >
+    update sp_ticket_import_result
+    <set >
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null" >
+        batch_id = #{batchId,jdbcType=INTEGER},
+      </if>
+        <if test="optType != null" >
+            opt_type = #{optType,jdbcType=INTEGER},
+        </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null" >
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null" >
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="sucNum != null" >
+        suc_num = #{sucNum,jdbcType=INTEGER},
+      </if>
+      <if test="dismatchNun != null" >
+        dismatch_nun = #{dismatchNun,jdbcType=INTEGER},
+      </if>
+      <if test="descp != null" >
+        descp = #{descp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.sp2.bean.SpTicketImportResult" >
+    update sp_ticket_import_result
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      batch_id = #{batchId,jdbcType=INTEGER},
+      opt_type = #{optType,jdbcType=INTEGER},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      admin_name = #{adminName,jdbcType=VARCHAR},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      suc_num = #{sucNum,jdbcType=INTEGER},
+      dismatch_nun = #{dismatchNun,jdbcType=INTEGER},
+      descp = #{descp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.batchId!=null">
+                        and batch_id=#{entity.batchId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.fileName!=null">
+                        and file_name=#{entity.fileName,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.optType!=null">
+                        and opt_type=#{entity.optType,jdbcType=INTEGER}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sp_ticket_import_result
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from sp_ticket_import_result
+        <include refid="selectCondition"/>
+    </select>
+
+    <select id="getListImportResultByFileName" resultMap="BaseResultMap">
+        select * from sp_ticket_import_result
+        where file_name = #{fileName,jdbcType=VARCHAR}
+    </select>
+</mapper>

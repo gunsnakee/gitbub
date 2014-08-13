@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.account.dao.WalletCheckLogsDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.account.bean.WalletCheckLogs" >
+    <id column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="check_status" property="checkStatus" jdbcType="INTEGER" />
+    <result column="check_info" property="checkInfo" jdbcType="VARCHAR" />
+    <result column="end_mlw_coin" property="endMlwCoin" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uid, update_time, start_time, end_time, check_status, check_info, end_mlw_coin
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wallet_check_logs
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wallet_check_logs
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.account.bean.WalletCheckLogs" >
+    insert into wallet_check_logs (uid, update_time, start_time, 
+      end_time, check_status, check_info, 
+      end_mlw_coin)
+    values (#{uid,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{checkStatus,jdbcType=INTEGER}, #{checkInfo,jdbcType=VARCHAR}, 
+      #{endMlwCoin,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.account.bean.WalletCheckLogs" >
+    insert into wallet_check_logs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="checkStatus != null" >
+        check_status,
+      </if>
+      <if test="checkInfo != null" >
+        check_info,
+      </if>
+      <if test="endMlwCoin != null" >
+        end_mlw_coin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=INTEGER},
+      </if>
+      <if test="checkInfo != null" >
+        #{checkInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="endMlwCoin != null" >
+        #{endMlwCoin,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.account.bean.WalletCheckLogs" >
+    update wallet_check_logs
+    <set >
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkStatus != null" >
+        check_status = #{checkStatus,jdbcType=INTEGER},
+      </if>
+      <if test="checkInfo != null" >
+        check_info = #{checkInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="endMlwCoin != null" >
+        end_mlw_coin = #{endMlwCoin,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.account.bean.WalletCheckLogs" >
+    update wallet_check_logs
+    set update_time = #{updateTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      check_status = #{checkStatus,jdbcType=INTEGER},
+      check_info = #{checkInfo,jdbcType=VARCHAR},
+      end_mlw_coin = #{endMlwCoin,jdbcType=DECIMAL}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+
+
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.uid != null" >
+                        and   uid=#{entity.uid,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.checkStatus != null" >
+                        and   check_status=#{entity.checkStatus,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.endMlwCoin != null" >
+                        and   end_mlw_coin= #{entity.endMlwCoin,jdbcType=DECIMAL}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from wallet_check_logs
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from wallet_check_logs
+        <include refid="selectCondition" />
+    </select>
+
+</mapper>

@@ -1,0 +1,95 @@
+###### shangfeng.liu #####################
+前奏：将线上图片进行一次统一压缩
+
+###############
+一、更新数据库
+###############
+###### day 2013.12.20 zixin.wu ###################
+UPDATE pro_product set falls_image_uri = left(falls_image_uri,LOCATE('.jpg',falls_image_uri)+3)
+注意：更新完数据库后，记得刷新搜索索引
+
+###### day 2013.12.27 guangde.tang ###################
+--订单收货地址表字段更改。。。
+ALTER TABLE `mlw_order`.`oms_ord_addr` CHANGE COLUMN `phone` `phone` varchar(32) DEFAULT NULL;
+
+###### day 2013.12.27 yiyou.luo ###################
+--收货地址表电话号码字符长度变动，sql如下：
+ALTER TABLE `user_recv_addr`
+MODIFY COLUMN `phone`  varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '电话' AFTER `mobile`;
+
+###############
+二、更新zookeeper
+###############
+无
+
+
+###############
+三、编译发布程序代码
+###############
+1.不再进行新代码的编译，直接使用root用户在198服务器上发布，以下是根据jira上涉及的模块发布(大家开会对照的时候都考虑一下对应自己的变更是否已有)
+  /data/compileAnddeploy/prod_release 下发布service
+  	 ./release.sh mlw-base
+  	 ./release.sh mlw-cms
+		 ./release.sh mlw-oms
+		 ./release.sh mlw-passport
+		 ./release.sh mlw-pms
+		 ./release.sh mlw-wallet
+		 
+		 ./release_mq.sh img_service
+  	
+  	
+ /data/compileAnddeploy/prod_release 下发布web
+		 ./release_web.sh mlw-cms-web
+		 ./release_web.sh mlw-gateway-web
+		 ./release_web.sh mlw-imagecode-web
+		 ./release_web.sh mlw-passport-web
+		 ./release_web.sh mlw-wallet-web
+		 ./release_web.sh mlw-admin-web
+     ./release_web.sh mlw-www-web
+		 
+  	
+  /data/compileAnddeploy/prod_release 下发布静态资源
+     ./release_res.sh mlw-web-res
+
+
+###############
+四、修改nginx配置
+###############
+###### day 2013.12.20 shangfeng.liu #######################
+1.在www.meiliwan.com.conf配置文件中添加如下配置：
+       location /act/ {
+          root /data/www/res.meiliwan.com;
+          expires 10d;
+       }
+
+并将200服务器上的 /data/www/res.meiliwan.com/act 目录拷贝到线上的4台前端服务器
+ 
+
+###############
+五、使用线上后台管理员账户到后台添加菜单和功能项
+###############
+无
+
+
+###############
+六、ice服务的回滚：
+###############
+  
+
+
+###############
+七、web服务的回滚：
+###############
+
+      
+      
+###############
+八、CMS/静态资源版本号：
+###############
+   
+
+###############
+九、缓存状态重置：
+###############
+	
+十， 重建索引;

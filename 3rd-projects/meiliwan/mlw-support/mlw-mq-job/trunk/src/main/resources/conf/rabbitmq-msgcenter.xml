@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<msgtaskcenter-config belonged-model="async-msg">
+     <!-- 任务车间，对一组消息定义一组处理策略 -->
+     <task-flowshop rabbit-msgtype="topic" flowshop-name="shop6">
+		      <desc><![CDATA[]]></desc>
+		      <msg-patterns>
+		      			<msg-pattern>watchlog.watchlog.logService</msg-pattern>
+		      </msg-patterns>
+		      <taskworkers>
+			         <taskworker classname="com.meiliwan.emall.log.msgrcv.WatchLogTaskWorker" ord="1"/>
+		      </taskworkers>
+    </task-flowshop>
+
+
+    <task-flowshop rabbit-msgtype="topic" flowshop-name="shop2">
+		      <desc><![CDATA[]]></desc>
+		      <msg-patterns>
+		      			<msg-pattern>#.asyncmsg</msg-pattern>
+		      </msg-patterns>
+		      <taskworkers>
+			         <taskworker classname="com.meiliwan.emall.asyncmsg.msgrcv.MsgAsyncmsgDurableTaskWorker" ord="1"/>
+		      </taskworkers>
+    </task-flowshop>
+
+     <task-flowshop rabbit-msgtype="topic" flowshop-name="shop3">
+		      <desc><![CDATA[]]></desc>
+		      <msg-patterns>
+		      			<msg-pattern>uploadimage.uploadimage.fileHandler</msg-pattern>
+		      </msg-patterns>
+		      <taskworkers>
+			         <taskworker classname="com.meiliwan.emall.image.ImageMsgTaskWorker" ord="1"/>
+		      </taskworkers>
+    </task-flowshop>
+
+    <task-flowshop rabbit-msgtype="topic" flowshop-name="shop4">
+        <desc><![CDATA[]]></desc>
+        <msg-patterns>
+            <msg-pattern>order.order.cancelOrder</msg-pattern>
+        </msg-patterns>
+        <taskworkers>
+            <taskworker classname="com.meiliwan.emall.async.order.OrderCancelTaskWorker" ord="1"/>
+        </taskworkers>
+    </task-flowshop>
+
+    <task-flowshop rabbit-msgtype="topic" flowshop-name="shop5">
+        <desc><![CDATA[]]></desc>
+        <msg-patterns>
+            <msg-pattern>order.order.cancelRetOrder</msg-pattern>
+        </msg-patterns>
+        <taskworkers>
+            <taskworker classname="com.meiliwan.emall.async.order.RetOrderCancelTaskWorker" ord="1"/>
+        </taskworkers>
+    </task-flowshop>
+
+    <!--<task-flowshop rabbit-msgtype="topic" flowshop-name="shop7">-->
+        <!--<msg-patterns>-->
+            <!--<msg-pattern>union_order_msg.union_order_msg.unionMsg</msg-pattern>-->
+        <!--</msg-patterns>-->
+        <!--<taskworkers>-->
+            <!--<taskworker classname="com.meiliwan.emall.cps.CpsMsgTaskWorker" ord="1"/>-->
+        <!--</taskworkers>-->
+    <!--</task-flowshop>-->
+    
+    <task-flowshop rabbit-msgtype="topic" flowshop-name="shop7">
+        <desc><![CDATA[]]></desc>
+        <msg-patterns>
+            <msg-pattern>order.order.receivedOrder</msg-pattern>
+        </msg-patterns>
+        <taskworkers>
+            <taskworker classname="com.meiliwan.emall.async.order.OrderReceivedTaskWorker" ord="1"/>
+        </taskworkers>
+    </task-flowshop>
+    
+    <task-flowshop rabbit-msgtype="topic" flowshop-name="shop8">
+        <desc><![CDATA[]]></desc>
+        <msg-patterns>
+            <msg-pattern>order.order.appraiseOrder</msg-pattern>
+        </msg-patterns>
+        <taskworkers>
+            <taskworker classname="com.meiliwan.emall.async.order.OrderAppraiseTaskWorker" ord="1"/>
+        </taskworkers>
+    </task-flowshop>
+
+
+</msgtaskcenter-config>

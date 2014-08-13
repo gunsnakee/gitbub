@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.cms.dao.CmsPositionDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.cms.bean.CmsPosition" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="position_id" property="positionId" jdbcType="INTEGER" />
+    <result column="position_name" property="positionName" jdbcType="VARCHAR" />
+    <result column="block_id" property="blockId" jdbcType="INTEGER" />
+    <result column="position_type" property="positionType" jdbcType="CHAR" />
+    <result column="carouse_flag" property="carouseFlag" jdbcType="INTEGER" />
+    <result column="page_id" property="pageId" jdbcType="INTEGER" />
+    <result column="pro_id" property="proId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, position_id, position_name, block_id, position_type, carouse_flag, page_id, pro_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_position
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_position
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.cms.bean.CmsPosition" >
+    insert into cms_position (id, position_id, position_name, 
+      block_id, position_type, carouse_flag, 
+      page_id, pro_id)
+    values (#{id,jdbcType=INTEGER}, #{positionId,jdbcType=INTEGER}, #{positionName,jdbcType=VARCHAR}, 
+      #{blockId,jdbcType=INTEGER}, #{positionType,jdbcType=CHAR}, #{carouseFlag,jdbcType=INTEGER}, 
+      #{pageId,jdbcType=INTEGER}, #{proId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.cms.bean.CmsPosition" >
+    insert into cms_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="positionId != null" >
+        position_id,
+      </if>
+      <if test="positionName != null" >
+        position_name,
+      </if>
+      <if test="blockId != null" >
+        block_id,
+      </if>
+      <if test="positionType != null" >
+        position_type,
+      </if>
+      <if test="carouseFlag != null" >
+        carouse_flag,
+      </if>
+      <if test="pageId != null" >
+        page_id,
+      </if>
+      <if test="proId != null" >
+        pro_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="positionId != null" >
+        #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="positionName != null" >
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="blockId != null" >
+        #{blockId,jdbcType=INTEGER},
+      </if>
+      <if test="positionType != null" >
+        #{positionType,jdbcType=CHAR},
+      </if>
+      <if test="carouseFlag != null" >
+        #{carouseFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pageId != null" >
+        #{pageId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null" >
+        #{proId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.cms.bean.CmsPosition" >
+    update cms_position
+    <set >
+      <if test="positionId != null" >
+        position_id = #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="positionName != null" >
+        position_name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="blockId != null" >
+        block_id = #{blockId,jdbcType=INTEGER},
+      </if>
+      <if test="positionType != null" >
+        position_type = #{positionType,jdbcType=CHAR},
+      </if>
+      <if test="carouseFlag != null" >
+        carouse_flag = #{carouseFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pageId != null" >
+        page_id = #{pageId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null" >
+        pro_id = #{proId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.cms.bean.CmsPosition" >
+    update cms_position
+    set position_id = #{positionId,jdbcType=INTEGER},
+      position_name = #{positionName,jdbcType=VARCHAR},
+      block_id = #{blockId,jdbcType=INTEGER},
+      position_type = #{positionType,jdbcType=CHAR},
+      carouse_flag = #{carouseFlag,jdbcType=INTEGER},
+      page_id = #{pageId,jdbcType=INTEGER},
+      pro_id = #{proId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.id!=null and entity.id &gt;0">
+                        and id=#{entity.id,jdbcType=INTEGER}
+                    </if>
+
+                    <if test="entity.positionId != null" >
+                        and position_id = #{entity.positionId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.positionName != null" >
+                        and position_name = #{entity.positionName,jdbcType=VARCHAR}
+                    </if>
+                    <if test="entity.blockId != null" >
+                        and block_id = #{entity.blockId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.positionType != null" >
+                        and position_type = #{entity.positionType,jdbcType=CHAR}
+                    </if>
+                    <if test="entity.carouseFlag != null" >
+                        and carouse_flag = #{entity.carouseFlag,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.pageId != null" >
+                        and page_id = #{entity.pageId,jdbcType=INTEGER}
+                    </if>
+                    <if test="entity.proId != null" >
+                        and pro_id = #{entity.proId,jdbcType=INTEGER}
+                    </if>
+
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from cms_position
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity" resultType="java.lang.Integer">
+        select count(*) from cms_position
+        <include refid="selectCondition" />
+    </select>
+</mapper>

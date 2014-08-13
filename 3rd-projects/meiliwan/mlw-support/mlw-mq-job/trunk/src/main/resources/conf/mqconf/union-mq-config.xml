@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<msgtaskcenter-config belonged-model="async-msg">
+    
+    <task-flowshop rabbit-msgtype="topic" flowshop-name="shop7">
+        <desc><![CDATA[]]></desc>
+        <msg-patterns>
+            <msg-pattern>union_order_msg.union_order_msg.unionMsg</msg-pattern>
+        </msg-patterns>
+        <taskworkers>
+            <taskworker classname="com.meiliwan.emall.service.union.UnionMsgTaskWorker" ord="1"/>
+        </taskworkers>
+    </task-flowshop>
+     
+</msgtaskcenter-config>

@@ -1,0 +1,138 @@
+############################################################ 6.0.3 ############################################################
+###############
+一、更新数据库
+###############
+-------------------- wzx 6.0.3 -------------------------------------------
+这是6.0.3预售功能开发需要添加的信息，信息如下：
+ALTER TABLE mlw_product.pro_product ADD presale_end_time TIMESTAMP  DEFAULT '0000-00-00 00:00:00' COMMENT '预售结束时间';
+ALTER TABLE mlw_product.pro_product ADD presale_send_time TIMESTAMP  DEFAULT '0000-00-00 00:00:00' COMMENT '预售预计发货时间';
+
+------------------- lzl 6.0.3 -------------------------------
+增加预售订单通知任务：
+INSERT INTO mlw_task.`task_job` (`job_id`, `module`, `method`, `create_user`, `cyc_times`, `source`, `STATUS`, `create_time`, `update_time`) VALUES(0,'bg-omsService@bg-omsIceBoxReplicaGroup','presaleOrderTaskService/autoNotifyPresaleOrder','梁庄龙','0 0 11  * * ?','预售订单发货通知，每天上午11点执行一次','1','2014-05-10 11:00:00','2014-05-10 11:00:00');
+
+-------------------  6.0.3 bug修改 -------------------------------
+UPDATE mlw_cms.cms_page_block SET cache_code=10103 WHERE block_name='site_foot' AND id!='';
+
+
+
+
+###############
+二、更新zookeeper
+###############
+------------- lzl oms 预售通知 -----------------------------
+1、在zookeeper上增加节点：
+	bg-oms-service > system.properties
+	bg-oms-service > ice_config.xml
+	
+2、在system.properties中增加内容：
+	oms.presale.notify.mobile=18377107705,13950309770,15018772548
+  oms.presale.notify.email=jing.zhu@opi-corp.com,yan.xu1@opi-corp.com,yijun.liao@opi-corp.com,wenting.lei@opi-corp.com,juan.lai1@opi-corp.com,luying.lu@opi-corp.com 
+  
+3、在ice_config.xml中增加内容：
+	<?xml version="1.0" encoding="UTF-8"?>
+	<ice-config>
+	    <springConfig>
+	        <config>conf/spring/oms/bg-oms-config.xml</config> 
+	    </springConfig>
+	
+	    <services>
+	        <service identity="pmsService" 
+	                         replicaGroup="pmsIceBoxReplicaGroup" 
+	                         connectMode="prod"
+	                         localPort="10012"/>
+	        <service identity="omsService" 
+	                         replicaGroup="omsIceBoxReplicaGroup" 
+	                         connectMode="prod"
+	                         localPort="10012"/>
+	        <service identity="baseService" 
+	                         replicaGroup="baseIceBoxReplicaGroup" 
+	                         connectMode="prod"
+	                         localPort="10008"/>
+	    </services>
+	</ice-config>
+	
+4、在task-web节点下的ice_config.xml增加
+	<service identity="bg-omsService" 
+                         replicaGroup="bg-omsIceBoxReplicaGroup" 
+                         connectMode="dev"
+                         localPort="10412"/>
+
+-------------------- lsf base 短信 --------------------------
+在/mlwconf/commons/messages.properties 文件中将message.guodo.url注释掉，并添加如下一行：
+      message.guodo.url=http://221.179.180.158:9008/HttpQuickProcess/submitMessageAll
+
+
+
+###############
+三、编译发布程序代码
+###############
+--------------- 6.0.3 --------------------------------------
+注：发布前需要增加bg-omsIceBox服务 并修改mq的发布脚本发布到对应的服务上 测试环境上已有
+
+commons基础包：无
+
+根据开发过程中涉及的模块发布：
+	/data/compileAnddeploy/prod_release 下发布service
+		 ./release.sh mlw-pms
+		 ./release.sh mlw-oms
+		 ./release.sh mlw-sp
+		 ./release.sh mlw-base
+		 ./release.sh mlw-cms2
+		 ./release_mq.sh bg_oms  
+		 
+
+
+  /data/compileAnddeploy/prod_release 下发布web
+  	 ./release_web.sh mlw-admin-web
+  	 ./release_web.sh mlw-www-web
+  	 ./release_web.sh mlw-passport-web
+  	 ./release_web.sh mlw-cms2-web
+  	 ./release_web.sh mlw-app-web
+		 
+  	
+  /data/compileAnddeploy/prod_release 下发布静态资源
+		 ./release_res.sh mlw-web-res
+
+
+###############
+四、修改nginx配置
+###############
+无
+
+
+###############
+五、使用线上后台管理员账户到后台添加菜单和功能项
+###############
+--------------------------- wzx 6.0.3 ---------------------------
+修改预售相关时间 69276ac16c2eac6c750ecf29660aa30e  功能  /pms/product/updateskuPresale  父节点: SKU管理
+
+导出发货明细     fc5e136e9913c8590b58ea5cb8b39562  功能 /oms/report/getSendListExcel    父节点: 订单管理-配送
+
+
+
+###############
+六、ice服务的回滚：
+###############
+
+
+
+###############
+七、web服务的回滚：
+###############
+
+      
+      
+###############
+八、CMS/静态资源版本号：6.0.3
+###############
+   
+
+###############
+九、缓存状态重置： 
+###############
+
+
+
+
+

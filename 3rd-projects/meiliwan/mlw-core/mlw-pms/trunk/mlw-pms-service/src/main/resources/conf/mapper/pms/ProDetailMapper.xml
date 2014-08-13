@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.pms.dao.ProDetailDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.pms.bean.ProDetail" >
+    <id column="spu_id" property="spuId" jdbcType="INTEGER" />
+    <result column="search_keyword" property="searchKeyword" jdbcType="VARCHAR" />
+    <result column="seo_keyword" property="seoKeyword" jdbcType="VARCHAR" />
+    <result column="seo_descp" property="seoDescp" jdbcType="VARCHAR" />
+    <result column="factory" property="factory" jdbcType="VARCHAR" />
+    <result column="editor_rec" property="editorRec" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="LONGVARCHAR" />
+    <result column="descp_menu" property="descpMenu" jdbcType="LONGVARCHAR" />
+    <result column="descp" property="descp" jdbcType="LONGVARCHAR" />
+    <result column="seo_title" property="seoTitle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    spu_id, search_keyword, seo_keyword, seo_descp,
+    factory, editor_rec, summary, descp_menu, descp, seo_title
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pro_detail
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pro_detail
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.pms.bean.ProDetail" >
+    insert into pro_detail (spu_id, search_keyword,
+      seo_keyword, seo_descp, factory, 
+      editor_rec, summary,
+      descp_menu, descp, seo_title)
+    values (#{spuId,jdbcType=INTEGER}, #{searchKeyword,jdbcType=VARCHAR},
+      #{seoKeyword,jdbcType=VARCHAR}, #{seoDescp,jdbcType=VARCHAR}, #{factory,jdbcType=VARCHAR}, 
+      #{editorRec,jdbcType=VARCHAR}, #{summary,jdbcType=LONGVARCHAR},
+      #{descpMenu,jdbcType=LONGVARCHAR}, #{descp,jdbcType=LONGVARCHAR}, #{seoTitle,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.pms.bean.ProDetail" >
+    insert into pro_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spuId != null" >
+        spu_id,
+      </if>
+      <if test="searchKeyword != null" >
+        search_keyword,
+      </if>
+      <if test="seoKeyword != null" >
+        seo_keyword,
+      </if>
+      <if test="seoDescp != null" >
+        seo_descp,
+      </if>
+      <if test="factory != null" >
+        factory,
+      </if>
+      <if test="editorRec != null" >
+        editor_rec,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="descpMenu != null" >
+        descp_menu,
+      </if>
+      <if test="descp != null" >
+        descp,
+      </if>
+        <if test="seoTitle != null" >
+            seo_title,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spuId != null" >
+        #{spuId,jdbcType=INTEGER},
+      </if>
+      <if test="searchKeyword != null" >
+        #{searchKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="seoKeyword != null" >
+        #{seoKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="seoDescp != null" >
+        #{seoDescp,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null" >
+        #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="editorRec != null" >
+        #{editorRec,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="descpMenu != null" >
+        #{descpMenu,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="descp != null" >
+        #{descp,jdbcType=LONGVARCHAR},
+      </if>
+        <if test="seoTitle != null" >
+            #{seoTitle,jdbcType=VARCHAR},
+        </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.pms.bean.ProDetail" >
+    update pro_detail
+    <set >
+      <if test="searchKeyword != null" >
+        search_keyword = #{searchKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="seoKeyword != null" >
+        seo_keyword = #{seoKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="seoDescp != null" >
+        seo_descp = #{seoDescp,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null" >
+        factory = #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="editorRec != null" >
+        editor_rec = #{editorRec,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="descpMenu != null" >
+        descp_menu = #{descpMenu,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="descp != null" >
+        descp = #{descp,jdbcType=LONGVARCHAR},
+      </if>
+        <if test="seoTitle != null" >
+            seo_title = #{seoTitle,jdbcType=VARCHAR},
+        </if>
+    </set>
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.pms.bean.ProDetail" >
+    update pro_detail
+    set search_keyword = #{searchKeyword,jdbcType=VARCHAR},
+      seo_keyword = #{seoKeyword,jdbcType=VARCHAR},
+      seo_descp = #{seoDescp,jdbcType=VARCHAR},
+      factory = #{factory,jdbcType=VARCHAR},
+      editor_rec = #{editorRec,jdbcType=VARCHAR},
+      seo_title = #{seoTitle,jdbcType=VARCHAR}
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </update>
+
+    <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.spuId!=null and entity.spuId &gt;0">
+                        and spu_id=#{entity.spuId,jdbcType=INTEGER}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pro_detail
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from pro_detail
+        <include refid="selectCondition"/>
+    </select>
+
+    <update id="updateProductDetailFromDto" parameterType="com.meiliwan.emall.pms.dto.ProductDetailDTO">
+        update pro_detail
+        set
+          descp_menu = #{descpMenu,jdbcType=VARCHAR},
+          descp = #{descp,jdbcType=VARCHAR}
+        where spu_id = #{spuId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateEditorRec" parameterType="com.meiliwan.emall.pms.dto.ProductDetailDTO">
+          update pro_detail
+          set
+            editor_rec = #{editorRec,jdbcType=VARCHAR}
+          where spu_id = #{spuId,jdbcType=INTEGER}
+    </update>
+</mapper>

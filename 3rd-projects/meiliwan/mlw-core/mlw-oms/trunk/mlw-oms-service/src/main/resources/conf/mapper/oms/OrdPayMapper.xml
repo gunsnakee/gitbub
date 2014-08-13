@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.oms.dao.OrdPayDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.oms.bean.OrdPay" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <id column="pay_code" property="payCode" jdbcType="VARCHAR" />
+      <result column="pay_id" property="payId" jdbcType="VARCHAR" />
+      <result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="pay_item_num" property="payItemNum" jdbcType="TINYINT" />
+    <result column="pay_name" property="payName" jdbcType="VARCHAR" />
+    <result column="pay_amount" property="payAmount" jdbcType="DECIMAL" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="bill_type" property="billType" jdbcType="TINYINT" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+      <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="update_time" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, pay_code, pay_id, pay_type, pay_item_num, pay_name, pay_amount, pay_time, pay_status, bill_type,
+    uid, user_name, update_time, create_time, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.meiliwan.emall.oms.bean.OrdPayKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from oms_ord_pay
+    where order_id = #{orderId,jdbcType=VARCHAR}
+      <if test="payCode != null" >
+          and pay_code = #{payCode,jdbcType=VARCHAR}
+      </if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.meiliwan.emall.oms.bean.OrdPayKey" >
+    delete from oms_ord_pay
+    where order_id = #{orderId,jdbcType=VARCHAR}
+      and pay_code = #{payCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.oms.bean.OrdPay" >
+    insert into oms_ord_pay (order_id, pay_code, pay_id, pay_type,
+      pay_item_num, pay_name, pay_amount, 
+      pay_time, pay_status, bill_type, uid,user_name,
+      update_time, create_time, state)
+    values (#{orderId,jdbcType=VARCHAR}, #{payCode,jdbcType=VARCHAR}, #{payId,jdbcType=VARCHAR}, #{payType,jdbcType=VARCHAR},
+      #{payItemNum,jdbcType=TINYINT}, #{payName,jdbcType=VARCHAR}, #{payAmount,jdbcType=DECIMAL}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{payStatus,jdbcType=VARCHAR}, #{billType,jdbcType=TINYINT}, #{uid,jdbcType=INTEGER},#{userName,jdbcType=VARCHAR},
+      #{updatedTime,jdbcType=TIMESTAMP}, #{createdTime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.oms.bean.OrdPay" >
+    insert into oms_ord_pay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="payCode != null" >
+        pay_code,
+      </if>
+        <if test="payId != null" >
+            pay_id,
+        </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="payItemNum != null" >
+        pay_item_num,
+      </if>
+      <if test="payName != null" >
+        pay_name,
+      </if>
+      <if test="payAmount != null" >
+        pay_amount,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+        <if test="payStatus != null" >
+            pay_status,
+        </if>
+      <if test="billType != null" >
+        bill_type,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+        <if test="userName != null" >
+            user_name,
+        </if>
+      <if test="updatedTime != null" >
+        update_time,
+      </if>
+      <if test="createdTime != null" >
+        create_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="payCode != null" >
+        #{payCode,jdbcType=VARCHAR},
+      </if>
+        <if test="payId != null" >
+            #{payId,jdbcType=VARCHAR},
+        </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payItemNum != null" >
+        #{payItemNum,jdbcType=TINYINT},
+      </if>
+      <if test="payName != null" >
+        #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null" >
+        #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+        <if test="payStatus != null" >
+            #{payStatus,jdbcType=VARCHAR},
+        </if>
+      <if test="billType != null" >
+        #{billType,jdbcType=TINYINT},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+        <if test="userName != null" >
+            #{userName,jdbcType=VARCHAR},
+        </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.oms.bean.OrdPay" >
+    update oms_ord_pay
+    <set >
+        <if test="payId != null" >
+            pay_id = #{payId,jdbcType=VARCHAR},
+        </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payItemNum != null" >
+        pay_item_num = #{payItemNum,jdbcType=TINYINT},
+      </if>
+      <if test="payName != null" >
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null" >
+        pay_amount = #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+        <if test="payStatus != null" >
+            pay_status = #{payStatus,jdbcType=VARCHAR},
+        </if>
+      <if test="billType != null" >
+        bill_type = #{billType,jdbcType=TINYINT},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+        <if test="userName != null" >
+            user_name=#{userName,jdbcType=VARCHAR},
+        </if>
+      <if test="updatedTime != null" >
+        update_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+      and pay_code = #{payCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.oms.bean.OrdPay" >
+    update oms_ord_pay
+    set pay_id = #{payId,jdbcType=VARCHAR},pay_type = #{payType,jdbcType=VARCHAR},
+      pay_item_num = #{payItemNum,jdbcType=TINYINT},
+      pay_name = #{payName,jdbcType=VARCHAR},
+      pay_amount = #{payAmount,jdbcType=DECIMAL},
+      pay_time = #{payTime,jdbcType=TIMESTAMP}, pay_status = #{payStatus,jdbcType=VARCHAR},
+      bill_type = #{billType,jdbcType=TINYINT},
+      uid = #{uid,jdbcType=INTEGER},
+      user_name=#{userName,jdbcType=VARCHAR},
+      update_time = #{updatedTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=TINYINT}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+      and pay_code = #{payCode,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="com.meiliwan.emall.oms.bean.OrdPay" >
+    select 
+    <include refid="Base_Column_List" />
+    from oms_ord_pay
+    where order_id = #{orderId,jdbcType=VARCHAR} 
+    <if test="state != null" >
+    		and state = #{state,jdbcType=TINYINT}
+     </if>
+  </select>
+
+    <select id="selectByOrderIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from oms_ord_pay
+        where order_id IN
+        <foreach item="item" index="index" collection="orderIds"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and state = #{state,jdbcType=TINYINT}
+    </select>
+
+    <update id="updateByOrderId" parameterType="com.meiliwan.emall.oms.bean.OrdPay" >
+        update oms_ord_pay
+        set pay_id = #{payId,jdbcType=VARCHAR},
+        pay_status = #{payStatus,jdbcType=VARCHAR},
+        update_time = #{updatedTime,jdbcType=TIMESTAMP},
+        pay_time = #{payTime,jdbcType=TIMESTAMP}
+        where order_id = #{orderId,jdbcType=VARCHAR}
+        <if test="payCode != null" >
+            and pay_code = #{payCode,jdbcType=VARCHAR}
+        </if>
+    </update>
+
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.orderId!=null">
+                        and order_id=#{entity.orderId,jdbcType=VARCHAR}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 根据条件查询 -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from oms_ord_pay
+        <include refid="selectCondition" />
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity" resultType="java.lang.Integer">
+        select count(*) from oms_ord_pay
+        <include refid="selectCondition" />
+    </select>
+
+
+
+
+
+
+</mapper>

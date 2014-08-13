@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.monitor.dao.PlayerAppDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.monitor.allocation.PlayerApp" >
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="app_name" property="appName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="BasePlayerAppMap" type="com.meiliwan.emall.monitor.allocation.PlayerAppDTO" >
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="app_name" property="appName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    pid, app_name
+  </sql>
+  
+  <insert id="insert" parameterType="com.meiliwan.emall.monitor.allocation.PlayerApp" >
+    insert into player_app (pid, app_name)
+    values (#{pid,jdbcType=INTEGER}, #{appName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.monitor.allocation.PlayerApp" >
+    insert into player_app
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="appName != null" >
+        app_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="appName != null" >
+        #{appName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <delete id="deleteByPid" parameterType="java.lang.Integer" >
+    delete from player_app
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 下边是需要手动配置 自定义 查询条件 -->
+    <sql id="selectCondition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="entity != null">
+                    <if test="entity.pid!=null">
+                        and pid=#{entity.pid,jdbcType=INTEGER}
+                    </if>
+                </if>
+            </trim>
+            <trim suffixOverrides="and">
+                <if test="whereSql!=null">
+                    and ${whereSql}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- get pages by pageInfo -->
+    <select id="getListByEntityAndPageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from player_app
+        <include refid="selectCondition"/>
+        <if test="orderBy!=null">
+            ${orderBy}
+        </if>
+        <if test="pageInfo!=null">
+            limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+        </if>
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="getTotalByEntity"
+            resultType="java.lang.Integer">
+        select count(*) from player_app
+        <include refid="selectCondition"/>
+    </select>
+    
+    <select id="getAllPlayerApp"
+            resultMap="BasePlayerAppMap">
+        SELECT player.pid,name,mobile,email,state,app_name FROM 
+        mlw_monitor.player_app left join player on player_app.pid=player.pid
+    </select>
+    
+    
+    
+</mapper>

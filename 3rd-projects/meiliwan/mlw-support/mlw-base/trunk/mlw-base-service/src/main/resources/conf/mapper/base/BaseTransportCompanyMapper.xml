@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiliwan.emall.base.dao.BaseTransportCompanyDao" >
+  <resultMap id="BaseResultMap" type="com.meiliwan.emall.base.bean.BaseTransportCompany" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="support_cash" property="supportCash" jdbcType="TINYINT" />
+    <result column="support_pos" property="supportPos" jdbcType="TINYINT" />
+    <result column="support_check" property="supportCheck" jdbcType="TINYINT" />
+    <result column="is_default" property="isDefault" jdbcType="TINYINT" />
+    <result column="is_del" property="isDel" jdbcType="TINYINT" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name,  
+    support_cash,support_pos,support_check,is_default, is_del,admin_id, state, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_transport_company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from base_transport_company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiliwan.emall.base.bean.BaseTransportCompany" >
+    insert into base_transport_company (id, name, support_cash,support_pos,support_check,is_default,is_del, admin_id, 
+      state, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},   #{supportCash,jdbcType=TINYINT},
+  	  #{supportPos,jdbcType=TINYINT},
+   	  #{supportCheck,jdbcType=TINYINT},#{isDefault,jdbcType=TINYINT} #{isDefault,jdbcType=TINYINT},#{isDel,jdbcType=TINYINT}, #{adminId,jdbcType=INTEGER}, 
+      #{state,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiliwan.emall.base.bean.BaseTransportCompany" >
+    insert into base_transport_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="supportCash != null" >
+        support_cash,
+      </if>
+	  <if test="supportPos != null" >
+        support_pos,
+      </if>
+	  <if test="supportCheck != null" >
+        support_check,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="supportCash != null" >
+        #{supportCash,jdbcType=TINYINT},
+      </if>
+	  <if test="supportPos != null" >
+        #{supportPos,jdbcType=TINYINT},
+      </if>
+	  <if test="supportCheck != null" >
+       #{supportCheck,jdbcType=TINYINT},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=TINYINT},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiliwan.emall.base.bean.BaseTransportCompany" >
+    update base_transport_company
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="supportCash != null" >
+        support_cash = #{supportCash,jdbcType=TINYINT},
+      </if>
+	  <if test="supportPos != null" >
+        support_pos = #{supportPos,jdbcType=TINYINT},
+      </if>
+	  <if test="supportCheck != null" >
+        support_check = #{supportCheck,jdbcType=TINYINT},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=TINYINT},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiliwan.emall.base.bean.BaseTransportCompany" >
+    update base_transport_company
+    set name = #{name,jdbcType=VARCHAR},
+      support_cash = #{supportCash,jdbcType=TINYINT},
+  	  support_pos = #{supportPos,jdbcType=TINYINT},
+      support_check = #{supportCheck,jdbcType=TINYINT},
+      is_default = #{isDefault,jdbcType=TINYINT},
+      is_del = #{isDel,jdbcType=TINYINT},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      state = #{state,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <sql id="selectCondition">
+      <where>
+          <trim suffixOverrides="and">
+              and id!=999 
+              <if test="entity != null">
+                  <if test="entity.id!=null and entity.id &gt;0">
+                      and id=#{entity.id,jdbcType=INTEGER}
+                  </if>
+                  <if test="entity.isDel!=null">
+                      and is_del=#{entity.isDel,jdbcType=TINYINT}
+                  </if>
+              </if>
+              
+          </trim>
+          <trim suffixOverrides="and">
+              <if test="whereSql!=null">
+                  and ${whereSql}
+              </if>
+          </trim>
+      </where>
+  </sql>
+  
+  <!-- 根据条件查询 -->
+  <select id="getListByEntityAndPageInfo"
+          resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from base_transport_company
+      <include refid="selectCondition" />
+      <if test="orderBy!=null">
+          ${orderBy}
+      </if>
+      <if test="pageInfo!=null">
+          limit ${pageInfo.startIndex} ,${pageInfo.pagesize}
+      </if>
+  </select>
+
+    <!-- 查询总数 -->
+  <select id="getTotalByEntity"
+          resultType="java.lang.Integer">
+      select count(*) from base_transport_company
+      <include refid="selectCondition" />
+  </select>
+  
+</mapper>

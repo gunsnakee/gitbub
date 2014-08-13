@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration scan="false">
+
+     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<Encoding>UTF-8</Encoding>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<param name="Pattern"
+				value="%d{yyyy-MM-dd HH:mm:ss} %contextName %-5level [%logger{36}] %msg%n" />
+		</layout>
+	</appender>
+
+	<!-- appenders -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/data/iceservice/node/logs/mlw-cms2/cms2_service_%d{yyyyMMdd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>%d{HH:mm:ss} %-5p %c:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+    <appender name="DB" class="com.meiliwan.emall.commons.log.DBAppender">
+        <connectionSource class="com.meiliwan.emall.commons.log.MLWDriverManagerConnectionSource">
+            <confPath>/mlwconf/commons/logDb.properties</confPath>
+            <dataSource  class="com.jolbox.bonecp.BoneCPDataSource">
+                <driverClass>com.mysql.jdbc.Driver</driverClass>
+            </dataSource>
+        </connectionSource>
+    </appender>
+	
+	
+	<logger name="com.meiliwan" level="debug" additivity="false">
+            <appender-ref ref="DB"/>
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="FILE" />
+     </logger>
+     <!-- root logger -->
+     <root level="ERROR">
+         <appender-ref ref="STDOUT" />
+         <appender-ref ref="FILE" />
+     </root>
+
+</configuration>
