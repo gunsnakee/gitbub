@@ -10,7 +10,10 @@
     <modules>
         <module>gitbub-core</module>
         <module>gitbub-web</module>
+        <module>gitbub-service</module>
+        <module>gitbub-db</module>
     </modules>
+    <url>http://maven.apache.org</url>
     <dependencyManagement>
         <dependencies>
             <dependency>
